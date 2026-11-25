@@ -1,0 +1,952 @@
+{
+  "uid": "swc-interfaces",
+  "title": "swcollect · Interfaces",
+  "description": "Traffic, utilization and errors from Orion.NPM.InterfaceTraffic / InterfaceErrors, and optical power from the custom pollers (Orion.NPM.CustomPollerStatistics). Times in tables are exactly as received from SolarWinds (server-local). Graphs place each point at the received time minus the server UTC offset measured by swcollect (sw_meta.instance.utc_offset_minutes).",
+  "tags": [
+    "swcollect",
+    "metrics"
+  ],
+  "timezone": "browser",
+  "editable": true,
+  "graphTooltip": 1,
+  "schemaVersion": 39,
+  "version": 1,
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "refresh": "5m",
+  "fiscalYearStartMonth": 0,
+  "liveNow": false,
+  "weekStart": "",
+  "annotations": {
+    "list": []
+  },
+  "links": [
+    {
+      "type": "dashboards",
+      "tags": [
+        "swcollect"
+      ],
+      "asDropdown": true,
+      "title": "swcollect",
+      "includeVars": true,
+      "keepTime": true
+    }
+  ],
+  "templating": {
+    "list": [
+      {
+        "type": "query",
+        "name": "instance",
+        "label": "Orion instance",
+        "description": "<network_id>/<host:port>: one Orion instance (SPEC-B §6)",
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "swcollect-pg"
+        },
+        "query": "SELECT instance_key AS __text, instance_id AS __value FROM sw_meta.instance ORDER BY 1",
+        "definition": "SELECT instance_key AS __text, instance_id AS __value FROM sw_meta.instance ORDER BY 1",
+        "refresh": 1,
+        "sort": 1,
+        "multi": false,
+        "includeAll": false,
+        "hide": 0,
+        "current": {},
+        "options": [],
+        "regex": ""
+      },
+      {
+        "type": "query",
+        "name": "device",
+        "label": "Device",
+        "description": "",
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "swcollect-pg"
+        },
+        "query": "SELECT \"Caption\" AS __text, \"NodeID\" AS __value FROM sw_core.device WHERE instance_id = $instance AND deleted_at IS NULL ORDER BY 1",
+        "definition": "SELECT \"Caption\" AS __text, \"NodeID\" AS __value FROM sw_core.device WHERE instance_id = $instance AND deleted_at IS NULL ORDER BY 1",
+        "refresh": 1,
+        "sort": 1,
+        "multi": false,
+        "includeAll": false,
+        "hide": 0,
+        "current": {},
+        "options": [],
+        "regex": ""
+      },
+      {
+        "type": "query",
+        "name": "interface",
+        "label": "Interface (with samples)",
+        "description": "",
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "swcollect-pg"
+        },
+        "query": "SELECT i.\"Name\" AS __text, i.\"InterfaceID\" AS __value FROM sw_core.interface i WHERE i.instance_id = $instance AND i.\"NodeID\" = $device AND i.deleted_at IS NULL AND EXISTS (SELECT 1 FROM sw_ts.orion_npm_interfacetraffic t WHERE t.instance_id = i.instance_id AND t.\"InterfaceID\" = i.\"InterfaceID\") ORDER BY 1",
+        "definition": "SELECT i.\"Name\" AS __text, i.\"InterfaceID\" AS __value FROM sw_core.interface i WHERE i.instance_id = $instance AND i.\"NodeID\" = $device AND i.deleted_at IS NULL AND EXISTS (SELECT 1 FROM sw_ts.orion_npm_interfacetraffic t WHERE t.instance_id = i.instance_id AND t.\"InterfaceID\" = i.\"InterfaceID\") ORDER BY 1",
+        "refresh": 1,
+        "sort": 1,
+        "multi": false,
+        "includeAll": false,
+        "hide": 0,
+        "current": {},
+        "options": [],
+        "regex": ""
+      }
+    ]
+  },
+  "panels": [
+    {
+      "type": "row",
+      "title": "Selected interface",
+      "id": 1,
+      "collapsed": false,
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 1
+      },
+      "panels": []
+    },
+    {
+      "type": "timeseries",
+      "title": "Traffic (bits per second)",
+      "description": "InAveragebps / OutAveragebps per sample.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "swcollect-pg"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "swcollect-pg"
+          },
+          "refId": "A",
+          "rawQuery": true,
+          "editorMode": "code",
+          "format": "time_series",
+          "rawSql": "SELECT m.\"DateTime\" - (SELECT make_interval(mins => utc_offset_minutes) FROM sw_meta.instance WHERE instance_id = $instance) AS time, m.\"InAveragebps\" AS \"in\", m.\"OutAveragebps\" AS \"out\" FROM sw_ts.v_orion_npm_interfacetraffic m WHERE m.instance_id = $instance AND m.\"InterfaceID\" = $interface AND m.\"DateTime\" >= ($__timeFrom()::timestamptz AT TIME ZONE 'UTC') + (SELECT make_interval(mins => utc_offset_minutes) FROM sw_meta.instance WHERE instance_id = $instance) AND m.\"DateTime\" < ($__timeTo()::timestamptz AT TIME ZONE 'UTC') + (SELECT make_interval(mins => utc_offset_minutes) FROM sw_meta.instance WHERE instance_id = $instance) ORDER BY 1"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bps",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 8,
+            "gradientMode": "none",
+            "showPoints": "never",
+            "pointSize": 8,
+            "spanNulls": false,
+            "insertNulls": 1200000,
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            },
+            "lineInterpolation": "linear",
+            "barAlignment": 0,
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "color": {
+            "mode": "palette-classic"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "transparent"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "in"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3987e5"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "out"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#d95926"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": []
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "id": 2,
+      "gridPos": {
+        "x": 0,
+        "y": 1,
+        "w": 12,
+        "h": 8
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Utilization (%)",
+      "description": "InPercentUtil / OutPercentUtil as SolarWinds computes them (not derived here). Shaded above 80 %.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "swcollect-pg"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "swcollect-pg"
+          },
+          "refId": "A",
+          "rawQuery": true,
+          "editorMode": "code",
+          "format": "time_series",
+          "rawSql": "SELECT m.\"DateTime\" - (SELECT make_interval(mins => utc_offset_minutes) FROM sw_meta.instance WHERE instance_id = $instance) AS time, m.\"InPercentUtil\" AS \"in\", m.\"OutPercentUtil\" AS \"out\" FROM sw_ts.v_orion_npm_interfacetraffic m WHERE m.instance_id = $instance AND m.\"InterfaceID\" = $interface AND m.\"DateTime\" >= ($__timeFrom()::timestamptz AT TIME ZONE 'UTC') + (SELECT make_interval(mins => utc_offset_minutes) FROM sw_meta.instance WHERE instance_id = $instance) AND m.\"DateTime\" < ($__timeTo()::timestamptz AT TIME ZONE 'UTC') + (SELECT make_interval(mins => utc_offset_minutes) FROM sw_meta.instance WHERE instance_id = $instance) ORDER BY 1"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 8,
+            "gradientMode": "none",
+            "showPoints": "never",
+            "pointSize": 8,
+            "spanNulls": false,
+            "insertNulls": 1200000,
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            },
+            "lineInterpolation": "linear",
+            "barAlignment": 0,
+            "thresholdsStyle": {
+              "mode": "line+area"
+            }
+          },
+          "color": {
+            "mode": "palette-classic"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "transparent"
+              },
+              {
+                "value": 80,
+                "color": "rgba(250,178,25,0.10)"
+              },
+              {
+                "value": 90,
+                "color": "rgba(208,59,59,0.14)"
+              }
+            ]
+          },
+          "max": 100
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "in"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3987e5"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "out"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#d95926"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": []
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "id": 3,
+      "gridPos": {
+        "x": 12,
+        "y": 1,
+        "w": 12,
+        "h": 8
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Errors and discards (per sample)",
+      "description": "Orion.NPM.InterfaceErrors counts per sample interval.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "swcollect-pg"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "swcollect-pg"
+          },
+          "refId": "A",
+          "rawQuery": true,
+          "editorMode": "code",
+          "format": "time_series",
+          "rawSql": "SELECT m.\"DateTime\" - (SELECT make_interval(mins => utc_offset_minutes) FROM sw_meta.instance WHERE instance_id = $instance) AS time, m.\"InErrors\" AS \"in errors\", m.\"CRCAlignErrors\" AS \"CRC errors\", m.\"OutDiscards\" AS \"out discards\" FROM sw_ts.v_orion_npm_interfaceerrors m WHERE m.instance_id = $instance AND m.\"InterfaceID\" = $interface AND m.\"DateTime\" >= ($__timeFrom()::timestamptz AT TIME ZONE 'UTC') + (SELECT make_interval(mins => utc_offset_minutes) FROM sw_meta.instance WHERE instance_id = $instance) AND m.\"DateTime\" < ($__timeTo()::timestamptz AT TIME ZONE 'UTC') + (SELECT make_interval(mins => utc_offset_minutes) FROM sw_meta.instance WHERE instance_id = $instance) ORDER BY 1"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "custom": {
+            "drawStyle": "bars",
+            "lineWidth": 2,
+            "fillOpacity": 70,
+            "gradientMode": "none",
+            "showPoints": "never",
+            "pointSize": 8,
+            "spanNulls": false,
+            "insertNulls": false,
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            },
+            "lineInterpolation": "linear",
+            "barAlignment": 0,
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "color": {
+            "mode": "palette-classic"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "transparent"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "in errors"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3987e5"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CRC errors"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#d95926"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "out discards"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#199e70"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": []
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "id": 4,
+      "gridPos": {
+        "x": 0,
+        "y": 9,
+        "w": 24,
+        "h": 7
+      }
+    },
+    {
+      "type": "row",
+      "title": "All interfaces in the time range",
+      "id": 5,
+      "collapsed": false,
+      "gridPos": {
+        "x": 0,
+        "y": 16,
+        "w": 24,
+        "h": 1
+      },
+      "panels": []
+    },
+    {
+      "type": "table",
+      "title": "Busiest interfaces",
+      "description": "Top 15 by peak utilization (SolarWinds' InPercentUtil / OutPercentUtil).",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "swcollect-pg"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "swcollect-pg"
+          },
+          "refId": "A",
+          "rawQuery": true,
+          "editorMode": "code",
+          "format": "table",
+          "rawSql": "SELECT m.device_caption AS \"Device\", m.interface_name AS \"Interface\", round(max(greatest(m.\"InPercentUtil\", m.\"OutPercentUtil\"))::numeric, 1) AS \"Peak %\", round(avg(m.\"InPercentUtil\")::numeric, 1) AS \"Average in %\", round(avg(m.\"OutPercentUtil\")::numeric, 1) AS \"Average out %\" FROM sw_ts.v_orion_npm_interfacetraffic m WHERE m.instance_id = $instance AND m.\"DateTime\" >= ($__timeFrom()::timestamptz AT TIME ZONE 'UTC') + (SELECT make_interval(mins => utc_offset_minutes) FROM sw_meta.instance WHERE instance_id = $instance) AND m.\"DateTime\" < ($__timeTo()::timestamptz AT TIME ZONE 'UTC') + (SELECT make_interval(mins => utc_offset_minutes) FROM sw_meta.instance WHERE instance_id = $instance) GROUP BY 1, 2 ORDER BY 3 DESC LIMIT 15"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "text"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Peak %"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "value": null,
+                      "color": "#0ca30c"
+                    },
+                    {
+                      "value": 80,
+                      "color": "#fab219"
+                    },
+                    {
+                      "value": 90,
+                      "color": "#d03b3b"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Peak %"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Average in %"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Average out %"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false,
+          "reducer": [
+            "sum"
+          ],
+          "fields": ""
+        }
+      },
+      "id": 6,
+      "gridPos": {
+        "x": 0,
+        "y": 17,
+        "w": 12,
+        "h": 10
+      }
+    },
+    {
+      "type": "table",
+      "title": "Interfaces with errors or discards",
+      "description": "Sums over the time range; only interfaces with any.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "swcollect-pg"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "swcollect-pg"
+          },
+          "refId": "A",
+          "rawQuery": true,
+          "editorMode": "code",
+          "format": "table",
+          "rawSql": "SELECT m.device_caption AS \"Device\", m.interface_name AS \"Interface\", sum(m.\"InErrors\") AS \"In errors\", sum(m.\"CRCAlignErrors\") AS \"CRC errors\", sum(m.\"OutDiscards\") AS \"Out discards\" FROM sw_ts.v_orion_npm_interfaceerrors m WHERE m.instance_id = $instance AND m.\"DateTime\" >= ($__timeFrom()::timestamptz AT TIME ZONE 'UTC') + (SELECT make_interval(mins => utc_offset_minutes) FROM sw_meta.instance WHERE instance_id = $instance) AND m.\"DateTime\" < ($__timeTo()::timestamptz AT TIME ZONE 'UTC') + (SELECT make_interval(mins => utc_offset_minutes) FROM sw_meta.instance WHERE instance_id = $instance) GROUP BY 1, 2 HAVING sum(m.\"InErrors\") + sum(m.\"OutDiscards\") > 0 ORDER BY 4 DESC, 3 DESC LIMIT 15"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "text"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CRC errors"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "value": null,
+                      "color": "transparent"
+                    },
+                    {
+                      "value": 100,
+                      "color": "#fab219"
+                    },
+                    {
+                      "value": 1000,
+                      "color": "#d03b3b"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false,
+          "reducer": [
+            "sum"
+          ],
+          "fields": ""
+        }
+      },
+      "id": 7,
+      "gridPos": {
+        "x": 12,
+        "y": 17,
+        "w": 12,
+        "h": 10
+      }
+    },
+    {
+      "type": "row",
+      "title": "Optical power (custom pollers)",
+      "id": 8,
+      "collapsed": false,
+      "gridPos": {
+        "x": 0,
+        "y": 27,
+        "w": 24,
+        "h": 1
+      },
+      "panels": []
+    },
+    {
+      "type": "timeseries",
+      "title": "Optical power on the selected device (dBm)",
+      "description": "CustomPollerStatistics.Status read as a number. Its unit is the poller's own (dBm for the Juniper DOM pollers, Orion.NPM.CustomPollers.Unit). Only devices with optical pollers have data.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "swcollect-pg"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "swcollect-pg"
+          },
+          "refId": "A",
+          "rawQuery": true,
+          "editorMode": "code",
+          "format": "time_series",
+          "rawSql": "SELECT m.\"DateTime\" - (SELECT make_interval(mins => utc_offset_minutes) FROM sw_meta.instance WHERE instance_id = $instance) AS time, p.\"UniqueName\" AS metric, m.\"Status\"::double precision AS value FROM sw_ts.orion_npm_custompollerstatistics m JOIN sw_core.custom_poller_assignment a ON a.instance_id = m.instance_id AND a.\"CustomPollerAssignmentID\"::text = m.\"CustomPollerAssignmentID\"::text AND a.deleted_at IS NULL JOIN sw_core.custom_poller p ON p.instance_id = a.instance_id AND p.\"CustomPollerID\"::text = a.\"CustomPollerID\"::text AND p.deleted_at IS NULL WHERE m.instance_id = $instance AND a.\"NodeID\" = $device AND m.\"DateTime\" >= ($__timeFrom()::timestamptz AT TIME ZONE 'UTC') + (SELECT make_interval(mins => utc_offset_minutes) FROM sw_meta.instance WHERE instance_id = $instance) AND m.\"DateTime\" < ($__timeTo()::timestamptz AT TIME ZONE 'UTC') + (SELECT make_interval(mins => utc_offset_minutes) FROM sw_meta.instance WHERE instance_id = $instance) AND m.\"Status\" ~ '^-?[0-9.]+$' ORDER BY 1"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "dBm",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 8,
+            "gradientMode": "none",
+            "showPoints": "never",
+            "pointSize": 8,
+            "spanNulls": false,
+            "insertNulls": 1200000,
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            },
+            "lineInterpolation": "linear",
+            "barAlignment": 0,
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "color": {
+            "mode": "palette-classic"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "transparent"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "jnxDomCurrentRxLaserPower"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3987e5"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "jnxDomCurrentTxLaserOutputPower"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#d95926"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": []
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "id": 9,
+      "gridPos": {
+        "x": 0,
+        "y": 28,
+        "w": 12,
+        "h": 8
+      }
+    },
+    {
+      "type": "table",
+      "title": "Optical power change over the time range",
+      "description": "First and last sample per poller in the range. A falling Rx level predicts a failing link (SPEC §2 optical transceivers).",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "swcollect-pg"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "swcollect-pg"
+          },
+          "refId": "A",
+          "rawQuery": true,
+          "editorMode": "code",
+          "format": "table",
+          "rawSql": "SELECT (SELECT d.\"Caption\" FROM sw_core.device d WHERE d.instance_id = $instance AND d.\"NodeID\" = a.\"NodeID\" AND d.deleted_at IS NULL) AS \"Device\", p.\"UniqueName\" AS \"Poller\", (array_agg(m.\"Status\" ORDER BY m.\"DateTime\"))[1]::double precision AS \"First dBm\", (array_agg(m.\"Status\" ORDER BY m.\"DateTime\" DESC))[1]::double precision AS \"Last dBm\", round(((array_agg(m.\"Status\" ORDER BY m.\"DateTime\" DESC))[1]::numeric - (array_agg(m.\"Status\" ORDER BY m.\"DateTime\"))[1]::numeric), 2) AS \"Change dB\" FROM sw_ts.orion_npm_custompollerstatistics m JOIN sw_core.custom_poller_assignment a ON a.instance_id = m.instance_id AND a.\"CustomPollerAssignmentID\"::text = m.\"CustomPollerAssignmentID\"::text AND a.deleted_at IS NULL JOIN sw_core.custom_poller p ON p.instance_id = a.instance_id AND p.\"CustomPollerID\"::text = a.\"CustomPollerID\"::text AND p.deleted_at IS NULL WHERE m.instance_id = $instance AND m.\"DateTime\" >= ($__timeFrom()::timestamptz AT TIME ZONE 'UTC') + (SELECT make_interval(mins => utc_offset_minutes) FROM sw_meta.instance WHERE instance_id = $instance) AND m.\"DateTime\" < ($__timeTo()::timestamptz AT TIME ZONE 'UTC') + (SELECT make_interval(mins => utc_offset_minutes) FROM sw_meta.instance WHERE instance_id = $instance) AND m.\"Status\" ~ '^-?[0-9.]+$' GROUP BY 1, 2 ORDER BY 5 LIMIT 20"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "text"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Change dB"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "value": null,
+                      "color": "#d03b3b"
+                    },
+                    {
+                      "value": -3,
+                      "color": "#fab219"
+                    },
+                    {
+                      "value": -1,
+                      "color": "transparent"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false,
+          "reducer": [
+            "sum"
+          ],
+          "fields": ""
+        }
+      },
+      "id": 10,
+      "gridPos": {
+        "x": 12,
+        "y": 28,
+        "w": 12,
+        "h": 8
+      }
+    }
+  ]
+}

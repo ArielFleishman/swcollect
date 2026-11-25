@@ -1,0 +1,517 @@
+{
+  "uid": "swc-topology",
+  "title": "swcollect · Topology and routing",
+  "description": "Links from Orion.TopologyConnections, neighbors from LLDP and Orion.Routing.*. State names come from Orion.Routing.RoutingProtocolStateMapping, as SolarWinds publishes them. Times in tables are exactly as received from SolarWinds (server-local). Graphs place each point at the received time minus the server UTC offset measured by swcollect (sw_meta.instance.utc_offset_minutes).",
+  "tags": [
+    "swcollect",
+    "inventory"
+  ],
+  "timezone": "browser",
+  "editable": true,
+  "graphTooltip": 1,
+  "schemaVersion": 39,
+  "version": 1,
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "refresh": "5m",
+  "fiscalYearStartMonth": 0,
+  "liveNow": false,
+  "weekStart": "",
+  "annotations": {
+    "list": []
+  },
+  "links": [
+    {
+      "type": "dashboards",
+      "tags": [
+        "swcollect"
+      ],
+      "asDropdown": true,
+      "title": "swcollect",
+      "includeVars": true,
+      "keepTime": true
+    }
+  ],
+  "templating": {
+    "list": [
+      {
+        "type": "query",
+        "name": "instance",
+        "label": "Orion instance",
+        "description": "<network_id>/<host:port>: one Orion instance (SPEC-B §6)",
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "swcollect-pg"
+        },
+        "query": "SELECT instance_key AS __text, instance_id AS __value FROM sw_meta.instance ORDER BY 1",
+        "definition": "SELECT instance_key AS __text, instance_id AS __value FROM sw_meta.instance ORDER BY 1",
+        "refresh": 1,
+        "sort": 1,
+        "multi": false,
+        "includeAll": false,
+        "hide": 0,
+        "current": {},
+        "options": [],
+        "regex": ""
+      }
+    ]
+  },
+  "panels": [
+    {
+      "type": "row",
+      "title": "Map",
+      "id": 1,
+      "collapsed": false,
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 1
+      },
+      "panels": []
+    },
+    {
+      "type": "nodeGraph",
+      "title": "Physical topology (sw_core.link)",
+      "description": "One node per device, one edge per device pair with a link whose both interfaces are in Orion. A link to an interface Orion does not hold is in the dead-letter queue instead.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "swcollect-pg"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "swcollect-pg"
+          },
+          "refId": "nodes",
+          "rawQuery": true,
+          "editorMode": "code",
+          "format": "table",
+          "rawSql": "SELECT d.\"NodeID\"::text AS id, d.\"Caption\" AS title, d.\"MachineType\" AS subtitle, coalesce(n.\"StatusDescription\", '') AS mainstat, d.\"IPAddress\" AS secondarystat FROM sw_core.device d LEFT JOIN sw_raw.orion_nodes n ON n.instance_id = d.instance_id AND n.\"NodeID\" = d.\"NodeID\" WHERE d.instance_id = $instance AND d.deleted_at IS NULL"
+        },
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "swcollect-pg"
+          },
+          "refId": "edges",
+          "rawQuery": true,
+          "editorMode": "code",
+          "format": "table",
+          "rawSql": "SELECT min(l.id)::text AS id, l.\"SrcNodeID\"::text AS source, l.\"DestNodeID\"::text AS target, min(si.\"Name\" || ' ↔ ' || di.\"Name\") AS mainstat FROM sw_core.link l JOIN sw_core.interface si ON si.id = l.src_interface_id JOIN sw_core.interface di ON di.id = l.dest_interface_id WHERE l.instance_id = $instance AND l.deleted_at IS NULL AND l.\"SrcNodeID\" < l.\"DestNodeID\" GROUP BY 2, 3"
+        }
+      ],
+      "options": {
+        "nodes": {
+          "mainStatUnit": "",
+          "secondaryStatUnit": ""
+        },
+        "edges": {
+          "mainStatUnit": ""
+        }
+      },
+      "id": 2,
+      "gridPos": {
+        "x": 0,
+        "y": 1,
+        "w": 24,
+        "h": 16
+      }
+    },
+    {
+      "type": "row",
+      "title": "Routing",
+      "id": 3,
+      "collapsed": false,
+      "gridPos": {
+        "x": 0,
+        "y": 17,
+        "w": 24,
+        "h": 1
+      },
+      "panels": []
+    },
+    {
+      "type": "table",
+      "title": "Neighbors by protocol and state",
+      "description": "A state without a SolarWinds mapping is shown as its code.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "swcollect-pg"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "swcollect-pg"
+          },
+          "refId": "A",
+          "rawQuery": true,
+          "editorMode": "code",
+          "format": "table",
+          "rawSql": "SELECT coalesce(rp.\"DisplayName\", r.\"ProtocolID\"::text) AS \"Protocol\", coalesce(sm.\"DisplayName\", 'code ' || r.\"ProtocolStatus\") AS \"State\", count(*) AS \"Neighbors\" FROM sw_core.routing_neighbor r LEFT JOIN sw_raw.orion_routing_routingprotocolstatemapping sm ON sm.instance_id = r.instance_id AND sm.\"ProtocolID\" = r.\"ProtocolID\" AND sm.\"ProtocolStatus\" = r.\"ProtocolStatus\" AND sm._deleted_at IS NULL LEFT JOIN sw_raw.orion_routing_routingprotocol rp ON rp.instance_id = r.instance_id AND rp.\"ProtocolID\" = r.\"ProtocolID\" AND rp._deleted_at IS NULL WHERE r.instance_id = $instance AND r.deleted_at IS NULL GROUP BY 1, 2 ORDER BY 1, 3 DESC"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "text"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false,
+          "reducer": [
+            "sum"
+          ],
+          "fields": ""
+        }
+      },
+      "id": 4,
+      "gridPos": {
+        "x": 0,
+        "y": 18,
+        "w": 8,
+        "h": 9
+      }
+    },
+    {
+      "type": "table",
+      "title": "Neighbors not in the protocol's main state",
+      "description": "Per protocol, every neighbor whose state is not the state most of its neighbors are in (for example a BGP session that is not Established). Rank, not a hard-coded state.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "swcollect-pg"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "swcollect-pg"
+          },
+          "refId": "A",
+          "rawQuery": true,
+          "editorMode": "code",
+          "format": "table",
+          "rawSql": "SELECT (SELECT d.\"Caption\" FROM sw_core.device d WHERE d.instance_id = $instance AND d.\"NodeID\" = r.\"NodeID\" AND d.deleted_at IS NULL) AS \"Device\", rp.\"DisplayName\" AS \"Protocol\", r.\"NeighborIP\" AS \"Neighbor\", coalesce(sm.\"DisplayName\", 'code ' || r.\"ProtocolStatus\") AS \"State\", r.\"LastChange\" AS \"Last change (as received)\" FROM sw_core.routing_neighbor r LEFT JOIN sw_raw.orion_routing_routingprotocolstatemapping sm ON sm.instance_id = r.instance_id AND sm.\"ProtocolID\" = r.\"ProtocolID\" AND sm.\"ProtocolStatus\" = r.\"ProtocolStatus\" AND sm._deleted_at IS NULL LEFT JOIN sw_raw.orion_routing_routingprotocol rp ON rp.instance_id = r.instance_id AND rp.\"ProtocolID\" = r.\"ProtocolID\" AND rp._deleted_at IS NULL WHERE r.instance_id = $instance AND r.deleted_at IS NULL AND (r.\"ProtocolID\", r.\"ProtocolStatus\") NOT IN (SELECT x.\"ProtocolID\", x.\"ProtocolStatus\" FROM sw_core.routing_neighbor x WHERE x.instance_id = $instance AND x.deleted_at IS NULL GROUP BY 1, 2 HAVING count(*) = (SELECT max(c) FROM (SELECT count(*) c FROM sw_core.routing_neighbor y WHERE y.instance_id = $instance AND y.deleted_at IS NULL AND y.\"ProtocolID\" = x.\"ProtocolID\" GROUP BY y.\"ProtocolStatus\") z)) ORDER BY 5 DESC"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "text"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "State"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "value": null,
+                      "color": "#ec835a"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false,
+          "reducer": [
+            "sum"
+          ],
+          "fields": ""
+        }
+      },
+      "id": 5,
+      "gridPos": {
+        "x": 8,
+        "y": 18,
+        "w": 16,
+        "h": 9
+      }
+    },
+    {
+      "type": "table",
+      "title": "Flap counts (last 7 days, Orion.Routing.NeighborsFlapCount)",
+      "description": "FlapCount for DaysBucket 7.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "swcollect-pg"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "swcollect-pg"
+          },
+          "refId": "A",
+          "rawQuery": true,
+          "editorMode": "code",
+          "format": "table",
+          "rawSql": "SELECT (SELECT d.\"Caption\" FROM sw_core.device d WHERE d.instance_id = $instance AND d.\"NodeID\" = f.\"NodeID\" AND d.deleted_at IS NULL) AS \"Device\", f.\"NeighborIP\" AS \"Neighbor\", f.\"FlapCount\" AS \"Flaps\" FROM sw_raw.orion_routing_neighborsflapcount f WHERE f.instance_id = $instance AND f._deleted_at IS NULL AND f.\"DaysBucket\" = 7 AND f.\"FlapCount\" > 0 ORDER BY 3 DESC LIMIT 15"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "text"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Flaps"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "value": null,
+                      "color": "transparent"
+                    },
+                    {
+                      "value": 3,
+                      "color": "#fab219"
+                    },
+                    {
+                      "value": 8,
+                      "color": "#d03b3b"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false,
+          "reducer": [
+            "sum"
+          ],
+          "fields": ""
+        }
+      },
+      "id": 6,
+      "gridPos": {
+        "x": 0,
+        "y": 27,
+        "w": 8,
+        "h": 9
+      }
+    },
+    {
+      "type": "table",
+      "title": "Route flaps (Orion.Routing.RoutingTableFlap)",
+      "description": "Routes that changed, as SolarWinds recorded them.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "swcollect-pg"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "swcollect-pg"
+          },
+          "refId": "A",
+          "rawQuery": true,
+          "editorMode": "code",
+          "format": "table",
+          "rawSql": "SELECT f.\"DateTime\" AS \"Time (as received)\", (SELECT d.\"Caption\" FROM sw_core.device d WHERE d.instance_id = $instance AND d.\"NodeID\" = f.\"NodeId\" AND d.deleted_at IS NULL) AS \"Device\", f.\"RouteDestination\" || '/' || f.\"CIDR\" AS \"Prefix\", f.\"RouteNextHop\" AS \"Next hop\" FROM sw_raw.orion_routing_routingtableflap f WHERE f.instance_id = $instance AND f._deleted_at IS NULL ORDER BY 1 DESC LIMIT 50"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "text"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false,
+          "reducer": [
+            "sum"
+          ],
+          "fields": ""
+        }
+      },
+      "id": 7,
+      "gridPos": {
+        "x": 8,
+        "y": 27,
+        "w": 8,
+        "h": 9
+      }
+    },
+    {
+      "type": "table",
+      "title": "LLDP neighbors that are not in Orion",
+      "description": "Neighbors seen by LLDP whose name and address match no Orion node: unmonitored equipment.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "swcollect-pg"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "swcollect-pg"
+          },
+          "refId": "A",
+          "rawQuery": true,
+          "editorMode": "code",
+          "format": "table",
+          "rawSql": "SELECT (SELECT d.\"Caption\" FROM sw_core.device d WHERE d.instance_id = $instance AND d.\"NodeID\" = l.\"NodeID\" AND d.deleted_at IS NULL) AS \"Device\", l.\"LocalPort\" AS \"Local port\", l.\"RemoteSystemName\" AS \"Remote system\", l.\"RemotePort\" AS \"Remote port\", l.\"RemoteIP\" AS \"Remote IP\" FROM sw_core.lldp_neighbor l WHERE l.instance_id = $instance AND l.deleted_at IS NULL AND NOT EXISTS (SELECT 1 FROM sw_core.node_ip_address a WHERE a.instance_id = l.instance_id AND a.\"IPAddress\" = l.\"RemoteIP\" AND a.deleted_at IS NULL) AND NOT EXISTS (SELECT 1 FROM sw_core.device d WHERE d.instance_id = l.instance_id AND d.\"Caption\" = l.\"RemoteSystemName\" AND d.deleted_at IS NULL)"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "value": null,
+                "color": "text"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false,
+          "reducer": [
+            "sum"
+          ],
+          "fields": ""
+        }
+      },
+      "id": 8,
+      "gridPos": {
+        "x": 16,
+        "y": 27,
+        "w": 8,
+        "h": 9
+      }
+    }
+  ]
+}

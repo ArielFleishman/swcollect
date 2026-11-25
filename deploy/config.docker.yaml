@@ -1,0 +1,10 @@
+# Profiles as seen from inside the compose network. Sinks come from SWCOLLECT_PG_DSN / SWCOLLECT_LOKI_URL.
+networks:
+  - name: mock
+    description: Mock SWIS container
+    host: mock
+    port: 17774
+    scheme: http          # the mock serves plain HTTP; real SWIS is always https
+    username: readonly
+    password: mock
+    network_id: mock

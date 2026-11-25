@@ -1,0 +1,32 @@
+# Copy to config.yaml and edit. Network profiles use the same format as swcheck's config.yaml.
+# The collector is read-only: a profile with actions_enabled is refused.
+
+page_size: 5000              # rows per SWIS page (WITH ROWS a TO b)
+max_concurrent_queries: 2    # per Orion instance (proposal)
+
+# Sinks. SWCOLLECT_PG_DSN / SWCOLLECT_LOKI_URL override these.
+pg_dsn: postgresql://swcollect:swcollect@127.0.0.1:15432/swcollect
+loki_url: http://127.0.0.1:13100
+
+# Push receiver for the Orion alert action. The token comes from SWCOLLECT_HOOK_TOKEN.
+hook_host: 0.0.0.0
+hook_port: 18090
+
+networks:
+  # Mock SWIS (python -m swcollect mock, or the "mock" service with docker-compose.dev.yml).
+  - name: mock
+    host: 127.0.0.1
+    port: 17774
+    scheme: http
+    username: readonly
+    password: mock
+    network_id: mock
+
+  # A real network:
+  # - name: pilot
+  #   host: orion.pilot.local
+  #   port: 17774
+  #   username: DOMAIN\svc_swis_ro
+  #   password_env: SWIS_PILOT_PASSWORD
+  #   verify_tls: false          # or ca_bundle: path to the Orion CA (.pem)
+  #   network_id: isp12          # stable IDs: <network_id>/<host:port>/<entity>/<key>

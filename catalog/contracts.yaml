@@ -1,0 +1,433 @@
+# Data contracts – stage B, SolarWinds side only (docs/SPEC-B.md §4, §6, §9, §13.1).
+#
+# One contract per canonical entity. It reads the rows of ONE query probe in checks.yaml and says how they
+# become our format. Every change is shown next to the raw row (swcheck/pipeline.py); the raw query log is
+# never modified.
+#   stable_id   canonical fields that identify a record inside one instance. The full ID adds network and instance:
+#               <network_id>/<host:port>/<SWIS entity>/<field=value;...>  (local NodeID is not global, §6)
+#   fields      name      canonical name (ours)
+#               from      the field name in the probe rows (the logical name in checks.yaml)
+#               required  true -> a null or empty value breaks rule "required"
+#               ref       canonical entity whose stable_id this value must match in the same run
+#               unit      unit of the value as SWIS returns it. Declared only, never converted.
+#               tz        utc | server_local. Only then is a time written as UTC ("...Z"). Not used today:
+#                         every time is kept exactly as received (user decision, 2026-11-04).
+#               enum      {map: {code: label}, doc: URL}. Without doc the mapping is not allowed.
+#               meaning   what the field means, in Hebrew
+#               basis     where the meaning/unit/tz comes from. Missing = "טעון הוכחה".
+#   derived     extra fields computed from a canonical field (the source field stays as received)
+#   rules       key_not_null, key_unique, required, ref, enum. A record that breaks one goes to the
+#               dead-letter queue with the rule; nothing is dropped. Empty fields (null or "") are marked on
+#               the record and counted, without rejecting it.
+#   owner       the SolarWinds side of SPEC-B §5 (status: טרם אושר until the workshop approves it)
+#   frequency   proposal from SPEC-B §7 (to be verified against the API)
+#
+# Only entities that SolarWinds feeds are listed. Entities from other systems (§4) are out of scope.
+
+version: 1
+status: טיוטה – ממתין לאישור משמעויות
+
+contracts:
+  - entity: Device
+    title: רכיב
+    spec: "שלב ב' §4, §6; שלב א' #2"
+    source: {check: 2, probe: nodes}
+    stable_id: [NodeID]
+    fields:
+      - {name: NodeID, from: NodeID, required: true, meaning: מזהה הרכיב במופע Orion (מקומי, לא גלובלי),
+         basis: https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.Nodes.html}
+      - {name: Caption, from: Caption, meaning: שם הרכיב כפי שמוצג ב־SolarWinds}
+      - {name: IPAddress, from: IPAddress, meaning: כתובת הניהול של הרכיב}
+      - {name: Vendor, from: Vendor, meaning: יצרן}
+      - {name: MachineType, from: MachineType, meaning: דגם / סוג מכונה}
+      - {name: SoftwareVersion, from: SoftwareVersion, meaning: גרסת תוכנה}
+      - {name: Status, from: Status, meaning: קוד מצב הרכיב (Integer; המיפוי לפי הגרסה – טעון הוכחה)}
+      - {name: ObjectSubType, from: ObjectSubType, meaning: שיטת הניטור (SNMP / ICMP / Agent ...)}
+      - {name: SysName, from: SysName, meaning: sysName של הרכיב}
+      - {name: Location, from: Location, meaning: sysLocation כפי שנאסף}
+      - {name: EngineID, from: EngineID, meaning: מנוע האיסוף שמנטר את הרכיב}
+      - {name: LastBoot, from: LastBoot, meaning: זמן האתחול האחרון}
+      - {name: SystemUpTime, from: SystemUpTime, meaning: זמן פעילות מאז האתחול (יחידות – טעון הוכחה)}
+      - {name: LastSync, from: LastSync, meaning: זמן האיסוף האחרון מהרכיב}
+      - {name: MinutesSinceLastSync, from: MinutesSinceLastSync, unit: minutes,
+         meaning: דקות מאז האיסוף האחרון, basis: "שם השדה בסכמה (Orion.Nodes)"}
+    rules: [key_not_null, key_unique, required]
+    owner: {proposed: "SolarWinds קובע Serial, גרסה וכרטיסים (IP); שם ותפקיד – SolarWinds מדווח",
+            status: טרם אושר, ref: "שלב ב' §5"}
+    frequency: {proposed: "פעם ביום, ושינויים כל שעה", ref: "שלב ב' §7"}
+
+  - entity: NcmNode
+    title: רכיב ב־NCM (מיפוי GUID ↔ NodeID)
+    spec: "שלב ב' §6; שלב א' §3.4.4"
+    source: {check: 11, probe: ncm_nodes}
+    stable_id: [NcmNodeID]
+    fields:
+      - {name: NcmNodeID, from: NodeID, required: true, meaning: מזהה הרכיב ב־NCM (GUID),
+         basis: https://solarwinds.github.io/OrionSDK/2026.2/schema/Cirrus.Nodes.html}
+      - {name: CoreNodeID, from: CoreNodeID, required: true, ref: Device, meaning: מזהה Orion המספרי של אותו רכיב,
+         basis: https://solarwinds.github.io/OrionSDK/2026.2/schema/Cirrus.Nodes.html}
+      - {name: NodeCaption, from: NodeCaption, meaning: שם הרכיב ב־NCM}
+      - {name: ConnectionProfile, from: ConnectionProfile, meaning: פרופיל ההתחברות של NCM לרכיב}
+    rules: [key_not_null, key_unique, required, ref]
+    owner: {proposed: "SolarWinds NCM", status: טרם אושר, ref: "שלב ב' §5 (לא מוגדר במפורש)"}
+    frequency: {proposed: "פעם ביום ובכל שינוי", ref: "שלב ב' §7 (תצורות)"}
+
+  - entity: Interface
+    title: ממשק
+    spec: "שלב ב' §4, §6; שלב א' #2"
+    source: {check: 2, probe: interfaces}
+    stable_id: [InterfaceID]
+    fields:
+      - {name: InterfaceID, from: InterfaceID, required: true, meaning: מזהה הממשק במופע Orion,
+         basis: https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.NPM.Interfaces.html}
+      - {name: NodeID, from: NodeID, required: true, ref: Device, meaning: הרכיב שאליו שייך הממשק}
+      - {name: Name, from: Name, meaning: שם הממשק כפי שמוצג (למשל GigabitEthernet0/0/1)}
+      - {name: Alias, from: Alias, meaning: התיאור המוגדר על הפורט (ifAlias)}
+      - {name: Type, from: Type, meaning: קוד סוג הממשק (ifType)}
+      - {name: Speed, from: Speed, meaning: מהירות הממשק (יחידות – טעון הוכחה מול מסך הממשק)}
+      - {name: AdminStatus, from: AdminStatus, meaning: מצב מנהלתי (קוד; המיפוי – טעון הוכחה)}
+      - {name: OperStatus, from: OperStatus, meaning: מצב תפעולי (קוד; המיפוי – טעון הוכחה)}
+      - {name: MTU, from: MTU, meaning: MTU של הממשק}
+      - {name: IfName, from: IfName, meaning: ifName}
+      - {name: Index, from: Index, meaning: ifIndex}
+      - {name: PhysicalAddress, from: PhysicalAddress, meaning: כתובת MAC}
+      - {name: LastChange, from: LastChange, meaning: זמן השינוי האחרון במצב הממשק}
+    derived:
+      - {name: NameNormalized, from: Name, transform: interface_name,
+         meaning: "שם ממשק מנורמל לפי טבלת קיצורים (§6). להתאמה עתידית בין מקורות בלבד, לא להוכחת קליטה."}
+    rules: [key_not_null, key_unique, required, ref]
+    owner: {proposed: "מצב: SolarWinds קובע (IP)", status: טרם אושר, ref: "שלב ב' §5 (מצב ומדדים)"}
+    frequency: {proposed: "כל שעה", ref: "שלב ב' §7"}
+
+  - entity: IPLink
+    title: קישור (TopologyConnections)
+    spec: "שלב ב' §4; שלב א' #4"
+    source: {check: 4, probe: connections}
+    stable_id: [SrcNodeID, SrcInterfaceID, DestNodeID, DestInterfaceID]
+    fields:
+      - {name: SrcNodeID, from: SrcNodeID, required: true, ref: Device, meaning: רכיב המקור של הקשר,
+         basis: https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.TopologyConnections.html}
+      - {name: SrcInterfaceID, from: SrcInterfaceID, ref: Interface, meaning: ממשק המקור (אם הקשר ברמת ממשק)}
+      - {name: DestNodeID, from: DestNodeID, required: true, ref: Device, meaning: רכיב היעד של הקשר}
+      - {name: DestInterfaceID, from: DestInterfaceID, ref: Interface, meaning: ממשק היעד (אם הקשר ברמת ממשק)}
+      - {name: SrcType, from: SrcType, meaning: סוג אובייקט המקור}
+      - {name: DestType, from: DestType, meaning: סוג אובייקט היעד}
+      - {name: LayerType, from: LayerType, meaning: שכבת הקשר (L2 / L3 ...)}
+      - {name: DataSourceNodeID, from: DataSourceNodeID, meaning: הרכיב שממנו נלמד הקשר}
+      - {name: LastUpdateUtc, from: LastUpdateUtc, meaning: עדכון אחרון של הקשר}
+    rules: [key_not_null, key_unique, required, ref]
+    owner: {proposed: "SolarWinds נצפה", status: טרם אושר, ref: "שלב ב' §5 (קישור IP)"}
+    frequency: {proposed: "כל שעה", ref: "שלב ב' §7 (טופולוגיה)"}
+
+  - entity: LldpNeighbor
+    title: שכנות LLDP
+    spec: "שלב ב' §4 (קישור IP – LLDP/CDP); שלב א' #4"
+    source: {check: 4, probe: lldp}
+    stable_id: [NodeID, LocalPort, RemoteSystemName, RemotePort]
+    fields:
+      - {name: NodeID, from: NodeID, required: true, ref: Device, meaning: הרכיב המקומי,
+         basis: https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.NodeLldpEntry.html}
+      - {name: LocalPort, from: LocalPort, meaning: הפורט המקומי}
+      - {name: RemoteSystemName, from: RemoteSystemName, meaning: שם המערכת השכנה כפי שדווח ב־LLDP}
+      - {name: RemotePort, from: RemotePort, meaning: הפורט בצד השכן}
+      - {name: RemotePortDescription, from: RemotePortDescription, meaning: תיאור הפורט בצד השכן}
+      - {name: RemoteIP, from: RemoteIP, meaning: כתובת ניהול של השכן}
+    rules: [key_not_null, key_unique, required, ref]
+    owner: {proposed: "SolarWinds נצפה", status: טרם אושר, ref: "שלב ב' §5 (קישור IP)"}
+    frequency: {proposed: "כל שעה", ref: "שלב ב' §7 (טופולוגיה)"}
+
+  - entity: CdpNeighbor
+    title: שכנות CDP
+    spec: "שלב ב' §4 (קישור IP – LLDP/CDP); שלב א' #4"
+    source: {check: 4, probe: cdp}
+    stable_id: [NodeID, LocalPort, RemoteSystemName, RemotePort]
+    fields:
+      - {name: NodeID, from: NodeID, required: true, ref: Device, meaning: הרכיב המקומי,
+         basis: https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.NodeCdpEntry.html}
+      - {name: LocalPort, from: LocalPort, meaning: הפורט המקומי}
+      - {name: RemoteSystemName, from: RemoteSystemName, meaning: שם הרכיב השכן כפי שדווח ב־CDP}
+      - {name: RemotePort, from: RemotePort, meaning: הפורט בצד השכן}
+      - {name: RemoteIP, from: RemoteIP, meaning: כתובת השכן}
+    rules: [key_not_null, key_unique, required, ref]
+    owner: {proposed: "SolarWinds נצפה", status: טרם אושר, ref: "שלב ב' §5 (קישור IP)"}
+    frequency: {proposed: "כל שעה", ref: "שלב ב' §7 (טופולוגיה)"}
+
+  - entity: Alert
+    title: התראה פעילה
+    spec: "שלב ב' §4 (התראה / אירוע); שלב א' #10"
+    source: {check: 10, probe: active}
+    stable_id: [AlertActiveID]
+    fields:
+      - {name: AlertActiveID, from: AlertActiveID, required: true, meaning: מזהה ההתראה הפעילה,
+         basis: https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.AlertActive.html}
+      - {name: AlertObjectID, from: AlertObjectID, required: true, meaning: האובייקט שעליו ההתראה (Orion.AlertObjects)}
+      - {name: TriggeredDateTime, from: TriggeredDateTime, meaning: זמן הפעלת ההתראה}
+      - {name: TriggeredMessage, from: TriggeredMessage, meaning: הודעת ההתראה}
+      - {name: Acknowledged, from: Acknowledged, meaning: האם אושרה (Acknowledge)}
+      - {name: AcknowledgedBy, from: AcknowledgedBy, meaning: מי אישר}
+      - {name: AcknowledgedDateTime, from: AcknowledgedDateTime, meaning: מתי אושרה}
+    rules: [key_not_null, key_unique, required]
+    owner: {proposed: "מצב: SolarWinds קובע (IP)", status: טרם אושר, ref: "שלב ב' §5 (מצב ומדדים)"}
+    frequency: {proposed: "מיד (בדחיפה)", ref: "שלב ב' §7"}
+
+  - entity: ConfigVersion
+    title: גרסת תצורה (ארכיון NCM, ללא תוכן)
+    spec: "שלב ב' §4 (תצורה ושינוי); שלב א' #11, §3.4.4"
+    source: {check: 11, probe: archive}
+    stable_id: [ConfigID]
+    fields:
+      - {name: ConfigID, from: ConfigID, required: true, meaning: מזהה גרסת התצורה (GUID),
+         basis: https://solarwinds.github.io/OrionSDK/2026.2/schema/Cirrus.ConfigArchive.html}
+      - {name: NcmNodeID, from: NodeID, required: true, ref: NcmNode, meaning: הרכיב ב־NCM (GUID, לא NodeID של Orion)}
+      - {name: DownloadTime, from: DownloadTime, meaning: מתי הורדה התצורה}
+      - {name: ConfigType, from: ConfigType, meaning: סוג התצורה (Running / Startup / ...)}
+      - {name: ConfigTitle, from: ConfigTitle, meaning: כותרת הגרסה}
+      - {name: Baseline, from: Baseline, meaning: האם מסומנת כ־Baseline}
+      - {name: IsBinary, from: IsBinary, meaning: האם התצורה בינארית}
+      - {name: ModifiedTime, from: ModifiedTime, meaning: זמן שינוי}
+    rules: [key_not_null, key_unique, required, ref]
+    owner: {proposed: "SolarWinds NCM", status: טרם אושר, ref: "שלב ב' §5 (לא מוגדר במפורש)"}
+    frequency: {proposed: "פעם ביום ובכל שינוי", ref: "שלב ב' §7"}
+
+  # ---- iteration 2 (SPEC-B §4: card/module/transceiver, address/prefix/VRF/VLAN, routing neighbour, LAG) ----
+  - entity: HardwareComponent
+    title: כרטיס / מודול / טרנסיבר (מלאי פיזי NCM)
+    spec: "שלב ב' §4 (כרטיס / מודול / טרנסיבר); שלב א' #3, #9"
+    source: {check: 3, probe: entity_physical}
+    stable_id: [NcmNodeID, EntPhysicalIndex]
+    fields:
+      - {name: NcmNodeID, from: NodeID, required: true, ref: NcmNode, meaning: "הרכיב ב־NCM (GUID, לא NodeID של Orion)",
+         basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/NCM.EntityPhysical.html"}
+      - {name: EntPhysicalIndex, from: EntPhysicalIndex, required: true, meaning: "entPhysicalIndex של הרכיב הפיזי (ENTITY-MIB)"}
+      - {name: EntityClass, from: EntityClass, meaning: "סוג הרכיב הפיזי (chassis / module / port / powerSupply / fan ...); SFP מופיע כאן"}
+      - {name: EntityName, from: EntityName, meaning: "שם הרכיב הפיזי"}
+      - {name: EntityDescription, from: EntityDescription, meaning: "תיאור הרכיב הפיזי"}
+      - {name: Serial, from: Serial, meaning: "מספר סידורי"}
+      - {name: Model, from: Model, meaning: "דגם / מספר חלק"}
+      - {name: Manufacturer, from: Manufacturer, meaning: "יצרן הרכיב"}
+      - {name: HardwareRevision, from: HardwareRevision, meaning: "גרסת חומרה"}
+      - {name: FirmwareRevision, from: FirmwareRevision, meaning: "גרסת קושחה"}
+      - {name: SoftwareRevision, from: SoftwareRevision, meaning: "גרסת תוכנה של הרכיב"}
+    rules: [key_not_null, key_unique, required, ref]
+    owner: {proposed: "SolarWinds קובע Serial, גרסה וכרטיסים (IP)", status: טרם אושר, ref: "שלב ב' §5"}
+    frequency: {proposed: "פעם ביום, ושינויים כל שעה", ref: "שלב ב' §7 (רכיבים, חומרה, גרסאות)"}
+
+  - entity: HardwareSensor
+    title: ספק כוח / מאוורר / חיישן (Hardware Health)
+    spec: "שלב ב' §4 (החלקים שבתוך הרכיב); שלב א' #3"
+    source: {check: 3, probe: hw_items}
+    stable_id: [NodeID, UniqueName]
+    fields:
+      - {name: NodeID, from: NodeID, required: true, ref: Device, meaning: "הרכיב שבו נמצא הפריט",
+         basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.HardwareHealth.HardwareItem.html"}
+      - {name: UniqueName, from: UniqueName, required: true, meaning: "שם ייחודי של הפריט ברכיב"}
+      - {name: Name, from: Name, meaning: "שם הפריט כפי שמוצג"}
+      - {name: Status, from: Status, meaning: "קוד מצב (המיפוי – טעון הוכחה)"}
+      - {name: HardwareCategoryStatusID, from: HardwareCategoryStatusID, meaning: "קוד קטגוריה / מצב קטגוריה (המיפוי – טעון הוכחה)"}
+      - {name: Value, from: Value, meaning: "הערך האחרון שנמדד"}
+      - {name: Unit, from: Unit, meaning: "יחידת הערך כפי שהמוצר מחזיר"}
+      - {name: IsDisabled, from: IsDisabled, meaning: "האם הניטור של הפריט כבוי"}
+      - {name: IsDeleted, from: IsDeleted, meaning: "האם הפריט סומן כמחוק"}
+    rules: [key_not_null, key_unique, required, ref]
+    owner: {proposed: "מצב: SolarWinds קובע (IP)", status: טרם אושר, ref: "שלב ב' §5 (מצב ומדדים)"}
+    frequency: {proposed: "פעם ביום, ושינויים כל שעה", ref: "שלב ב' §7 (רכיבים, חומרה, גרסאות)"}
+
+  - entity: RoutingNeighbor
+    title: שכנות ניתוב (BGP / OSPF / IS‑IS)
+    spec: "שלב ב' §4 (שכנות ניתוב); שלב א' #5"
+    source: {check: 5, probe: neighbors}
+    stable_id: [NeighborID]
+    fields:
+      - {name: NeighborID, from: NeighborID, required: true, meaning: "מזהה השכנות במופע Orion",
+         basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.Routing.Neighbors.html"}
+      - {name: NodeID, from: NodeID, required: true, ref: Device, meaning: "הרכיב המקומי"}
+      - {name: NeighborIP, from: NeighborIP, meaning: "כתובת השכן"}
+      - {name: ProtocolID, from: ProtocolID, meaning: "קוד הפרוטוקול (שמות הקודים ב־Orion.Routing.RoutingProtocol)"}
+      - {name: ProtocolStatus, from: ProtocolStatus, meaning: "קוד מצב השכנות (שמות הקודים ב־Orion.Routing.RoutingProtocolStateMapping)"}
+      - {name: ProtocolStatusDescription, from: ProtocolStatusDescription, meaning: "תיאור מצב השכנות כפי שהמוצר מחזיר"}
+      - {name: AutonomousSystem, from: AutonomousSystem, meaning: "AS של השכן (BGP)"}
+      - {name: LocalAutonomousSystemNumber, from: LocalAutonomousSystemNumber, meaning: "AS מקומי (BGP)"}
+      - {name: LastChange, from: LastChange, meaning: "זמן השינוי האחרון במצב"}
+      - {name: IsDeleted, from: IsDeleted, meaning: "האם השכנות סומנה כמחוקה"}
+      - {name: BgpNeighborLastError, from: BgpNeighborLastError, meaning: "השגיאה האחרונה של שכן BGP"}
+      - {name: VrfList, from: VrfList, meaning: "ה־VRFs של השכנות"}
+      - {name: LocalProtocolInterfaceIndex, from: LocalProtocolInterfaceIndex, meaning: "ifIndex של הפורט המקומי (OSPF)"}
+      - {name: LocalProtocolInterfaceIp, from: LocalProtocolInterfaceIp, meaning: "הכתובת המקומית של השכנות (OSPF)"}
+    rules: [key_not_null, key_unique, required, ref]
+    owner: {proposed: "מצב: SolarWinds קובע (IP)", status: טרם אושר, ref: "שלב ב' §5 (מצב ומדדים)"}
+    frequency: {proposed: "כל 5–15 דקות", ref: "שלב ב' §7 (שכנויות ניתוב)"}
+
+  - entity: Subnet
+    title: Subnet (IPAM)
+    spec: "שלב ב' §4 (כתובת / Prefix); שלב א' #7"
+    source: {check: 7, probe: subnets}
+    stable_id: [SubnetId]
+    fields:
+      - {name: SubnetId, from: SubnetId, required: true, meaning: "מזהה ה־Subnet ב־IPAM",
+         basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/IPAM.Subnet.html"}
+      - {name: Address, from: Address, meaning: "כתובת הרשת"}
+      - {name: CIDR, from: CIDR, meaning: "אורך המסכה"}
+      - {name: FriendlyName, from: FriendlyName, meaning: "שם התצוגה"}
+      - {name: ParentId, from: ParentId, meaning: "הקבוצה / ה־Subnet שמעליו"}
+      - {name: VLAN, from: VLAN, meaning: "VLAN כפי שמוגדר ב־IPAM"}
+      - {name: Location, from: Location, meaning: "מיקום כפי שמוגדר ב־IPAM"}
+      - {name: UsedCount, from: UsedCount, meaning: "כתובות בשימוש"}
+      - {name: AvailableCount, from: AvailableCount, meaning: "כתובות פנויות"}
+      - {name: PercentUsed, from: PercentUsed, meaning: "אחוז ניצול"}
+      - {name: Status, from: Status, meaning: "קוד מצב (המיפוי – טעון הוכחה)"}
+      - {name: LastDiscovery, from: LastDiscovery, meaning: "הסריקה האחרונה"}
+    rules: [key_not_null, key_unique, required]
+    owner: {proposed: "SolarWinds (IPAM) מדווח שימוש", status: טרם אושר, ref: "שלב ב' §5 (הקצאת כתובות)"}
+    frequency: {proposed: "כל שעה", ref: "שלב ב' §7 (כתובות ו־Subnets)"}
+
+  - entity: IpAddress
+    title: כתובת (IPAM)
+    spec: "שלב ב' §4 (כתובת); שלב א' #7"
+    source: {check: 7, probe: ip_nodes}
+    stable_id: [IpNodeId]
+    fields:
+      - {name: IpNodeId, from: IpNodeId, required: true, meaning: "מזהה הכתובת ב־IPAM",
+         basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/IPAM.IPNode.html"}
+      - {name: SubnetId, from: SubnetId, required: true, ref: Subnet, meaning: "ה־Subnet שאליו שייכת הכתובת"}
+      - {name: IPAddress, from: IPAddress, meaning: "הכתובת"}
+      - {name: Status, from: Status, meaning: "קוד מצב (בשימוש / פנויה / שמורה ...; המיפוי – טעון הוכחה)"}
+      - {name: MAC, from: MAC, meaning: "כתובת MAC שנצפתה"}
+      - {name: DnsBackward, from: DnsBackward, meaning: "שם מ־Reverse DNS"}
+      - {name: SysName, from: SysName, meaning: "sysName שנצפה"}
+      - {name: Vendor, from: Vendor, meaning: "יצרן שנצפה"}
+      - {name: LastSync, from: LastSync, meaning: "עדכון אחרון"}
+      - {name: Comments, from: Comments, meaning: "הערות"}
+    rules: [key_not_null, key_unique, required, ref]
+    owner: {proposed: "SolarWinds (IPAM) מדווח שימוש", status: טרם אושר, ref: "שלב ב' §5 (הקצאת כתובות)"}
+    frequency: {proposed: "כל שעה", ref: "שלב ב' §7 (כתובות ו־Subnets)"}
+
+  - entity: NodeIpAddress
+    title: כתובת על רכיב (Orion)
+    spec: "שלב ב' §4 (כתובת); שלב א' #2, #7"
+    source: {check: 2, probe: node_ips}
+    stable_id: [NodeID, IPAddress]
+    fields:
+      - {name: NodeID, from: NodeID, required: true, ref: Device, meaning: "הרכיב",
+         basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.NodeIPAddresses.html"}
+      - {name: IPAddress, from: IPAddress, required: true, meaning: "הכתובת על הרכיב"}
+      - {name: IPAddressType, from: IPAddressType, meaning: "IPv4 / IPv6"}
+      - {name: InterfaceIndex, from: InterfaceIndex, meaning: "ifIndex של הממשק שעליו הכתובת"}
+      - {name: SubnetMask, from: SubnetMask, meaning: "מסכת הרשת"}
+    rules: [key_not_null, key_unique, required, ref]
+    owner: {proposed: "SolarWinds מדווח שימוש", status: טרם אושר, ref: "שלב ב' §5 (הקצאת כתובות)"}
+    frequency: {proposed: "כל שעה", ref: "שלב ב' §7 (כתובות ו־Subnets)"}
+
+  - entity: Vlan
+    title: VLAN על רכיב
+    spec: "שלב ב' §4 (VLAN); שלב א' #2"
+    source: {check: 2, probe: vlans}
+    stable_id: [NodeID, VlanId]
+    fields:
+      - {name: NodeID, from: NodeID, required: true, ref: Device, meaning: "הרכיב",
+         basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.NodeVlans.html"}
+      - {name: VlanId, from: VlanId, required: true, meaning: "מספר ה־VLAN"}
+      - {name: VlanName, from: VlanName, meaning: "שם ה־VLAN"}
+      - {name: VlanIfIndex, from: VlanIfIndex, meaning: "ifIndex של ממשק ה־VLAN"}
+      - {name: VlanStatus, from: VlanStatus, meaning: "קוד מצב (המיפוי – טעון הוכחה)"}
+      - {name: LastSyncUtc, from: LastSyncUtc, meaning: "עדכון אחרון"}
+    rules: [key_not_null, key_unique, required, ref]
+    owner: {proposed: "SolarWinds נצפה", status: טרם אושר, ref: "שלב ב' §5 (לא מוגדר במפורש)"}
+    frequency: {proposed: "לא מוגדר", ref: "שלב ב' §7 (אין שורה ל־VLAN)"}
+
+  - entity: Vrf
+    title: VRF
+    spec: "שלב ב' §4 (VRF); שלב א' #6"
+    source: {check: 6, probe: vrf}
+    stable_id: [NodeID, VrfIndex]
+    fields:
+      - {name: NodeID, from: NodeID, required: true, ref: Device, meaning: "הרכיב",
+         basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.Routing.VRF.html"}
+      - {name: VrfIndex, from: VrfIndex, required: true, meaning: "אינדקס ה־VRF ברכיב"}
+      - {name: Name, from: Name, meaning: "שם ה־VRF"}
+      - {name: RouteDistinguisher, from: RouteDistinguisher, meaning: "Route Distinguisher"}
+      - {name: Status, from: Status, meaning: "קוד מצב (המיפוי – טעון הוכחה)"}
+    rules: [key_not_null, key_unique, required, ref]
+    owner: {proposed: "SolarWinds נצפה", status: טרם אושר, ref: "שלב ב' §5 (לא מוגדר במפורש)"}
+    frequency: {proposed: "לא מוגדר", ref: "שלב ב' §7 (אין שורה ל־VRF)"}
+
+  - entity: VrfInterface
+    title: ממשק ב־VRF
+    spec: "שלב ב' §4 (VRF); שלב א' #6"
+    source: {check: 6, probe: vrf_interfaces}
+    stable_id: [NodeID, VrfIndex, IfIndex]
+    fields:
+      - {name: NodeID, from: NodeID, ref: Device, meaning: "הרכיב",
+         basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.Routing.VRFInterface.html"}
+      - {name: VrfIndex, from: VrfIndex, required: true, meaning: "אינדקס ה־VRF ברכיב"}
+      - {name: IfIndex, from: IfIndex, required: true, meaning: "ifIndex של הממשק"}
+      - {name: VrfInterfaceType, from: VrfInterfaceType, meaning: "סוג השיוך (המיפוי – טעון הוכחה)"}
+    rules: [key_not_null, key_unique, required, ref]
+    owner: {proposed: "SolarWinds נצפה", status: טרם אושר, ref: "שלב ב' §5 (לא מוגדר במפורש)"}
+    frequency: {proposed: "לא מוגדר", ref: "שלב ב' §7 (אין שורה ל־VRF)"}
+
+  - entity: LagMember
+    title: חבר ב־LAG / Port-Channel
+    spec: "שלב ב' §4 (קישור IP – קבוצות LAG); שלב א' #4"
+    source: {check: 4, probe: lag}
+    stable_id: [NodeID, ParentInterfaceIndex, ChildInterfaceIndex]
+    fields:
+      - {name: NodeID, from: NodeID, required: true, ref: Device, meaning: "הרכיב",
+         basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.NPM.InterfacesRelationship.html"}
+      - {name: ParentInterfaceIndex, from: ParentInterfaceIndex, required: true, meaning: "ifIndex של ממשק ה־LAG"}
+      - {name: ChildInterfaceIndex, from: ChildInterfaceIndex, required: true, meaning: "ifIndex של הפורט החבר"}
+      - {name: RelationshipTypeID, from: RelationshipTypeID, meaning: "סוג הקשר (המיפוי – טעון הוכחה)"}
+      - {name: LACPOperState, from: LACPOperState, meaning: "מצב LACP תפעולי"}
+      - {name: LACPAdminState, from: LACPAdminState, meaning: "מצב LACP מנהלתי"}
+    rules: [key_not_null, key_unique, required, ref]
+    owner: {proposed: "SolarWinds נצפה", status: טרם אושר, ref: "שלב ב' §5 (קישור IP)"}
+    frequency: {proposed: "כל שעה", ref: "שלב ב' §7 (טופולוגיה)"}
+
+  - entity: CustomPoller
+    title: Custom Poller (למשל עוצמות Rx/Tx של טרנסיבר)
+    spec: "שלב ב' §4 (מדד – עוצמה אופטית); שלב א' #9"
+    source: {check: 9, probe: pollers}
+    stable_id: [CustomPollerID]
+    fields:
+      - {name: CustomPollerID, from: CustomPollerID, required: true, meaning: "מזהה ה־Poller",
+         basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.NPM.CustomPollers.html"}
+      - {name: UniqueName, from: UniqueName, meaning: "שם ה־Poller"}
+      - {name: OID, from: OID, meaning: "ה־OID שנדגם"}
+      - {name: MIB, from: MIB, meaning: "ה־MIB של היצרן"}
+      - {name: Description, from: Description, meaning: "תיאור"}
+      - {name: SNMPGetType, from: SNMPGetType, meaning: "סוג הדגימה (Get / GetTable ...)"}
+      - {name: Unit, from: Unit, meaning: "יחידת הערך כפי שהוגדרה ב־Poller"}
+    rules: [key_not_null, key_unique, required]
+    owner: {proposed: "מדדים: SolarWinds קובע (IP)", status: טרם אושר, ref: "שלב ב' §5 (מצב ומדדים)"}
+    frequency: {proposed: "לפי קצב האיסוף של SolarWinds (5–10 דקות)", ref: "שלב ב' §7 (מדדי ביצועים)"}
+
+  - entity: CustomPollerAssignment
+    title: שיוך Custom Poller לרכיב / ממשק
+    spec: "שלב ב' §4 (מדד); שלב א' #9"
+    source: {check: 9, probe: assignments}
+    stable_id: [CustomPollerAssignmentID]
+    fields:
+      - {name: CustomPollerAssignmentID, from: CustomPollerAssignmentID, required: true, meaning: "מזהה השיוך",
+         basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.NPM.CustomPollerAssignment.html"}
+      - {name: CustomPollerID, from: CustomPollerID, required: true, ref: CustomPoller, meaning: "ה־Poller"}
+      - {name: NodeID, from: NodeID, ref: Device, meaning: "הרכיב (בשיוך לרכיב)"}
+      - {name: InterfaceID, from: InterfaceID, ref: Interface, meaning: "הממשק (בשיוך לממשק)"}
+      - {name: AssignmentName, from: AssignmentName, meaning: "שם השיוך"}
+    rules: [key_not_null, key_unique, required, ref]
+    owner: {proposed: "מדדים: SolarWinds קובע (IP)", status: טרם אושר, ref: "שלב ב' §5 (מצב ומדדים)"}
+    frequency: {proposed: "לפי קצב האיסוף של SolarWinds (5–10 דקות)", ref: "שלב ב' §7 (מדדי ביצועים)"}
+
+  - entity: CustomPollerValue
+    title: ערך אחרון של Custom Poller
+    spec: "שלב ב' §4 (מדד – עוצמה אופטית); שלב א' #9"
+    source: {check: 9, probe: values}
+    stable_id: [CustomPollerAssignmentID, RowID]
+    fields:
+      - {name: CustomPollerAssignmentID, from: CustomPollerAssignmentID, required: true, ref: CustomPollerAssignment,
+         meaning: "השיוך שאליו שייך הערך", basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.NPM.CustomPollerStatus.html"}
+      - {name: RowID, from: RowID, required: true, meaning: "השורה בטבלת ה־MIB (ב־Poller טבלאי)"}
+      - {name: Status, from: Status, meaning: "הערך האחרון כפי שהמוצר מציג"}
+      - {name: RawStatus, from: RawStatus, meaning: "הערך הגולמי שנדגם"}
+      - {name: DateTime, from: DateTime, meaning: "זמן הדגימה"}
+    rules: [key_not_null, key_unique, required, ref]
+    owner: {proposed: "מדדים: SolarWinds קובע (IP)", status: טרם אושר, ref: "שלב ב' §5 (מצב ומדדים)"}
+    frequency: {proposed: "לפי קצב האיסוף של SolarWinds (5–10 דקות)", ref: "שלב ב' §7 (מדדי ביצועים)"}

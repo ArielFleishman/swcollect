@@ -1,0 +1,10 @@
+# Lets operators reach Grafana: publishes it on the host's port 13000 (http://<host>:13000, user admin, password
+# SWCOLLECT_GRAFANA_PASSWORD). Only Grafana leaves the internal network; it still reads PostgreSQL as the
+# read-only role swcollect_ro. Set SWCOLLECT_GRAFANA_PASSWORD (and SWCOLLECT_RO_PASSWORD) before starting.
+services:
+  grafana:
+    networks: [swnet, ui]
+    ports: ["13000:3000"]
+
+networks:
+  ui: {}

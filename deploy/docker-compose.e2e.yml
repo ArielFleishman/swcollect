@@ -1,0 +1,30 @@
+# End-to-end check on the closed network (scripts/e2e.ps1). The collector runs only the push receiver, so no
+# scheduled job runs between the steps; the e2e service drives every job itself and changes the MOCK through its
+# test-only /mock/admin endpoints. Start from fresh volumes (down -v): the e2e moves the mock's clock.
+services:
+  # The e2e expects the plain mock (its counts and changes are made for it), not the --rich one.
+  mock:
+    command: ["python", "-m", "swcollect", "mock", "--host", "0.0.0.0", "--port", "17774", "--schema-all"]
+
+  collector:
+    command: ["python", "-m", "swcollect", "hook"]
+    environment:
+      SWCOLLECT_HOOK_TOKEN: e2e-token
+
+  e2e:
+    image: swcollect:0.1.0
+    pull_policy: never
+    networks: [swnet]
+    depends_on:
+      db: {condition: service_healthy}
+      loki: {condition: service_started}
+      mock: {condition: service_started}
+      collector: {condition: service_started}
+    environment:
+      SWCOLLECT_PG_DSN: postgresql://swcollect:${SWCOLLECT_PG_PASSWORD:-swcollect}@db:5432/swcollect
+      SWCOLLECT_LOKI_URL: http://loki:3100
+      SWCOLLECT_HOOK_TOKEN: e2e-token
+    volumes:
+      - ./config.docker.yaml:/app/config.yaml:ro
+    command: ["sh", "-c", "python -m swcollect check --network mock --wait 180 && python -m swcollect e2e --network mock --hook-url http://collector:18090/hook"]
+    profiles: [e2e]

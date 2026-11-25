@@ -1,0 +1,52 @@
+# Single-binary Loki for swcollect (filesystem storage). Values marked "proposal" are not approved yet (SPEC-B §13.3).
+auth_enabled: false
+
+server:
+  http_listen_port: 3100
+  grpc_listen_port: 9096
+  log_level: warn
+
+common:
+  instance_addr: 127.0.0.1
+  path_prefix: /loki
+  storage:
+    filesystem:
+      chunks_directory: /loki/chunks
+      rules_directory: /loki/rules
+  replication_factor: 1
+  ring:
+    kvstore:
+      store: inmemory
+
+schema_config:
+  configs:
+    - from: 2024-01-01
+      store: tsdb
+      object_store: filesystem
+      schema: v13
+      index:
+        prefix: index_
+        period: 24h
+
+limits_config:
+  # History backfill: Orion keeps months of events, so old entries must be accepted.
+  reject_old_samples: false
+  # NodeID / EventID go into structured metadata, not labels (keeps label cardinality low).
+  allow_structured_metadata: true
+  ingestion_rate_mb: 16
+  ingestion_burst_size_mb: 32
+  retention_period: 0s          # proposal: 0 = keep everything until retention is approved
+
+# swcollect backfills old events (30 days on the first run). By default a query asks the ingesters only for the last
+# 3 hours, so backfilled entries still in an ingester would be invisible until their chunks are flushed. 0 = always
+# ask the ingesters, so what Loki accepted (204) is queryable right away (verified by `swcollect events` tests).
+querier:
+  query_ingesters_within: 0s
+
+compactor:
+  working_directory: /loki/compactor
+  retention_enabled: false
+
+# The closed network has no route out; never try to report usage.
+analytics:
+  reporting_enabled: false

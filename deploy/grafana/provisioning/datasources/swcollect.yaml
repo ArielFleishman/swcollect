@@ -1,0 +1,31 @@
+# Grafana data sources for swcollect. Read-only: PostgreSQL through the role swcollect_ro (deploy/init-ro.sh), and
+# Loki. ${VAR} comes from the grafana service's environment (deploy/docker-compose.yml).
+apiVersion: 1
+
+datasources:
+  - name: swcollect PostgreSQL
+    uid: swcollect-pg
+    type: grafana-postgresql-datasource
+    access: proxy
+    url: db:5432
+    user: swcollect_ro
+    isDefault: true
+    editable: false
+    jsonData:
+      database: ${SWCOLLECT_PG_DB}
+      sslmode: disable
+      postgresVersion: 1600
+      timescaledb: true
+      maxOpenConns: 10
+      timeInterval: 10m          # Orion's sampling interval in the sample ISP (StatCollection)
+    secureJsonData:
+      password: ${SWCOLLECT_RO_PASSWORD}
+
+  - name: swcollect Loki
+    uid: swcollect-loki
+    type: loki
+    access: proxy
+    url: http://loki:3100
+    editable: false
+    jsonData:
+      maxLines: 1000

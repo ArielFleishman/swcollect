@@ -1,0 +1,205 @@
+# sw_core: the canonical entities fed by SolarWinds (SPEC-B §4, §6, §9). Hand-edited.
+#
+# Canonical names, stable IDs and references come from swcheck catalog/contracts.yaml (commit 0958074). There they
+# point at swcheck probes; here each entity points straight at its SWIS entity, because swcollect reads every
+# entity, not the probes.
+#
+#   table     sw_core.<table>
+#   contract  the entity name in contracts.yaml
+#   source    SWIS entities, in order: the first one this server collects is used (Cirrus.* is the older NCM name)
+#   id        canonical fields that identify a record within one instance. The stable ID adds network and instance:
+#             <network_id>/<host:port>/<SWIS entity>/<field=value;...>
+#   fields    canonical name: SWIS property (or a list of alternatives, the first one present is used).
+#             A field this server does not have stays NULL, and the flow lists it as missing.
+#   refs      a reference becomes a FOREIGN KEY column <fk> → sw_core.<to>(id). It is resolved only through a
+#             relationship PROVEN in sw_meta.relationship between the two SWIS entities on the same columns.
+#             A record whose parent is not found goes to sw_core.dead_letter (rule ref); its FK stays NULL.
+#   derived   extra canonical fields computed by a declared rule. The source field stays as received, and the
+#             record's `changes` column shows the raw value next to the derived one.
+#
+# Every record keeps its lineage: raw_table, raw_key (its key in sw_raw) and run_id.
+
+version: 1
+
+entities:
+  - table: device
+    contract: Device
+    source: [Orion.Nodes]
+    id: [NodeID]
+    fields: {NodeID: NodeID, Caption: Caption, IPAddress: IPAddress, Vendor: Vendor, MachineType: MachineType,
+             SoftwareVersion: [IOSVersion, NodeVersion, SoftwareVersion], IOSImage: IOSImage, Status: Status,
+             ObjectSubType: ObjectSubType, SysName: SysName, SysObjectID: SysObjectID, Location: Location,
+             Contact: Contact, EngineID: EngineID, LastBoot: LastBoot, SystemUpTime: SystemUpTime,
+             LastSync: LastSync, MinutesSinceLastSync: MinutesSinceLastSync}
+
+  - table: ncm_node
+    contract: NcmNode
+    source: [NCM.Nodes, Cirrus.Nodes]
+    id: [NcmNodeID]
+    fields: {NcmNodeID: NodeID, CoreNodeID: CoreNodeID, NodeCaption: NodeCaption, ConnectionProfile: ConnectionProfile}
+    refs:
+      - {fk: device_id, to: device, columns: {CoreNodeID: NodeID}}
+
+  - table: interface
+    contract: Interface
+    source: [Orion.NPM.Interfaces]
+    id: [InterfaceID]
+    fields: {InterfaceID: InterfaceID, NodeID: NodeID, Name: [Name, IfName, Caption], Alias: [Alias, InterfaceAlias],
+             Type: [Type, InterfaceType], Speed: Speed, AdminStatus: AdminStatus, OperStatus: OperStatus, MTU: MTU,
+             IfName: IfName, Index: Index, PhysicalAddress: PhysicalAddress, LastChange: LastChange}
+    derived:
+      - {name: NameNormalized, from: Name, rule: interface_name, basis: "SPEC-B §6 (Gi0/0/1 = GigabitEthernet0/0/1)"}
+    refs:
+      - {fk: device_id, to: device, columns: {NodeID: NodeID}}
+
+  - table: link
+    contract: IPLink
+    source: [Orion.TopologyConnections]
+    id: [SrcNodeID, SrcInterfaceID, DestNodeID, DestInterfaceID]
+    fields: {SrcNodeID: SrcNodeID, SrcInterfaceID: SrcInterfaceID, DestNodeID: DestNodeID,
+             DestInterfaceID: DestInterfaceID, SrcType: SrcType, DestType: DestType, LayerType: LayerType,
+             DataSourceNodeID: DataSourceNodeID, LastUpdateUtc: LastUpdateUtc}
+    refs:
+      - {fk: src_device_id, to: device, columns: {SrcNodeID: NodeID}}
+      - {fk: dest_device_id, to: device, columns: {DestNodeID: NodeID}}
+      - {fk: src_interface_id, to: interface, columns: {SrcInterfaceID: InterfaceID}}
+      - {fk: dest_interface_id, to: interface, columns: {DestInterfaceID: InterfaceID}}
+
+  - table: lldp_neighbor
+    contract: LldpNeighbor
+    source: [Orion.NodeLldpEntry]
+    id: [NodeID, LocalPort, RemoteSystemName, RemotePort]
+    fields: {NodeID: NodeID, LocalPort: [LocalPortNumber, LocalPort], RemoteSystemName: RemoteSystemName,
+             RemotePort: [RemotePortId, RemotePort], RemotePortDescription: RemotePortDescription,
+             RemoteIP: [RemoteIpAddress, RemoteIP]}
+    refs:
+      - {fk: device_id, to: device, columns: {NodeID: NodeID}}
+
+  - table: cdp_neighbor
+    contract: CdpNeighbor
+    source: [Orion.NodeCdpEntry]
+    id: [NodeID, LocalPort, RemoteSystemName, RemotePort]
+    fields: {NodeID: NodeID, LocalPort: [IfIndex, LocalPort], RemoteSystemName: [DeviceId, RemoteSystemName],
+             RemotePort: [DevicePort, RemotePort], RemoteIP: [IpAddress, RemoteIP]}
+    refs:
+      - {fk: device_id, to: device, columns: {NodeID: NodeID}}
+
+  - table: node_ip_address
+    contract: NodeIpAddress
+    source: [Orion.NodeIPAddresses]
+    id: [NodeID, IPAddress]
+    fields: {NodeID: NodeID, IPAddress: IPAddress, IPAddressType: IPAddressType, InterfaceIndex: InterfaceIndex,
+             SubnetMask: SubnetMask}
+    refs:
+      - {fk: device_id, to: device, columns: {NodeID: NodeID}}
+
+  - table: vlan
+    contract: Vlan
+    source: [Orion.NodeVlans]
+    id: [NodeID, VlanId]
+    fields: {NodeID: NodeID, VlanId: VlanId, VlanName: VlanName, VlanIfIndex: VlanIfIndex, VlanStatus: VlanStatus,
+             LastSyncUtc: LastSyncUtc}
+    refs:
+      - {fk: device_id, to: device, columns: {NodeID: NodeID}}
+
+  - table: vrf
+    contract: Vrf
+    source: [Orion.Routing.VRF]
+    id: [NodeID, VrfIndex]
+    fields: {NodeID: NodeID, VrfIndex: VrfIndex, Name: Name, RouteDistinguisher: RouteDistinguisher, Status: Status}
+    refs:
+      - {fk: device_id, to: device, columns: {NodeID: NodeID}}
+
+  - table: lag_member
+    contract: LagMember
+    source: [Orion.NPM.InterfacesRelationship]
+    id: [NodeID, ParentInterfaceIndex, ChildInterfaceIndex]
+    fields: {NodeID: NodeID, ParentInterfaceIndex: ParentInterfaceIndex, ChildInterfaceIndex: ChildInterfaceIndex,
+             RelationshipTypeID: RelationshipTypeID, LACPOperState: LACPOperState, LACPAdminState: LACPAdminState}
+    refs:
+      - {fk: device_id, to: device, columns: {NodeID: NodeID}}
+
+  - table: routing_neighbor
+    contract: RoutingNeighbor
+    source: [Orion.Routing.Neighbors]
+    id: [NeighborID]
+    fields: {NeighborID: NeighborID, NodeID: NodeID, NeighborIP: NeighborIP, ProtocolID: ProtocolID,
+             ProtocolStatus: ProtocolStatus, AutonomousSystem: AutonomousSystem, LastChange: LastChange,
+             IsDeleted: IsDeleted, LocalProtocolInterfaceIndex: LocalProtocolInterfaceIndex,
+             LocalProtocolInterfaceIp: LocalProtocolInterfaceIp}
+    refs:
+      - {fk: device_id, to: device, columns: {NodeID: NodeID}}
+
+  - table: hardware_sensor
+    contract: HardwareSensor
+    source: [Orion.HardwareHealth.HardwareItem]
+    id: [NodeID, UniqueName]
+    fields: {NodeID: NodeID, UniqueName: UniqueName, Name: Name, Status: Status,
+             HardwareCategoryStatusID: HardwareCategoryStatusID, Value: Value, Unit: Unit, IsDisabled: IsDisabled,
+             IsDeleted: IsDeleted}
+    refs:
+      - {fk: device_id, to: device, columns: {NodeID: NodeID}}
+
+  - table: hardware_component
+    contract: HardwareComponent
+    source: [NCM.EntityPhysical, Cirrus.EntityPhysical]
+    id: [NcmNodeID, EntPhysicalIndex]
+    fields: {NcmNodeID: NodeID, EntPhysicalIndex: [EntPhysicalIndex, EntityPhysicalIndex],
+             EntityClass: [EntityClass, Class], EntityName: [EntityName, Name],
+             EntityDescription: [EntityDescription, Description], Serial: Serial, Model: Model,
+             Manufacturer: Manufacturer, HardwareRevision: HardwareRevision, FirmwareRevision: FirmwareRevision,
+             SoftwareRevision: SoftwareRevision}
+    refs:
+      - {fk: ncm_node_id, to: ncm_node, columns: {NodeID: NcmNodeID}}
+
+  - table: config_version
+    contract: ConfigVersion
+    source: [NCM.ConfigArchive, Cirrus.ConfigArchive]
+    id: [ConfigID]
+    fields: {ConfigID: ConfigID, NcmNodeID: NodeID, DownloadTime: DownloadTime, ConfigType: ConfigType,
+             ConfigTitle: ConfigTitle, Baseline: Baseline, IsBinary: IsBinary, ModifiedTime: ModifiedTime}
+    refs:
+      - {fk: ncm_node_id, to: ncm_node, columns: {NodeID: NcmNodeID}}
+
+  - table: subnet
+    contract: Subnet
+    source: [IPAM.Subnet]
+    id: [SubnetId]
+    fields: {SubnetId: SubnetId, Address: Address, CIDR: CIDR, FriendlyName: FriendlyName, ParentId: ParentId,
+             VLAN: VLAN, Location: Location, UsedCount: UsedCount, AvailableCount: AvailableCount,
+             PercentUsed: PercentUsed, Status: Status, LastDiscovery: LastDiscovery}
+
+  - table: ip_address
+    contract: IpAddress
+    source: [IPAM.IPNode]
+    id: [IpNodeId]
+    fields: {IpNodeId: IpNodeId, SubnetId: SubnetId, IPAddress: IPAddress, Status: Status, MAC: MAC,
+             DnsBackward: DnsBackward, SysName: SysName, Vendor: Vendor, LastSync: LastSync, Comments: Comments}
+    refs:
+      - {fk: subnet_id, to: subnet, columns: {SubnetId: SubnetId}}
+
+  - table: custom_poller
+    contract: CustomPoller
+    source: [Orion.NPM.CustomPollers]
+    id: [CustomPollerID]
+    fields: {CustomPollerID: CustomPollerID, UniqueName: UniqueName, OID: OID, MIB: MIB, Description: Description,
+             SNMPGetType: SNMPGetType, Unit: Unit}
+
+  - table: custom_poller_assignment
+    contract: CustomPollerAssignment
+    source: [Orion.NPM.CustomPollerAssignment]
+    id: [CustomPollerAssignmentID]
+    fields: {CustomPollerAssignmentID: CustomPollerAssignmentID, CustomPollerID: CustomPollerID, NodeID: NodeID,
+             InterfaceID: InterfaceID, AssignmentName: AssignmentName}
+    refs:
+      - {fk: custom_poller_id, to: custom_poller, columns: {CustomPollerID: CustomPollerID}}
+      - {fk: device_id, to: device, columns: {NodeID: NodeID}}
+      - {fk: interface_id, to: interface, columns: {InterfaceID: InterfaceID}}
+
+  - table: alert_active
+    contract: Alert
+    source: [Orion.AlertActive]
+    id: [AlertActiveID]
+    fields: {AlertActiveID: AlertActiveID, AlertObjectID: AlertObjectID, TriggeredDateTime: TriggeredDateTime,
+             TriggeredMessage: TriggeredMessage, Acknowledged: Acknowledged, AcknowledgedBy: AcknowledgedBy,
+             AcknowledgedDateTime: AcknowledgedDateTime}

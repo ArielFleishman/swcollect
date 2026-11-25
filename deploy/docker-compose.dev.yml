@@ -1,0 +1,20 @@
+# Development override: also attaches db, loki and mock to a normal bridge network and publishes their ports
+# on 127.0.0.1 (db 15432, loki 13100, mock 17774, grafana 13000; high ports so they do not clash with other
+# local stacks),
+# so tests on the host can reach them. Do not use it for the closed-network proof.
+services:
+  db:
+    networks: [swnet, hostnet]
+    ports: ["127.0.0.1:15432:5432"]
+  loki:
+    networks: [swnet, hostnet]
+    ports: ["127.0.0.1:13100:3100"]
+  mock:
+    networks: [swnet, hostnet]
+    ports: ["127.0.0.1:17774:17774"]
+  grafana:
+    networks: [swnet, hostnet]
+    ports: ["127.0.0.1:13000:3000"]
+
+networks:
+  hostnet: {}

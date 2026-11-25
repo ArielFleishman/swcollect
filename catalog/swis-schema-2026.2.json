@@ -1,0 +1,6079 @@
+{
+"entities": [
+"Cirrus.ApproveQueue",
+"Cirrus.ApproveQueueNodes",
+"Cirrus.ArpTables",
+"Cirrus.Audit",
+"Cirrus.Backup_vs_AllNodes",
+"Cirrus.BridgePorts",
+"Cirrus.CacheDiffResults",
+"Cirrus.CatalystCards",
+"Cirrus.CiscoCards",
+"Cirrus.CiscoCdp",
+"Cirrus.CiscoChassis",
+"Cirrus.CiscoFlash",
+"Cirrus.CiscoFlashFiles",
+"Cirrus.CiscoImageMIB",
+"Cirrus.CiscoMemoryPools",
+"Cirrus.CompareRegExs",
+"Cirrus.ComparisonCache",
+"Cirrus.ConfigArchive",
+"Cirrus.ConfigSnippets",
+"Cirrus.EntityLogical",
+"Cirrus.EntityPhysical",
+"Cirrus.GlobalSettings",
+"Cirrus.IgnoredNodes",
+"Cirrus.Interfaces",
+"Cirrus.IpAddresses",
+"Cirrus.LatestComparisonResults",
+"Cirrus.LatestPolicyReportViolations",
+"Cirrus.MacForwarding",
+"Cirrus.MatrixTargets",
+"Cirrus.NCMNodeLicenseStatus",
+"Cirrus.NCM_ApproveQueueView",
+"Cirrus.NCM_EosMatchQueue",
+"Cirrus.NCM_JobEngineNCMJobs",
+"Cirrus.NCM_NCMJobs",
+"Cirrus.NCM_NCMJobsView",
+"Cirrus.NodeProperties",
+"Cirrus.Nodes",
+"Cirrus.Options",
+"Cirrus.Policies",
+"Cirrus.PolicyAssignment",
+"Cirrus.PolicyCache",
+"Cirrus.PolicyCacheResults",
+"Cirrus.PolicyReportViolations",
+"Cirrus.PolicyReports",
+"Cirrus.PolicyRuleAssignment",
+"Cirrus.PolicyRules",
+"Cirrus.PortsTcp",
+"Cirrus.PortsUdp",
+"Cirrus.RTN",
+"Cirrus.RouteTable",
+"Cirrus.Settings",
+"Cirrus.SnippetArchive",
+"Cirrus.Tags",
+"Cirrus.VLANs",
+"Cirrus.WindowsAccounts",
+"Cirrus.WindowsServices",
+"Cirrus.WindowsSoftware",
+"Cli.CliSessionSettings",
+"Cli.CliSessionTrace",
+"Cli.Credentials",
+"Cli.DeviceTemplates",
+"Cli.DeviceTemplatesNodes",
+"ContentModel.ContentEntityCategory",
+"ContentModel.ContentEntityCategoryGroupMembers",
+"ContentModel.ContentEntityCategoryGroups",
+"ContentModel.ContentEntityTypes",
+"ContentModel.ContentFormatField",
+"ContentModel.ContentType",
+"ContentModel.EntityNameSpaceCategoryGroups",
+"ContentModel.OrionNodes",
+"Cortex.Orion.CiscoAci.Apic",
+"Cortex.Orion.CiscoAci.ApplicationProfile",
+"Cortex.Orion.CiscoAci.ApplicationProfile.Metrics",
+"Cortex.Orion.CiscoAci.EndpointGroup",
+"Cortex.Orion.CiscoAci.EndpointGroup.Metrics",
+"Cortex.Orion.CiscoAci.Fabric",
+"Cortex.Orion.CiscoAci.Fabric.Metrics",
+"Cortex.Orion.CiscoAci.PhysicalEntity",
+"Cortex.Orion.CiscoAci.PhysicalEntity.Metrics",
+"Cortex.Orion.CiscoAci.Tenant",
+"Cortex.Orion.CiscoAci.Tenant.Metrics",
+"Cortex.Orion.Cpu",
+"Cortex.Orion.Cpu.Metrics",
+"Cortex.Orion.Cpu.Statistics",
+"Cortex.Orion.Credential",
+"Cortex.Orion.Interface",
+"Cortex.Orion.Interface.Metrics",
+"Cortex.Orion.Interface.Statistics",
+"Cortex.Orion.MonitoringElement",
+"Cortex.Orion.NetMan.CloudMonitoring.AzureMonitoringCredential",
+"Cortex.Orion.NetMan.CloudMonitoring.CloudAccount",
+"Cortex.Orion.NetMan.CloudMonitoring.CloudMonitoringCentralizedSettings",
+"Cortex.Orion.NetMan.CloudMonitoring.VirtualNetwork",
+"Cortex.Orion.NetMan.CloudMonitoring.VirtualNetworkConnection",
+"Cortex.Orion.NetMan.CloudMonitoring.VirtualNetworkConnection.AvailabilityMetrics",
+"Cortex.Orion.NetMan.CloudMonitoring.VirtualNetworkConnection.Metrics",
+"Cortex.Orion.NetMan.CloudMonitoring.VirtualNetworkGateway",
+"Cortex.Orion.NetMan.CloudMonitoring.VirtualNetworkGateway.AvailabilityMetrics",
+"Cortex.Orion.NetMan.CloudMonitoring.VirtualNetworkGateway.Metrics",
+"Cortex.Orion.NetMan.Firewalls.Firewall",
+"Cortex.Orion.NetMan.Firewalls.Firewall.Metrics",
+"Cortex.Orion.NetMan.Firewalls.RemoteAccess",
+"Cortex.Orion.NetMan.Firewalls.RemoteAccess.Metrics",
+"Cortex.Orion.NetMan.Firewalls.SiteToSiteTunnel",
+"Cortex.Orion.NetMan.Firewalls.SiteToSiteTunnel.Metrics",
+"Cortex.Orion.Node",
+"Cortex.Orion.Node.HealthMetrics",
+"Cortex.Orion.Node.Statistics",
+"Cortex.Orion.PartitionedInstance",
+"Cortex.Orion.PowerControlUnit",
+"Cortex.Orion.PowerControlUnit.Metrics",
+"Cortex.Orion.PowerControlUnit.Statistics",
+"Cortex.Orion.ScsiInformation",
+"Cortex.Orion.SnmpCredential",
+"Cortex.Orion.UsernamePasswordCredential",
+"Cortex.Orion.Virtualization.Alarm",
+"Cortex.Orion.Virtualization.Cluster.StorageMetrics",
+"Cortex.Orion.Virtualization.Host.ResourceMetrics",
+"Cortex.Orion.Virtualization.Host.Statistics",
+"Cortex.Orion.Virtualization.Host.StorageMetrics",
+"Cortex.Orion.Virtualization.HypervisorEntity",
+"Cortex.Orion.Virtualization.PhysicalDisk",
+"Cortex.Orion.Virtualization.StoragePool",
+"Cortex.Orion.Virtualization.TriggeredAlarmState",
+"Cortex.Orion.Virtualization.VSan",
+"Cortex.Orion.Virtualization.VSan.Statistics",
+"Cortex.Orion.Virtualization.VSan.VSanMetrics",
+"Cortex.Orion.Virtualization.VSanDiskGroup",
+"Cortex.Orion.Virtualization.VSanHealthGroup",
+"Cortex.Orion.Virtualization.VSanObjectSpaceSummary",
+"Cortex.Orion.Virtualization.VSanResyncInfo",
+"Cortex.Orion.Virtualization.VirtualMachineDisk.Statistics",
+"Cortex.Orion.Virtualization.VirtualMachineDisk.VSanMetrics",
+"Cortex.Orion.Volume",
+"Cortex.Orion.Volume.CapacityMetrics",
+"Cortex.Orion.Volume.PerformanceMetrics",
+"Cortex.Orion.Volume.Statistics",
+"Cortex.System.ElementInstance",
+"Cortex.System.Policy",
+"DPA.BlockingChain",
+"DPA.BlockingOverview",
+"DPA.DatabaseClient",
+"DPA.Deadlock",
+"DPA.DetailDataDimension",
+"DPA.ExpertAdviceInfo",
+"DPA.PerformanceOverview",
+"DPA.ProblemSQLStatement",
+"DPA.ProblemSummary",
+"DPA.ProductInfo",
+"DPA.ResourceData",
+"DPA.ResourceDefinition",
+"DPA.SQLQueryInfo",
+"DPA.SqlServerQueryHash",
+"DPA.TimeSeriesData",
+"DPA.TimeSeriesDefinition",
+"DPA.TrendDataDimension",
+"DPA.WaitData",
+"IPAM.AccountRoles",
+"IPAM.AttrDefine",
+"IPAM.CidrMaskDefinition",
+"IPAM.CloudAccountSettings",
+"IPAM.CloudDnsRecords",
+"IPAM.CloudDnsZones",
+"IPAM.Conflict",
+"IPAM.ConflictDetail",
+"IPAM.DHCPFailover",
+"IPAM.DHCPScopeOverlapping",
+"IPAM.DHCPView",
+"IPAM.DNSMismatch",
+"IPAM.DhcpDnsManagement",
+"IPAM.DhcpExclusions",
+"IPAM.DhcpGroup",
+"IPAM.DhcpLease",
+"IPAM.DhcpOptionServerMeta",
+"IPAM.DhcpOptionWebMeta",
+"IPAM.DhcpOptions",
+"IPAM.DhcpOptionsValue",
+"IPAM.DhcpPool",
+"IPAM.DhcpRange",
+"IPAM.DhcpScope",
+"IPAM.DhcpScopeProperties",
+"IPAM.DhcpServer",
+"IPAM.DhcpServerType",
+"IPAM.DhcpSharedNetwork",
+"IPAM.DiscoveredSubnets",
+"IPAM.DnsMasterServerView",
+"IPAM.DnsRecord",
+"IPAM.DnsRecordReport",
+"IPAM.DnsRecordType",
+"IPAM.DnsServer",
+"IPAM.DnsServerType",
+"IPAM.DnsView",
+"IPAM.DnsZone",
+"IPAM.DnsZoneType",
+"IPAM.EventType",
+"IPAM.FailoverMode",
+"IPAM.GroupAncestors",
+"IPAM.GroupManagement",
+"IPAM.GroupNode",
+"IPAM.GroupNodeAttr",
+"IPAM.GroupNodeDisplayCustomProperties",
+"IPAM.GroupReport",
+"IPAM.GroupRole",
+"IPAM.GroupRoleNode",
+"IPAM.GroupsCustomProperties",
+"IPAM.IPAddressManagement",
+"IPAM.IPConflict",
+"IPAM.IPHistory",
+"IPAM.IPHistorySubnetInfo",
+"IPAM.IPInfo",
+"IPAM.IPNode",
+"IPAM.IPNodeAttr",
+"IPAM.IPNodeDisplayCustomProperties",
+"IPAM.IPNodeGrid",
+"IPAM.IPNodeReport",
+"IPAM.IPNodeWithHistory",
+"IPAM.IPRequestAddresses",
+"IPAM.IPRequests",
+"IPAM.ImportStarted",
+"IPAM.IpAddressesForReservation",
+"IPAM.ManageSubnetsAndIps",
+"IPAM.NodeMinCorrespondingIps",
+"IPAM.NodesCustomProperties",
+"IPAM.PrefixAggregate",
+"IPAM.RequesterDetailsFieldsMetadata",
+"IPAM.RequesterDetailsFieldsValues",
+"IPAM.ScanInstance",
+"IPAM.Setting",
+"IPAM.Subnet",
+"IPAM.SubnetManagement",
+"IPAM.SubnetStructureChanged",
+"IPAM.SupernetManagement",
+"IPAM.TopUtilDHCPScopes",
+"IPAM.UIJob",
+"Metadata.Entity",
+"Metadata.EntityAlias",
+"Metadata.EntityArgument",
+"Metadata.EntityMetadata",
+"Metadata.Functions",
+"Metadata.Property",
+"Metadata.PropertyMetadata",
+"Metadata.Relationship",
+"Metadata.RelationshipMetadata",
+"Metadata.Verb",
+"Metadata.VerbArgument",
+"NCM.AccessList",
+"NCM.AceShadowRuleDetectionResult",
+"NCM.ArpTables",
+"NCM.BaselineNodeMap",
+"NCM.BaselineViolations",
+"NCM.Baselines",
+"NCM.BridgePorts",
+"NCM.BrocadeAgentConfigModule",
+"NCM.BrocadeChassis",
+"NCM.BrocadeChassisUnit",
+"NCM.CATOSPorts",
+"NCM.CatalystCards",
+"NCM.CiscoBootloadImages",
+"NCM.CiscoCards",
+"NCM.CiscoCdp",
+"NCM.CiscoChassis",
+"NCM.CiscoFlash",
+"NCM.CiscoFlashFiles",
+"NCM.CiscoFruFanTrayStatus",
+"NCM.CiscoFruPowerStatus",
+"NCM.CiscoFruPowerSupplyGroups",
+"NCM.CiscoImageMIB",
+"NCM.CiscoMemoryPools",
+"NCM.ConfigArchive",
+"NCM.ConfigBackupStatistic",
+"NCM.ConfigBackupStatus",
+"NCM.ConfigInterface",
+"NCM.ConfigInterfaceIpAddress",
+"NCM.ConfigTypeVendors",
+"NCM.ConfigTypes",
+"NCM.EntityLogical",
+"NCM.EntityPhysical",
+"NCM.EntityPhysicalJuniper",
+"NCM.Eos",
+"NCM.F5GTMVirtualServers",
+"NCM.F5LTMNodeAddresses",
+"NCM.F5LTMVirtualServers",
+"NCM.F5System",
+"NCM.FirmwareDefinitions",
+"NCM.FirmwareOperationNodes",
+"NCM.FirmwareOperations",
+"NCM.FirmwareOperationsView",
+"NCM.FirmwareStorage",
+"NCM.FirmwareUpgradeImages",
+"NCM.FirmwareUpgradeMachineTypes",
+"NCM.Interfaces",
+"NCM.InventoryStatistic",
+"NCM.IpAddresses",
+"NCM.LatestTransferJobStatus",
+"NCM.MacForwarding",
+"NCM.NodeProperties",
+"NCM.Nodes",
+"NCM.ObjectDefinitionData",
+"NCM.ObjectDefinitionDataValue",
+"NCM.ObjectGroupData",
+"NCM.OneTimeOperations",
+"NCM.ParsedConfigData",
+"NCM.PortsTcp",
+"NCM.PortsUdp",
+"NCM.RTNAudit",
+"NCM.RouteTable",
+"NCM.RuleDetection",
+"NCM.SecurityPolicy",
+"NCM.ShadowRuleDetectionAclStatistics",
+"NCM.ShadowRuleDetectionResult",
+"NCM.TransferResults",
+"NCM.VLANs",
+"NCM.VulnerabilitiesAnnouncements",
+"NCM.VulnerabilitiesAnnouncementsNodes",
+"NCM.WindowsAccounts",
+"NCM.WindowsServices",
+"NCM.WindowsSoftware",
+"Orion.ADM.NodeInventory",
+"Orion.ADM.PollNowIndication",
+"Orion.ADM.ScheduleEnableIndication",
+"Orion.AIIM.AlertConditionEntityProperty",
+"Orion.AIIM.AnomalyBasedAlertSettings",
+"Orion.AIIM.AnomalyBasedAlertSourcesLimited",
+"Orion.AIIM.AnomalyHistory",
+"Orion.AIIM.BasicMetricMetadata",
+"Orion.AIIM.IssueHistoryLimited",
+"Orion.AIIM.IssuesLimited",
+"Orion.AIIM.OccurrencesLimited",
+"Orion.AIIM.Orion_NPM_Interfaces_Anomalies",
+"Orion.AIIM.Orion_Nodes_Anomalies",
+"Orion.AIIM.Orion_VIM_Clusters_Anomalies",
+"Orion.AIIM.Orion_VIM_Hosts_Anomalies",
+"Orion.AIIM.Orion_VIM_VirtualMachines_Anomalies",
+"Orion.AIIM.Orion_Volumes_Anomalies",
+"Orion.AIIM.SourceStatus",
+"Orion.AIIM.UsageStatistics",
+"Orion.APIPoller.ApiPoller",
+"Orion.APIPoller.ApiPoller.Metrics",
+"Orion.APIPoller.PollingConfiguration",
+"Orion.APIPoller.RequestDetails",
+"Orion.APIPoller.RequestHeader",
+"Orion.APIPoller.RequestVariable",
+"Orion.APIPoller.StringToNumberTransformationRule",
+"Orion.APIPoller.Templates",
+"Orion.APIPoller.ValueToMonitor",
+"Orion.APIPoller.ValueToMonitor.Metrics",
+"Orion.APM.ActiveDirectory.Application",
+"Orion.APM.ActiveDirectory.DomainController",
+"Orion.APM.ActiveDirectory.DomainTrust",
+"Orion.APM.ActiveDirectory.Link",
+"Orion.APM.ActiveDirectory.NamingContext",
+"Orion.APM.ActiveDirectory.NamingContextStatus",
+"Orion.APM.ActiveDirectory.Replication",
+"Orion.APM.ActiveDirectory.Site",
+"Orion.APM.ActiveDirectory.SiteStatus",
+"Orion.APM.ActiveDirectory.Subnet",
+"Orion.APM.Application",
+"Orion.APM.ApplicationAlert",
+"Orion.APM.ApplicationCustomProperties",
+"Orion.APM.ApplicationGroup",
+"Orion.APM.ApplicationItem",
+"Orion.APM.ApplicationSettings",
+"Orion.APM.ApplicationStatus",
+"Orion.APM.ApplicationTcpConnection",
+"Orion.APM.ApplicationTemplate",
+"Orion.APM.ApplicationTemplateSettings",
+"Orion.APM.ApplicationWebUri",
+"Orion.APM.ApplicationsOtherStatusCount",
+"Orion.APM.ChartEvidence",
+"Orion.APM.ChartEvidence2",
+"Orion.APM.Component",
+"Orion.APM.ComponentAlert",
+"Orion.APM.ComponentAlertThresholds",
+"Orion.APM.ComponentCategory",
+"Orion.APM.ComponentDefinition",
+"Orion.APM.ComponentDefinitionCategory",
+"Orion.APM.ComponentDefinitionCategoryMembership",
+"Orion.APM.ComponentDefinitionSetting",
+"Orion.APM.ComponentExt",
+"Orion.APM.ComponentSetting",
+"Orion.APM.ComponentStatus",
+"Orion.APM.ComponentTemplate",
+"Orion.APM.ComponentTemplateSetting",
+"Orion.APM.ComponentTypeMappingStrategy",
+"Orion.APM.ComponentWebUri",
+"Orion.APM.Config",
+"Orion.APM.CurrentApplicationStatus",
+"Orion.APM.CurrentComponentStatus",
+"Orion.APM.CurrentStatistics",
+"Orion.APM.DependencyTcpStatistics",
+"Orion.APM.DynamicEvidence",
+"Orion.APM.DynamicEvidenceChart",
+"Orion.APM.DynamicEvidenceColumnSchema",
+"Orion.APM.DynamicEvidenceCurrent",
+"Orion.APM.DynamicEvidenceDetail",
+"Orion.APM.DynamicEvidenceDetailData",
+"Orion.APM.ErrorCode",
+"Orion.APM.EventType",
+"Orion.APM.Exchange.Application",
+"Orion.APM.Exchange.ApplicationAlert",
+"Orion.APM.Exchange.Database",
+"Orion.APM.Exchange.DatabaseAlert",
+"Orion.APM.Exchange.DatabaseAvailabilityGroup",
+"Orion.APM.Exchange.DatabaseCopy",
+"Orion.APM.Exchange.DatabaseCopyAlert",
+"Orion.APM.Exchange.DatabaseCopyStatistics",
+"Orion.APM.Exchange.DatabaseFile",
+"Orion.APM.Exchange.DatabaseFileStatistics",
+"Orion.APM.Exchange.DatabaseStatistics",
+"Orion.APM.Exchange.Domain",
+"Orion.APM.Exchange.EntityStatistics",
+"Orion.APM.Exchange.Mailbox",
+"Orion.APM.Exchange.MailboxAccountDetails",
+"Orion.APM.Exchange.MailboxAlert",
+"Orion.APM.Exchange.MailboxStatistics",
+"Orion.APM.Exchange.ReplicationStatus",
+"Orion.APM.Exchange.ReplicationStatusAlert",
+"Orion.APM.Exchange.SyncedDevices",
+"Orion.APM.Exchange.TransactionLogDir",
+"Orion.APM.ExternalSetting",
+"Orion.APM.GenericApplication",
+"Orion.APM.HistoricalCPULoad",
+"Orion.APM.HistoricalIOOperations",
+"Orion.APM.HistoricalMemory",
+"Orion.APM.IIS.Application",
+"Orion.APM.IIS.ApplicationPool",
+"Orion.APM.IIS.ApplicationPoolStatus",
+"Orion.APM.IIS.Request",
+"Orion.APM.IIS.RequestDetails",
+"Orion.APM.IIS.Site",
+"Orion.APM.IIS.SiteBinding",
+"Orion.APM.IIS.SiteConnectionStatistics",
+"Orion.APM.IIS.SiteDirectory",
+"Orion.APM.IIS.SiteDirectoryStatistics",
+"Orion.APM.IIS.SiteLogDirectory",
+"Orion.APM.IIS.SiteLogDirectoryStatistics",
+"Orion.APM.IIS.SiteStatus",
+"Orion.APM.IIS.WorkerProcess",
+"Orion.APM.LicenseInfo",
+"Orion.APM.MultipleStatisticData",
+"Orion.APM.NodeChildStatusApplications",
+"Orion.APM.NodeRebooted",
+"Orion.APM.NodeToNodeLink",
+"Orion.APM.NodeToNodeLinkLatencyThreshold",
+"Orion.APM.NodeToNodeLinkPacketLossThreshold",
+"Orion.APM.NodeToNodeLinkThresholds",
+"Orion.APM.PortEvidence",
+"Orion.APM.PortEvidenceChart",
+"Orion.APM.ProcessEvidence",
+"Orion.APM.ProcessEvidenceChart",
+"Orion.APM.ProcessTerminated",
+"Orion.APM.ReportApplicationChanged",
+"Orion.APM.ResponseTime",
+"Orion.APM.ServerManagement",
+"Orion.APM.ServiceStateChanged",
+"Orion.APM.SqlClusterNode",
+"Orion.APM.SqlConnection",
+"Orion.APM.SqlDatabase",
+"Orion.APM.SqlDatabaseAlert",
+"Orion.APM.SqlDatabaseFile",
+"Orion.APM.SqlDatabaseFileAlert",
+"Orion.APM.SqlDatabaseFileGroup",
+"Orion.APM.SqlDatabaseFileStatistic",
+"Orion.APM.SqlDatabaseMirroring",
+"Orion.APM.SqlDatabaseStatus",
+"Orion.APM.SqlIndex",
+"Orion.APM.SqlJobInfo",
+"Orion.APM.SqlJobInfoAlert",
+"Orion.APM.SqlQuery",
+"Orion.APM.SqlQueryAlert",
+"Orion.APM.SqlServerApplication",
+"Orion.APM.SqlServerApplicationAlert",
+"Orion.APM.SqlServerErrorLog",
+"Orion.APM.SqlTable",
+"Orion.APM.StatisticsUsage",
+"Orion.APM.StatusMetadata",
+"Orion.APM.Tag",
+"Orion.APM.TemplateGroupAssignment",
+"Orion.APM.TemplateGroupAssignmentsBlacklist",
+"Orion.APM.Threshold",
+"Orion.APM.ThresholdsByComponent",
+"Orion.APM.WindowsEvent",
+"Orion.APM.WsdlSchema",
+"Orion.APM.Wstm.ScheduledTasksStatus",
+"Orion.APM.Wstm.Task",
+"Orion.APM.Wstm.TaskAlert",
+"Orion.ARM.Dashboard.NodeRisk",
+"Orion.ARM.Dashboard.NodeRiskShares",
+"Orion.ARM.Node",
+"Orion.ARM.NodeAdCommonDetails",
+"Orion.ARM.NodeAdTopOldestLogon",
+"Orion.ARM.NodeRisk",
+"Orion.ARM.NodeRiskShares",
+"Orion.ARM.SecurityNode",
+"Orion.ARM.Settings",
+"Orion.ASA.ConnectionStatistics",
+"Orion.ASA.Context",
+"Orion.ASA.Favorite",
+"Orion.ASA.FavoriteInterfaceTraffic",
+"Orion.ASA.FavoriteInterfaces",
+"Orion.ASA.Interfaces",
+"Orion.ASA.Node",
+"Orion.ASA.RemoteAccessDetail",
+"Orion.ASA.RemoteAccessSessionDetail",
+"Orion.ASA.RemoteAccessSessions",
+"Orion.ASA.System",
+"Orion.AccessDeniedLoadingView",
+"Orion.Accounts",
+"Orion.ActionAssignmentProperties",
+"Orion.ActionSchedules",
+"Orion.Actions",
+"Orion.ActionsAssignments",
+"Orion.ActionsProperties",
+"Orion.ActiveAlerts",
+"Orion.ActiveDiagnosticsDetail",
+"Orion.ActivePollingErrors",
+"Orion.AgentManagement.Agent",
+"Orion.AgentManagement.AgentGlobalSettingChanged",
+"Orion.AgentManagement.AgentIndication",
+"Orion.AgentManagement.AgentLogLevelChanged",
+"Orion.AgentManagement.AgentMachineRebootInitiated",
+"Orion.AgentManagement.AgentManualDeploymentInitiated",
+"Orion.AgentManagement.AgentManualDeploymentInitiatedUsingCertificate",
+"Orion.AgentManagement.AgentPlugin",
+"Orion.AgentManagement.AgentPromoteToRemoteCollectorInitiated",
+"Orion.AgentManagement.AgentRemoteDeploymentInitiated",
+"Orion.AgentManagement.AgentRemoteDeploymentInitiatedUsingCertificate",
+"Orion.AgentManagement.AgentServiceRestartInitiated",
+"Orion.AgentManagement.AgentUninstallInitiated",
+"Orion.AgentManagement.AgentUninstallInitiatedFromAgent",
+"Orion.AgentManagement.InstallPackage",
+"Orion.AgentManagement.Proxy",
+"Orion.AlertActionExecuted",
+"Orion.AlertActive",
+"Orion.AlertActiveObjects",
+"Orion.AlertCleared",
+"Orion.AlertConfigurations",
+"Orion.AlertConfigurationsChangeCompleted",
+"Orion.AlertConfigurationsCustomProperties",
+"Orion.AlertDefinitions",
+"Orion.AlertHistory",
+"Orion.AlertIndication",
+"Orion.AlertObjects",
+"Orion.AlertReset",
+"Orion.AlertSchedules",
+"Orion.AlertStatus",
+"Orion.AlertSuppression",
+"Orion.AlertTriggered",
+"Orion.AlertUpdated",
+"Orion.Alerts.SeverityInfo",
+"Orion.AllActiveAlerts.AggregatedSeverity",
+"Orion.AllActiveAlerts.Dashboard",
+"Orion.AssetInventory.Driver",
+"Orion.AssetInventory.Firmware",
+"Orion.AssetInventory.HardDrive",
+"Orion.AssetInventory.LogicalDrive",
+"Orion.AssetInventory.MemoryModule",
+"Orion.AssetInventory.Monitor",
+"Orion.AssetInventory.NetworkInterface",
+"Orion.AssetInventory.NodeWarrantyAlert",
+"Orion.AssetInventory.OSUpdates",
+"Orion.AssetInventory.OutOfBandManagement",
+"Orion.AssetInventory.Peripherals",
+"Orion.AssetInventory.Polling",
+"Orion.AssetInventory.PollingDescription",
+"Orion.AssetInventory.Processor",
+"Orion.AssetInventory.RemovableMedia",
+"Orion.AssetInventory.ServerInformation",
+"Orion.AssetInventory.Software",
+"Orion.AssetInventory.SoundCard",
+"Orion.AssetInventory.Status",
+"Orion.AssetInventory.StorageController",
+"Orion.AssetInventory.USBController",
+"Orion.AssetInventory.VideoCard",
+"Orion.AssetInventory.WindowsUpdates",
+"Orion.AuditingActionTypes",
+"Orion.AuditingArguments",
+"Orion.AuditingEvents",
+"Orion.AutoDependencyRoot",
+"Orion.Azure.CostExpandedStatistics",
+"Orion.Banners.BannerAccountSettings",
+"Orion.Banners.Instances",
+"Orion.Batching.ActionExecutionChanged",
+"Orion.Batching.Actions",
+"Orion.Batching.BatchExecutionChanged",
+"Orion.Batching.Batches",
+"Orion.CPULoad",
+"Orion.CPULoadAverageByDays",
+"Orion.CPUMemoryAverageUsageByDays",
+"Orion.CPUMultiLoad",
+"Orion.CPUMultiLoadCurrent",
+"Orion.CiscoAci.ApicMembers",
+"Orion.CiscoAci.ApicThresholds",
+"Orion.CiscoAci.HealthScoreThreshold",
+"Orion.CiscoBuffers",
+"Orion.Cloud.AccountCounters",
+"Orion.Cloud.Accounts",
+"Orion.Cloud.Aws.Accounts",
+"Orion.Cloud.Aws.BucketStorage",
+"Orion.Cloud.Aws.BucketStorageStatistics",
+"Orion.Cloud.Aws.CostManagement",
+"Orion.Cloud.Aws.CostManagementStatistics",
+"Orion.Cloud.Aws.DirectConnect",
+"Orion.Cloud.Aws.DirectConnectStatistics",
+"Orion.Cloud.Aws.DynamoDb",
+"Orion.Cloud.Aws.DynamoDbStatistics",
+"Orion.Cloud.Aws.Ec2PollingCounters",
+"Orion.Cloud.Aws.ElasticBeanstalkEnvironment",
+"Orion.Cloud.Aws.ElasticBeanstalkEnvironmentNode",
+"Orion.Cloud.Aws.ElasticBeanstalkEnvironmentNodeStatistics",
+"Orion.Cloud.Aws.ElasticBeanstalkEnvironmentStatistics",
+"Orion.Cloud.Aws.ElasticKubernetesCluster",
+"Orion.Cloud.Aws.ElasticKubernetesClusterStatistics",
+"Orion.Cloud.Aws.ElasticKubernetesNode",
+"Orion.Cloud.Aws.ElasticKubernetesNodeGroup",
+"Orion.Cloud.Aws.ElasticKubernetesNodeStatistics",
+"Orion.Cloud.Aws.ElasticLoadBalancer",
+"Orion.Cloud.Aws.ElasticLoadBalancerStatistics",
+"Orion.Cloud.Aws.InstanceStatistics",
+"Orion.Cloud.Aws.InstanceThresholds",
+"Orion.Cloud.Aws.Instances",
+"Orion.Cloud.Aws.LambdaFunction",
+"Orion.Cloud.Aws.LambdaFunctionStatistics",
+"Orion.Cloud.Aws.Management",
+"Orion.Cloud.Aws.Regions",
+"Orion.Cloud.Aws.ResourseTags",
+"Orion.Cloud.Aws.SqlDatabase",
+"Orion.Cloud.Aws.SqlDatabaseStatistics",
+"Orion.Cloud.Aws.TransitGateway",
+"Orion.Cloud.Aws.TransitGatewayAttachment",
+"Orion.Cloud.Aws.TransitGatewayStatistics",
+"Orion.Cloud.Aws.UnmonitoredInstances",
+"Orion.Cloud.Aws.VolumeStatistics",
+"Orion.Cloud.Aws.VolumeStatus",
+"Orion.Cloud.Aws.Volumes",
+"Orion.Cloud.Aws.Vpcs",
+"Orion.Cloud.Azure.Accounts",
+"Orion.Cloud.Azure.AppService",
+"Orion.Cloud.Azure.AppServicePlan",
+"Orion.Cloud.Azure.AppServicePlanStatistics",
+"Orion.Cloud.Azure.AppServiceStatistics",
+"Orion.Cloud.Azure.ApplicationGateway",
+"Orion.Cloud.Azure.ApplicationGatewayStatistics",
+"Orion.Cloud.Azure.AzurePollingCounters",
+"Orion.Cloud.Azure.CosmosDBAccount",
+"Orion.Cloud.Azure.CosmosDBAccountStatistics",
+"Orion.Cloud.Azure.CosmosDBContainer",
+"Orion.Cloud.Azure.CosmosDBContainerStatistics",
+"Orion.Cloud.Azure.CosmosDBDatabase",
+"Orion.Cloud.Azure.CosmosDBDatabaseStatistics",
+"Orion.Cloud.Azure.CostManagement",
+"Orion.Cloud.Azure.CostManagementDatabase",
+"Orion.Cloud.Azure.CostManagementStatistics",
+"Orion.Cloud.Azure.ExpressRouteCircuit",
+"Orion.Cloud.Azure.ExpressRouteCircuitStatistics",
+"Orion.Cloud.Azure.FunctionApp",
+"Orion.Cloud.Azure.FunctionAppStatistics",
+"Orion.Cloud.Azure.InstanceStatistics",
+"Orion.Cloud.Azure.InstanceThresholds",
+"Orion.Cloud.Azure.Instances",
+"Orion.Cloud.Azure.KubernetesCluster",
+"Orion.Cloud.Azure.KubernetesClusterStatistics",
+"Orion.Cloud.Azure.KubernetesNode",
+"Orion.Cloud.Azure.KubernetesNodePool",
+"Orion.Cloud.Azure.KubernetesNodeStatistics",
+"Orion.Cloud.Azure.Management",
+"Orion.Cloud.Azure.RegionalLoadBalancer",
+"Orion.Cloud.Azure.RegionalLoadBalancerStatistics",
+"Orion.Cloud.Azure.Regions",
+"Orion.Cloud.Azure.ResourseTags",
+"Orion.Cloud.Azure.SqlDatabase",
+"Orion.Cloud.Azure.SqlDatabaseStatistics",
+"Orion.Cloud.Azure.SqlServer",
+"Orion.Cloud.Azure.StorageAccount",
+"Orion.Cloud.Azure.StorageAccountBlobContainer",
+"Orion.Cloud.Azure.StorageAccountBlobService",
+"Orion.Cloud.Azure.StorageAccountBlobServiceStatistics",
+"Orion.Cloud.Azure.StorageAccountStatistics",
+"Orion.Cloud.Azure.StorageAccountTable",
+"Orion.Cloud.Azure.StorageAccountTableService",
+"Orion.Cloud.Azure.StorageAccountTableServiceStatistics",
+"Orion.Cloud.Azure.VirtualHub",
+"Orion.Cloud.Azure.VirtualHubConnection",
+"Orion.Cloud.Azure.VirtualHubStatistics",
+"Orion.Cloud.Azure.VirtualHubSubEntities",
+"Orion.Cloud.Azure.VirtualMachineBackupStatus",
+"Orion.Cloud.Azure.VirtualWan",
+"Orion.Cloud.Azure.Volumes",
+"Orion.Cloud.Azure.Vpcs",
+"Orion.Cloud.CloudJobSettings",
+"Orion.Cloud.Compute.NetObjectTypesView",
+"Orion.Cloud.CostEntities",
+"Orion.Cloud.DatabaseAliases",
+"Orion.Cloud.EventsView",
+"Orion.Cloud.Gcp.Accounts",
+"Orion.Cloud.Gcp.BigQueryDataset",
+"Orion.Cloud.Gcp.CloudStorage",
+"Orion.Cloud.Gcp.CloudStorageStatistics",
+"Orion.Cloud.Gcp.CloudVPNGateway",
+"Orion.Cloud.Gcp.CostManagement",
+"Orion.Cloud.Gcp.CostManagementStatistics",
+"Orion.Cloud.Gcp.GkeCluster",
+"Orion.Cloud.Gcp.GkeClusterStatistics",
+"Orion.Cloud.Gcp.GkeContainer",
+"Orion.Cloud.Gcp.GkeContainerResourceFormatter",
+"Orion.Cloud.Gcp.GkeContainerStatistics",
+"Orion.Cloud.Gcp.GkeNode",
+"Orion.Cloud.Gcp.GkeNodeStatistics",
+"Orion.Cloud.Gcp.GkePod",
+"Orion.Cloud.Gcp.GkePodStatistics",
+"Orion.Cloud.Gcp.InstanceStatistics",
+"Orion.Cloud.Gcp.InstanceThresholds",
+"Orion.Cloud.Gcp.Instances",
+"Orion.Cloud.Gcp.LBBackendService",
+"Orion.Cloud.Gcp.LBBackendServiceStatistics",
+"Orion.Cloud.Gcp.LBForwardingRule",
+"Orion.Cloud.Gcp.LBForwardingRuleStatistics",
+"Orion.Cloud.Gcp.LBTargetProxy",
+"Orion.Cloud.Gcp.LBUrlMap",
+"Orion.Cloud.Gcp.Management",
+"Orion.Cloud.Gcp.ProjectDetails",
+"Orion.Cloud.Gcp.Regions",
+"Orion.Cloud.Gcp.SqlDatabase",
+"Orion.Cloud.Gcp.SqlDatabaseStatistics",
+"Orion.Cloud.Gcp.VolumeStatistics",
+"Orion.Cloud.Gcp.VolumeStatus",
+"Orion.Cloud.Gcp.Volumes",
+"Orion.Cloud.Gcp.Vpcs",
+"Orion.Cloud.InstanceStatistics",
+"Orion.Cloud.InstanceStatus",
+"Orion.Cloud.InstanceStatusMacro",
+"Orion.Cloud.InstanceThresholds",
+"Orion.Cloud.Instances",
+"Orion.Cloud.NetworkInterfaces",
+"Orion.Cloud.Providers",
+"Orion.Cloud.Regions",
+"Orion.Cloud.ResourseTags",
+"Orion.Cloud.SecurityGroups",
+"Orion.Cloud.SelectedCloudRegions",
+"Orion.Cloud.TagFilter",
+"Orion.Cloud.VirtualNetworkAddressSpaces",
+"Orion.Cloud.Volumes",
+"Orion.Cloud.Vpcs",
+"Orion.CloudEntitiesView",
+"Orion.CloudMonitoring.CloudVPNConnection",
+"Orion.CloudMonitoring.CloudVPNConnection.AvailabilityMetrics",
+"Orion.CloudMonitoring.CloudVPNConnection.Metrics",
+"Orion.CloudMonitoring.CloudVPNGateway",
+"Orion.CloudMonitoring.CloudVPNGateway.AWS",
+"Orion.CloudMonitoring.CloudVPNGateway.AvailabilityMetrics",
+"Orion.CloudMonitoring.CloudVPNGateway.Azure",
+"Orion.CloudMonitoring.CloudVPNGateway.Metrics",
+"Orion.Cman.Container",
+"Orion.Cman.ContainerAgent",
+"Orion.Cman.ContainerCpuMetrics",
+"Orion.Cman.ContainerImage",
+"Orion.Cman.ContainerMemoryMetrics",
+"Orion.ConfigurationChanged",
+"Orion.Container",
+"Orion.ContainerMemberDefinition",
+"Orion.ContainerMemberSnapshots",
+"Orion.ContainerMembers",
+"Orion.ContainerMembersNodes",
+"Orion.ContainerStatus",
+"Orion.CpuLoadThreshold",
+"Orion.Credential",
+"Orion.CredentialRelation",
+"Orion.CustomProperty",
+"Orion.CustomPropertyAssignValues",
+"Orion.CustomPropertySources",
+"Orion.CustomPropertyUsage",
+"Orion.CustomPropertyValues",
+"Orion.DPA.DatabaseInstance",
+"Orion.DPA.DatabaseInstanceApplication",
+"Orion.DPA.DatabaseInstanceApplicationNoRelationship",
+"Orion.DPA.DatabaseInstanceApplicationRelationship",
+"Orion.DPA.DatabaseInstanceClientApplication",
+"Orion.DPA.DatabaseInstanceData",
+"Orion.DPA.DatabaseInstanceLun",
+"Orion.DPA.DpaServer",
+"Orion.DPA.ServerApplicationTemplate",
+"Orion.DPE.WorkAvailable",
+"Orion.DPI.ApplicationAssignments",
+"Orion.DPI.ApplicationAssignmentsThresholds",
+"Orion.DPI.ApplicationCategories",
+"Orion.DPI.ApplicationProtocols",
+"Orion.DPI.ApplicationSettings",
+"Orion.DPI.Applications",
+"Orion.DPI.ApplicationsThresholds",
+"Orion.DPI.ApplicationsThresholdsForAlerting",
+"Orion.DPI.ProbeAssignments",
+"Orion.DPI.ProbeProperties",
+"Orion.DPI.ProbeSettings",
+"Orion.DPI.Probes",
+"Orion.DPI.QoeApplicationsStatistics",
+"Orion.DPI.QoeStatistics",
+"Orion.Dashboards.DashboardGroup",
+"Orion.Dashboards.DashboardViewPreference",
+"Orion.Dashboards.Entity",
+"Orion.Dashboards.Instances",
+"Orion.Dashboards.Links",
+"Orion.Dashboards.Widgets",
+"Orion.Declarative.PollerTemplates",
+"Orion.DeletedAutoDependencies",
+"Orion.Dependencies",
+"Orion.DependencyEntities",
+"Orion.DeviceStudio.PollerAssignments",
+"Orion.DeviceStudio.Pollers",
+"Orion.DeviceStudio.Technologies",
+"Orion.DiscoveredNodeChildEntities",
+"Orion.DiscoveredNodes",
+"Orion.DiscoveredPollers",
+"Orion.DiscoveredVolumes",
+"Orion.Discovery",
+"Orion.DiscoveryIgnoredInterfaces",
+"Orion.DiscoveryIgnoredNodes",
+"Orion.DiscoveryIgnoredVolumes",
+"Orion.DiscoveryLogItems",
+"Orion.DiscoveryLogNodes",
+"Orion.DiscoveryLogs",
+"Orion.DiscoveryNodesStatuses",
+"Orion.DiscoveryProfiles",
+"Orion.ELB.NodeExclusions",
+"Orion.ELB.NodeReassignments",
+"Orion.EOC.SiteAccess",
+"Orion.EOC.SiteAccounts",
+"Orion.EOC.Sites",
+"Orion.ESI.AlertIncident",
+"Orion.ESI.AlertIncidentInfo",
+"Orion.ESI.ClusterIncident",
+"Orion.ESI.IncidentIntegration",
+"Orion.ESI.IncidentService",
+"Orion.ElementInfo",
+"Orion.EnabledFeatures",
+"Orion.EngineLoadBalancingEnabledStatusChanged",
+"Orion.EngineLoadBalancingExecution",
+"Orion.EngineLoadBalancingNodeExcludedStatusChanged",
+"Orion.EngineLoadBalancingNodeReassigned",
+"Orion.EngineProperties",
+"Orion.Engines",
+"Orion.EntityUnmanaged",
+"Orion.Environment",
+"Orion.EventTypes",
+"Orion.Events",
+"Orion.ExpandedLimitations",
+"Orion.F5.GTM.Pool",
+"Orion.F5.GTM.PoolMember",
+"Orion.F5.GTM.Server",
+"Orion.F5.GTM.VirtualServer",
+"Orion.F5.GTM.WideIP",
+"Orion.F5.GTM.WideIPPool",
+"Orion.F5.GTM.WideIPStats",
+"Orion.F5.LTM.Monitor",
+"Orion.F5.LTM.Pool",
+"Orion.F5.LTM.PoolMember",
+"Orion.F5.LTM.PoolMemberStats",
+"Orion.F5.LTM.Server",
+"Orion.F5.LTM.VirtualIPAddress",
+"Orion.F5.LTM.VirtualServer",
+"Orion.F5.LTM.VirtualServerStats",
+"Orion.F5.Map.VirtualServer",
+"Orion.F5.System.Device",
+"Orion.F5.System.DeviceStats",
+"Orion.F5.System.Failover",
+"Orion.F5.System.Module",
+"Orion.F5.System.ModuleGTM",
+"Orion.F5.System.ModuleLTM",
+"Orion.F5.System.ModuleOther",
+"Orion.F5.System.VLAN",
+"Orion.FavoriteMacroVariables",
+"Orion.FavoriteProperties",
+"Orion.FeatureOnboarding.Actions",
+"Orion.FeatureOnboarding.Buttons",
+"Orion.FeatureOnboarding.Capabilities",
+"Orion.FeatureOnboarding.Categories",
+"Orion.FeatureOnboarding.Features",
+"Orion.FeatureOnboarding.Groups",
+"Orion.FeatureOnboarding.UsageDefinitions",
+"Orion.FeatureOnboarding.WhatsNew",
+"Orion.Features",
+"Orion.Firewall.L2LTunnel",
+"Orion.Firewall.L2LTunnelStatistics",
+"Orion.Firewall.L2LTunnelStatistics2",
+"Orion.Firewall.L2LTunnelTrafficSelector",
+"Orion.Firewall.L2LTunnelTrafficSelectorStatistics",
+"Orion.Firewall.L2LTunnelTrafficSelectorStatistics2",
+"Orion.Firewall.RemoteAccessTunnel",
+"Orion.Firewall.RemoteAccessTunnelStatistics",
+"Orion.ForecastCapacity",
+"Orion.ForecastCapacitySettings",
+"Orion.ForecastMetrics",
+"Orion.Fortigate.HighAvailability",
+"Orion.Fortigate.HighAvailabilityStatistics",
+"Orion.Fortigate.VirtualDomain",
+"Orion.Fortigate.VirtualDomainStatistics",
+"Orion.Frequencies",
+"Orion.GroupCustomProperties",
+"Orion.GroupMembers",
+"Orion.Groups",
+"Orion.GroupsWebUri",
+"Orion.HA.FacilitiesInstances",
+"Orion.HA.PoolAdded",
+"Orion.HA.PoolDeleted",
+"Orion.HA.PoolEdited",
+"Orion.HA.PoolMemberInterfacesInfo",
+"Orion.HA.PoolMembers",
+"Orion.HA.Pools",
+"Orion.HA.ReachabilityInfo",
+"Orion.HA.ResourcesInstances",
+"Orion.HardwareHealth.BMC.Blades",
+"Orion.HardwareHealth.BMC.Chassis",
+"Orion.HardwareHealth.BMC.Controllers",
+"Orion.HardwareHealth.BMC.Fans",
+"Orion.HardwareHealth.BMC.FansOnChassis",
+"Orion.HardwareHealth.BMC.PSUs",
+"Orion.HardwareHealth.BMC.PSUsOnChassis",
+"Orion.HardwareHealth.BMC.Racks",
+"Orion.HardwareHealth.HardwareCategory",
+"Orion.HardwareHealth.HardwareCategoryStatus",
+"Orion.HardwareHealth.HardwareCategoryStatusBase",
+"Orion.HardwareHealth.HardwareCategoryStatusForArray",
+"Orion.HardwareHealth.HardwareCategoryStatusForChassis",
+"Orion.HardwareHealth.HardwareCategoryStatusWebUri",
+"Orion.HardwareHealth.HardwareHierarchy",
+"Orion.HardwareHealth.HardwareHierarchyForArray",
+"Orion.HardwareHealth.HardwareInfo",
+"Orion.HardwareHealth.HardwareInfoBase",
+"Orion.HardwareHealth.HardwareInfoForArray",
+"Orion.HardwareHealth.HardwareInfoForChassis",
+"Orion.HardwareHealth.HardwareInfoForUCSChassis",
+"Orion.HardwareHealth.HardwareInfoWebUri",
+"Orion.HardwareHealth.HardwareItem",
+"Orion.HardwareHealth.HardwareItemBase",
+"Orion.HardwareHealth.HardwareItemForArray",
+"Orion.HardwareHealth.HardwareItemForChassis",
+"Orion.HardwareHealth.HardwareItemStatistics",
+"Orion.HardwareHealth.HardwareItemStatusStatistics",
+"Orion.HardwareHealth.HardwareItemThreshold",
+"Orion.HardwareHealth.HardwareItemValueStatistics",
+"Orion.HardwareHealth.HardwareItemWebUri",
+"Orion.HardwareHealth.HardwareUnit",
+"Orion.HardwareHealth.NodeChildStatusHardwareHealth",
+"Orion.IdentityProviders",
+"Orion.InInterfaceAverageTrafficUtilizationByDays",
+"Orion.InformationServiceAccessDenied",
+"Orion.InformationServiceRestLogin",
+"Orion.InstalledModule",
+"Orion.IpSla.AlertQos",
+"Orion.IpSla.AlertTypes",
+"Orion.IpSla.AxlConnectionInfo",
+"Orion.IpSla.CCMGateways",
+"Orion.IpSla.CCMH323Devices",
+"Orion.IpSla.CCMMonitoring",
+"Orion.IpSla.CCMMonitoringData",
+"Orion.IpSla.CCMMonitoringType",
+"Orion.IpSla.CCMMonitoringWebUri",
+"Orion.IpSla.CCMPhoneDetails",
+"Orion.IpSla.CCMPhoneStats",
+"Orion.IpSla.CCMPhoneStatsDaily",
+"Orion.IpSla.CCMPhoneStatsDetail",
+"Orion.IpSla.CCMPhoneStatsHourly",
+"Orion.IpSla.CCMPhones",
+"Orion.IpSla.CCMPhonesAvayaData",
+"Orion.IpSla.CCMPhonesCiscoData",
+"Orion.IpSla.CCMRegions",
+"Orion.IpSla.CCMSipTrunk",
+"Orion.IpSla.CCMSipTrunkAvailability",
+"Orion.IpSla.CCMSipTrunkCallActivity",
+"Orion.IpSla.CCMSipTrunkCurrentCallActivity",
+"Orion.IpSla.CCMSipTrunkDestinations",
+"Orion.IpSla.CCMSipTrunksStatusesTotalDurations",
+"Orion.IpSla.CCMStats",
+"Orion.IpSla.CCMStatsType",
+"Orion.IpSla.CDRDetails",
+"Orion.IpSla.CallManagerCurrentStats",
+"Orion.IpSla.CallManagerStats",
+"Orion.IpSla.CallPathMetrics",
+"Orion.IpSla.CliConnectionInfo",
+"Orion.IpSla.CliConnectionProtocol",
+"Orion.IpSla.Config",
+"Orion.IpSla.ConnectedCCMGateways",
+"Orion.IpSla.ConnectedPhonesReport",
+"Orion.IpSla.DataTypes",
+"Orion.IpSla.Engines",
+"Orion.IpSla.Events",
+"Orion.IpSla.FtpConnectionInfo",
+"Orion.IpSla.HttpFtpOperationResults",
+"Orion.IpSla.HttpFtpOperationResultsDaily",
+"Orion.IpSla.HttpFtpOperationResultsDetail",
+"Orion.IpSla.HttpFtpOperationResultsHourly",
+"Orion.IpSla.ICMPPathMonthReport",
+"Orion.IpSla.ICMPPathReport",
+"Orion.IpSla.IcmpPathJitterOperationStats",
+"Orion.IpSla.InfrastructureInterfaces",
+"Orion.IpSla.InfrastructureNodes",
+"Orion.IpSla.JitterMosOperationResults",
+"Orion.IpSla.JitterOperationResults",
+"Orion.IpSla.JitterOperationResultsDaily",
+"Orion.IpSla.JitterOperationResultsDetail",
+"Orion.IpSla.JitterOperationResultsHourly",
+"Orion.IpSla.MosOperationResultsDaily",
+"Orion.IpSla.MosOperationResultsDetail",
+"Orion.IpSla.MosOperationResultsHourly",
+"Orion.IpSla.NodesAvailabilityReport",
+"Orion.IpSla.NonMOSUdpJitterOperationStats",
+"Orion.IpSla.NonPathOperationStats",
+"Orion.IpSla.NumberTable",
+"Orion.IpSla.OneWayDelayOperationResults",
+"Orion.IpSla.OneWayDelayOperationResultsDaily",
+"Orion.IpSla.OneWayDelayOperationResultsDetail",
+"Orion.IpSla.OneWayDelayOperationResultsHourly",
+"Orion.IpSla.OperationAvailability",
+"Orion.IpSla.OperationCurrentBasicMetrics",
+"Orion.IpSla.OperationCurrentHttpMetrics",
+"Orion.IpSla.OperationCurrentJitterLatencyPacketLoss",
+"Orion.IpSla.OperationCurrentMos",
+"Orion.IpSla.OperationCurrentOneWayDelay",
+"Orion.IpSla.OperationCurrentPathJitterLatencyPacketLoss",
+"Orion.IpSla.OperationCurrentStats",
+"Orion.IpSla.OperationLastRoundTripTime",
+"Orion.IpSla.OperationParameterTypes",
+"Orion.IpSla.OperationParameters",
+"Orion.IpSla.OperationResultHealthStatsDaily",
+"Orion.IpSla.OperationResultHealthStatsHourly",
+"Orion.IpSla.OperationResultTypes",
+"Orion.IpSla.OperationResults",
+"Orion.IpSla.OperationResultsDaily",
+"Orion.IpSla.OperationResultsDetail",
+"Orion.IpSla.OperationResultsHourly",
+"Orion.IpSla.OperationStates",
+"Orion.IpSla.OperationStats",
+"Orion.IpSla.OperationStatuses",
+"Orion.IpSla.OperationStdDevResultsDaily",
+"Orion.IpSla.OperationStdDevResultsDetail",
+"Orion.IpSla.OperationStdDevResultsHourly",
+"Orion.IpSla.OperationThresholds",
+"Orion.IpSla.OperationTypes",
+"Orion.IpSla.OperationTypesThresholds",
+"Orion.IpSla.OperationWebUri",
+"Orion.IpSla.Operations",
+"Orion.IpSla.OperationsDHCP",
+"Orion.IpSla.OperationsDNS",
+"Orion.IpSla.OperationsFTP",
+"Orion.IpSla.OperationsHTTP",
+"Orion.IpSla.OperationsJitter",
+"Orion.IpSla.OperationsMOS",
+"Orion.IpSla.OperationsTCP",
+"Orion.IpSla.OperationsUDPJitter",
+"Orion.IpSla.OperationsVoIpUDPJitter",
+"Orion.IpSla.PRIGatewayUtilization",
+"Orion.IpSla.PacketLoss",
+"Orion.IpSla.PathHopOperationCurrentStats",
+"Orion.IpSla.PathHopOperationResults",
+"Orion.IpSla.PathHops",
+"Orion.IpSla.Paths",
+"Orion.IpSla.RpmOperationStats",
+"Orion.IpSla.RpmTimestampOperationStats",
+"Orion.IpSla.Sites",
+"Orion.IpSla.ThresholdTypes",
+"Orion.IpSla.UdpJitterOperationStats",
+"Orion.IpSla.VoipCallDetails",
+"Orion.IpSla.VoipCallDetailsHist",
+"Orion.IpSla.VoipCallJitterMMA",
+"Orion.IpSla.VoipCallLatencyMMA",
+"Orion.IpSla.VoipCallMosMMA",
+"Orion.IpSla.VoipCallPacketLossMMA",
+"Orion.IpSla.VoipCalls",
+"Orion.IpSla.VoipGatewayChannelStats",
+"Orion.IpSla.VoipGatewayChannels",
+"Orion.IpSla.VoipGatewayDetailCurrentStats",
+"Orion.IpSla.VoipGatewayDetailStats",
+"Orion.IpSla.VoipGatewayEndpointCurrentStats",
+"Orion.IpSla.VoipGatewayEndpointStats",
+"Orion.IpSla.VoipGatewayEndpointWebUri",
+"Orion.IpSla.VoipGatewayEndpoints",
+"Orion.IpSla.VoipGatewaySipStats",
+"Orion.IpSla.VoipGatewaySipTrunkCallActivity",
+"Orion.IpSla.VoipGatewaySipTrunkStatusStats",
+"Orion.IpSla.VoipGatewaySipTrunkUtilization",
+"Orion.IpSla.VoipGatewaySipTrunks",
+"Orion.IpSla.VoipGatewayStats",
+"Orion.IpSla.VoipGatewayWebUri",
+"Orion.IpSla.VoipGateways",
+"Orion.IpSla.VoipOperationParameterInfo",
+"Orion.IpSla.VoipOperationsICMPEcho",
+"Orion.IpSla.VoipOperationsUDPEcho",
+"Orion.IpSla.VoipSuccessFailedCalls",
+"Orion.LazyUpgradeErrors",
+"Orion.LazyUpgradeStatus",
+"Orion.LicenseActivated",
+"Orion.LicenseDeactivated",
+"Orion.LicenseRemoved",
+"Orion.LicenseSaturation",
+"Orion.Licensing.ElementSubtypes",
+"Orion.Licensing.ElementTypes",
+"Orion.Licensing.Features",
+"Orion.Licensing.LeaseChanged",
+"Orion.Licensing.LicenseAssignments",
+"Orion.Licensing.LicenseFilters",
+"Orion.Licensing.Licenses",
+"Orion.Licensing.SettingChanging",
+"Orion.Licensing.UtilizationDetails",
+"Orion.Licensing.UtilizationSummary",
+"Orion.LimitationSnapshots",
+"Orion.LimitationTypes",
+"Orion.Limitations",
+"Orion.LoadAverage",
+"Orion.LogEntity",
+"Orion.MacPrefixes",
+"Orion.MaintenancePlan",
+"Orion.MaintenancePlanAssignment",
+"Orion.Map",
+"Orion.Map.Point",
+"Orion.MapStudioFiles",
+"Orion.Maps.Assets",
+"Orion.Maps.Edges",
+"Orion.Maps.GraphHistory",
+"Orion.Maps.GraphMemberDefinitions",
+"Orion.Maps.Graphs",
+"Orion.Maps.HiddenTopologyConnections",
+"Orion.Maps.ProjectHistory",
+"Orion.Maps.Projects",
+"Orion.Maps.TopologyConnections",
+"Orion.Maps.TopologyEdges",
+"Orion.MediaActionsProperties",
+"Orion.MemoryMultiLoad",
+"Orion.MemoryMultiLoadCurrent",
+"Orion.Mibs.Management",
+"Orion.MixedObjectType",
+"Orion.NPM.CustomPollerAssignment",
+"Orion.NPM.CustomPollerAssignmentOnInterface",
+"Orion.NPM.CustomPollerAssignmentOnNode",
+"Orion.NPM.CustomPollerAssignmentWebUri",
+"Orion.NPM.CustomPollerLabels",
+"Orion.NPM.CustomPollerStatistics",
+"Orion.NPM.CustomPollerStatus",
+"Orion.NPM.CustomPollerStatusOnInterface",
+"Orion.NPM.CustomPollerStatusOnNode",
+"Orion.NPM.CustomPollerStatusOnNodeScalar",
+"Orion.NPM.CustomPollerStatusOnNodeTabular",
+"Orion.NPM.CustomPollerThresholds",
+"Orion.NPM.CustomPollers",
+"Orion.NPM.DiscoveredInterfaces",
+"Orion.NPM.EW.Device",
+"Orion.NPM.EW.DeviceDaily",
+"Orion.NPM.EW.DeviceDetail",
+"Orion.NPM.EW.DeviceHourly",
+"Orion.NPM.EW.DeviceStats",
+"Orion.NPM.EW.Entity",
+"Orion.NPM.EW.EntityDaily",
+"Orion.NPM.EW.EntityDetail",
+"Orion.NPM.EW.EntityHourly",
+"Orion.NPM.EW.EntityStats",
+"Orion.NPM.EW.Event",
+"Orion.NPM.EW.Neighbor",
+"Orion.NPM.EW.Nodes",
+"Orion.NPM.EW.Readiness",
+"Orion.NPM.FCPorts",
+"Orion.NPM.FCRevisions",
+"Orion.NPM.FCSensors",
+"Orion.NPM.FCUnits",
+"Orion.NPM.InErrorsDiscardsThreshold",
+"Orion.NPM.InPercentUtilizationThreshold",
+"Orion.NPM.InterfaceAvailability",
+"Orion.NPM.InterfaceCustomPollers",
+"Orion.NPM.InterfaceErrors",
+"Orion.NPM.InterfaceNetObjectDowntime",
+"Orion.NPM.InterfacePercentiles",
+"Orion.NPM.InterfaceSettings",
+"Orion.NPM.InterfaceTraffic",
+"Orion.NPM.InterfaceWebUri",
+"Orion.NPM.Interfaces",
+"Orion.NPM.InterfacesCustomProperties",
+"Orion.NPM.InterfacesDashboard",
+"Orion.NPM.InterfacesForecastCapacity",
+"Orion.NPM.InterfacesRelationship",
+"Orion.NPM.InterfacesRelationshipType",
+"Orion.NPM.InterfacesThresholds",
+"Orion.NPM.MulticastRouting.DataHistory",
+"Orion.NPM.MulticastRouting.GroupNodeInterfaces",
+"Orion.NPM.MulticastRouting.GroupNodes",
+"Orion.NPM.MulticastRouting.GroupTranslation",
+"Orion.NPM.MulticastRouting.GroupWebUri",
+"Orion.NPM.MulticastRouting.Groups",
+"Orion.NPM.MulticastRouting.Interfaces",
+"Orion.NPM.MulticastRouting.MulticastRoutingProtocol",
+"Orion.NPM.MulticastRouting.MulticastRoutingTableChanges",
+"Orion.NPM.MulticastRouting.MulticastRoutingTableReport",
+"Orion.NPM.MulticastRouting.PIMNeighbors",
+"Orion.NPM.MulticastRouting.RendezvousPoints",
+"Orion.NPM.MulticastRouting.RoutingTable",
+"Orion.NPM.MulticastRouting.Sources",
+"Orion.NPM.NodeChildStatusCustomPollers",
+"Orion.NPM.NodeChildStatusInterfaces",
+"Orion.NPM.NodeCustomPollers",
+"Orion.NPM.Nodes",
+"Orion.NPM.OrionSwitchPortMapping",
+"Orion.NPM.OutErrorsDiscardsThreshold",
+"Orion.NPM.OutPercentUtilizationThreshold",
+"Orion.NPM.RealTime.Interfaces.Statistics",
+"Orion.NPM.SwitchStack",
+"Orion.NPM.SwitchStackMember",
+"Orion.NPM.SwitchStackMemberPort",
+"Orion.NPM.SwitchStackPower",
+"Orion.NPM.SwitchStackPowerPort",
+"Orion.NPM.VSANs",
+"Orion.NPM.VsanCurrentStats",
+"Orion.NPM.VsanErrors",
+"Orion.NPM.VsanTraffic",
+"Orion.NPM.WL.APs",
+"Orion.NPM.WL.Clients",
+"Orion.NPM.WL.Controllers",
+"Orion.NPM.WL.Interfaces",
+"Orion.NPM.Wireless.Clients",
+"Orion.NPM.Wireless.Interface",
+"Orion.NetObjectDowntime",
+"Orion.NetObjectTypes",
+"Orion.NetObjectTypesExt",
+"Orion.NetPath.EndpointServiceAssignments",
+"Orion.NetPath.EndpointServiceProperties",
+"Orion.NetPath.EndpointServices",
+"Orion.NetPath.Networks",
+"Orion.NetPath.Performances",
+"Orion.NetPath.Probes",
+"Orion.NetPath.ServiceAssignments",
+"Orion.NetPath.ServiceAssignmentsBase",
+"Orion.NetPath.Tests",
+"Orion.NetPath.ThresholdTypes",
+"Orion.NetPath.Thresholds",
+"Orion.NetPath.Traces",
+"Orion.Netflow.AdvancedApplications",
+"Orion.Netflow.Applications",
+"Orion.Netflow.AutonomousSystems",
+"Orion.Netflow.CBQoSClassMap",
+"Orion.Netflow.CBQoSConfigurationDetails",
+"Orion.Netflow.CBQoSDetail",
+"Orion.Netflow.CBQoSDirectionDescription",
+"Orion.Netflow.CBQoSPolicy",
+"Orion.Netflow.CBQoSPolicyAction",
+"Orion.Netflow.CBQoSPolicyClassPaths",
+"Orion.Netflow.CBQoSPolicyMap",
+"Orion.Netflow.CBQoSPolicyMetric",
+"Orion.Netflow.CBQoSSource",
+"Orion.Netflow.CBQoSStatistics",
+"Orion.Netflow.CBQoSStatisticsDescription",
+"Orion.Netflow.CBQoSTop",
+"Orion.Netflow.CorrelationPostDNS",
+"Orion.Netflow.Countries",
+"Orion.Netflow.Diagnostics.Database",
+"Orion.Netflow.Diagnostics.Partitions",
+"Orion.Netflow.Diagnostics.Tables",
+"Orion.Netflow.FlowEngines",
+"Orion.Netflow.Flows",
+"Orion.Netflow.FlowsByAS",
+"Orion.Netflow.FlowsByAdvancedApplication",
+"Orion.Netflow.FlowsByApplication",
+"Orion.Netflow.FlowsByConversation",
+"Orion.Netflow.FlowsByCountryCode",
+"Orion.Netflow.FlowsByDomain",
+"Orion.Netflow.FlowsByHostname",
+"Orion.Netflow.FlowsByIP",
+"Orion.Netflow.FlowsByInterface",
+"Orion.Netflow.FlowsByInterfaceByConversation",
+"Orion.Netflow.FlowsWLC",
+"Orion.Netflow.Hostnames",
+"Orion.Netflow.IP2Country",
+"Orion.Netflow.IPAddressGroupRanges",
+"Orion.Netflow.IPAddressGroups",
+"Orion.Netflow.IPGroupSegments",
+"Orion.Netflow.IPGroupsBySegments",
+"Orion.Netflow.InterfaceSources",
+"Orion.Netflow.NetFlowEnginesStatistics",
+"Orion.Netflow.NodeProperties",
+"Orion.Netflow.NodeSources",
+"Orion.Netflow.NodeStatistics",
+"Orion.Netflow.Protocols",
+"Orion.Netflow.Source",
+"Orion.Netflow.TrafficClass",
+"Orion.Netflow.TypesOfService",
+"Orion.NetworkAtlas",
+"Orion.Nexus.VirtualPortChannel",
+"Orion.Nexus.VirtualPortChannelInterfaces",
+"Orion.NexusVpc.Dashboard",
+"Orion.NodeCategories",
+"Orion.NodeCdpEntry",
+"Orion.NodeChildStatusContributors",
+"Orion.NodeChildStatusDetail",
+"Orion.NodeChildStatusParticipation",
+"Orion.NodeChildStatusThresholds",
+"Orion.NodeChildStatusVolumes",
+"Orion.NodeIPAddresses",
+"Orion.NodeL2Connections",
+"Orion.NodeL3Entries",
+"Orion.NodeL3RoutingData",
+"Orion.NodeLldpEntry",
+"Orion.NodeMACAddresses",
+"Orion.NodeNotes",
+"Orion.NodePortInterfaceMap",
+"Orion.NodeSettings",
+"Orion.NodeVlans",
+"Orion.NodeWebUri",
+"Orion.Nodes",
+"Orion.NodesCustomProperties",
+"Orion.NodesForecastCapacity",
+"Orion.NodesOtherStatusCount",
+"Orion.NodesOtherStatusIds",
+"Orion.NodesStats",
+"Orion.NodesThresholds",
+"Orion.NodesWebCommunityStrings",
+"Orion.NotificationItemGrouped",
+"Orion.NotificationTypePermission",
+"Orion.Nutanix.DiscoveryMetadata",
+"Orion.Nutanix.DiscoveryMetadataMapping",
+"Orion.OLM.AlertMessage",
+"Orion.OLM.HealthIssues",
+"Orion.OLM.LicenseExpiration",
+"Orion.OLM.LicenseReset",
+"Orion.OLM.LogEntry",
+"Orion.OLM.LogEntryFieldValue",
+"Orion.OLM.LogEntryLevel",
+"Orion.OLM.LogEntrySecondarySourceAssignment",
+"Orion.OLM.LogEntrySecondarySources",
+"Orion.OLM.LogEntryTagAssignment",
+"Orion.OLM.LogEntryType",
+"Orion.OLM.LogProfile",
+"Orion.OLM.LogProfileAgentAssignment",
+"Orion.OLM.MessageSources",
+"Orion.OLM.NodeInfosChanged",
+"Orion.OLM.NodeLicensingChange",
+"Orion.OLM.Nodes",
+"Orion.OLM.ProcessingRule",
+"Orion.OLM.ProcessingRuleActions",
+"Orion.OLM.RuleProcessingDefinitions",
+"Orion.OLM.Tags",
+"Orion.Orchestrators.Devices",
+"Orion.Orchestrators.Info",
+"Orion.Orchestrators.Nodes",
+"Orion.OrionServers",
+"Orion.OtherEvent",
+"Orion.OutInterfaceAverageTrafficUtilizationByDays",
+"Orion.PM.DatabaseHelper",
+"Orion.PM.InstalledProducts",
+"Orion.PM.Management",
+"Orion.PM.PAS.Tasks",
+"Orion.PM.PAS.UpdatesOrionEntities",
+"Orion.PM.PAS.WsusNodesOrionNodes",
+"Orion.PM.PAS.WsusServerNodes",
+"Orion.PM.PAS.WsusServers",
+"Orion.PM.TaskBroker",
+"Orion.PM.UpdateServicesServer",
+"Orion.PM.Updates",
+"Orion.PM.WMI_InstalledProducts",
+"Orion.PM.WSUS_ApprovedUpdatesInstallationSummaryInfo",
+"Orion.PM.WSUS_ApprovedUpdatesInstallationSummaryInfoWithApprovalDetails",
+"Orion.PM.WSUS_ComputerToUpdatesWithStatusAndDetails",
+"Orion.PM.WSUS_ComputerUpdateStatusToComputerView",
+"Orion.PM.WSUS_ComputerUpdateStatusToUpdatesView",
+"Orion.PM.WSUS_ComputerUpdateStatusWithApprovals",
+"Orion.PM.WSUS_UpdatesWithEffectiveApprovalsByGroup",
+"Orion.PM.WsusGroups",
+"Orion.PM.WsusNodes",
+"Orion.PM.WsusNodesUpdates",
+"Orion.PM.WsusServers",
+"Orion.PM.device",
+"Orion.PM.dt_wsus_computers",
+"Orion.PM.dt_wsus_updates",
+"Orion.PM.dt_wsus_updates_installinfo_details",
+"Orion.PM.ewTaskViewHistory",
+"Orion.PM.ewtasks",
+"Orion.PM.ewtasksresults",
+"Orion.Package",
+"Orion.Packages.Wireless.AccessPoints",
+"Orion.Packages.Wireless.AccessPoints.Autonomous",
+"Orion.Packages.Wireless.AccessPoints.Thin",
+"Orion.Packages.Wireless.AccessPoints.Thin.WebUri",
+"Orion.Packages.Wireless.Clients",
+"Orion.Packages.Wireless.ClientsSessionHistory",
+"Orion.Packages.Wireless.Controllers",
+"Orion.Packages.Wireless.Entity",
+"Orion.Packages.Wireless.HistoricalAccessPoints",
+"Orion.Packages.Wireless.HistoricalClients",
+"Orion.Packages.Wireless.HistoricalInterfaces",
+"Orion.Packages.Wireless.HistoricalRogues",
+"Orion.Packages.Wireless.HistoryEntity",
+"Orion.Packages.Wireless.Indexes",
+"Orion.Packages.Wireless.Interfaces",
+"Orion.Packages.Wireless.Rogues",
+"Orion.Packages.Wireless.SSIDs",
+"Orion.Packages.Wireless.StatisticsHistoryEntity",
+"Orion.Packages.Wireless.SwitchPortMapping",
+"Orion.PasswordHistory",
+"Orion.PercentDiskUsedThreshold",
+"Orion.PercentLossThreshold",
+"Orion.PercentMemoryUsedThreshold",
+"Orion.PerfStack.Projects",
+"Orion.PerfStack.StatisticsEntity",
+"Orion.PerformanceCounters",
+"Orion.Poe.DeviceGroup",
+"Orion.Poe.DeviceGroupStatistics",
+"Orion.Poe.Port",
+"Orion.PolicyEngine.AssignedPolicy",
+"Orion.PolicyEngine.AssignedRule",
+"Orion.PolicyEngine.AssignedRuleDataSource",
+"Orion.PolicyEngine.AssignedRuleError",
+"Orion.PolicyEngine.AssignedRuleFailed",
+"Orion.PolicyEngine.AssignedRuleStatistics",
+"Orion.PolicyEngine.DataSource",
+"Orion.PolicyEngine.ErrorType",
+"Orion.PolicyEngine.Policy",
+"Orion.PolicyEngine.PolicyCompliance",
+"Orion.PolicyEngine.PolicyComplianceChange",
+"Orion.PolicyEngine.Rule",
+"Orion.PollNow",
+"Orion.Pollers",
+"Orion.PollingErrors",
+"Orion.PollingUsage",
+"Orion.PortItems",
+"Orion.ProcessDiscoveryResults",
+"Orion.QBM.EntityMetrics",
+"Orion.QBM.Keys",
+"Orion.QBM.Metrics",
+"Orion.QBM.Queries",
+"Orion.QBM.SummaryMetrics",
+"Orion.ReachabilityInfo",
+"Orion.RealTime.Nodes.Statistics",
+"Orion.RealTime.Volumes.Statistics",
+"Orion.Recommendations.Actions",
+"Orion.Recommendations.ActiveRecommendations",
+"Orion.Recommendations.ConstraintChanged",
+"Orion.Recommendations.ConstraintObjects",
+"Orion.Recommendations.ConstraintParameters",
+"Orion.Recommendations.Constraints",
+"Orion.Recommendations.DataGroupInfo",
+"Orion.Recommendations.Dependencies",
+"Orion.Recommendations.GroupChanged",
+"Orion.Recommendations.JobCanceled",
+"Orion.Recommendations.JobCreated",
+"Orion.Recommendations.JobFinished",
+"Orion.Recommendations.JobStarted",
+"Orion.Recommendations.Jobs",
+"Orion.Recommendations.Justifications",
+"Orion.Recommendations.RecommendationChanged",
+"Orion.Recommendations.RecommendationsBase",
+"Orion.Recommendations.Strategies",
+"Orion.Recommendations.StrategiesGroup",
+"Orion.Rediscovery",
+"Orion.Report",
+"Orion.ReportFavorites",
+"Orion.ReportGenerated",
+"Orion.ReportJobData",
+"Orion.ReportJobDefinitions",
+"Orion.ReportJobExecuted",
+"Orion.ReportJobUrls",
+"Orion.ReportJobs",
+"Orion.ReportSchedules",
+"Orion.Reporting",
+"Orion.ReportsCustomProperties",
+"Orion.ResourceProperties",
+"Orion.Resources",
+"Orion.ResponseTime",
+"Orion.ResponseTimeThreshold",
+"Orion.Routing.DefaultRouteChange",
+"Orion.Routing.Neighbors",
+"Orion.Routing.NeighborsFlapCount",
+"Orion.Routing.Router",
+"Orion.Routing.RoutingDetails",
+"Orion.Routing.RoutingProtocol",
+"Orion.Routing.RoutingProtocolStateMapping",
+"Orion.Routing.RoutingTable",
+"Orion.Routing.RoutingTableFlap",
+"Orion.Routing.VRF",
+"Orion.Routing.VRFInterface",
+"Orion.SCM.ApplicationTemplateToProfileMapping",
+"Orion.SCM.Baseline",
+"Orion.SCM.DismissedCandidates",
+"Orion.SCM.FimDisabledNodes",
+"Orion.SCM.NodesProfiles",
+"Orion.SCM.NodesProfilesArchive",
+"Orion.SCM.NodesProfilesHistory",
+"Orion.SCM.OneTimePollFinished",
+"Orion.SCM.PollEntries",
+"Orion.SCM.ProfileElementPolicyDataSources",
+"Orion.SCM.ProfileElements",
+"Orion.SCM.ProfileToApplicationTemplateMapping",
+"Orion.SCM.Profiles",
+"Orion.SCM.Results.ElementContents",
+"Orion.SCM.Results.ElementErrors",
+"Orion.SCM.Results.ElementMetadata",
+"Orion.SCM.Results.NodesPollingErrors",
+"Orion.SCM.Results.PolledElementDetails",
+"Orion.SCM.Results.PolledElementErrors",
+"Orion.SCM.Results.PolledElements",
+"Orion.SCM.ServerConfiguration",
+"Orion.SCM.ServerConfigurationChange",
+"Orion.SCM.ServerConfigurationDiffersFromBaseline",
+"Orion.SEM.Connection",
+"Orion.SEM.EventSourceCategories",
+"Orion.SEM.EventSourceTags",
+"Orion.SEM.EventSources",
+"Orion.SEM.Events",
+"Orion.SEM.Facets",
+"Orion.SEM.Licenses",
+"Orion.SEM.Nodes",
+"Orion.SEM.ScheduledSearchExecutions",
+"Orion.SEM.SemConnections",
+"Orion.SEM.Settings",
+"Orion.SEM.Tags",
+"Orion.SEM.TrackedScheduledSearchExecutions",
+"Orion.SEM.TrackedTags",
+"Orion.SEUM.AgentConnectionStatus",
+"Orion.SEUM.AgentStatus",
+"Orion.SEUM.AgentStatusReport",
+"Orion.SEUM.AgentWebUri",
+"Orion.SEUM.Agents",
+"Orion.SEUM.RecordingAuthentications",
+"Orion.SEUM.RecordingCertificates",
+"Orion.SEUM.RecordingCustomProperties",
+"Orion.SEUM.RecordingSteps",
+"Orion.SEUM.Recordings",
+"Orion.SEUM.RecordingsSettings",
+"Orion.SEUM.ResponseTime",
+"Orion.SEUM.ResponseTimeDetail",
+"Orion.SEUM.ResponseTimeReport",
+"Orion.SEUM.Settings",
+"Orion.SEUM.StepResponseTime",
+"Orion.SEUM.StepResponseTimeDetail",
+"Orion.SEUM.StepResponseTimeDetailLargeData",
+"Orion.SEUM.StepResponseTimeLargeData",
+"Orion.SEUM.StepResponseTimeReport",
+"Orion.SEUM.TransactionCustomProperties",
+"Orion.SEUM.TransactionRunParameters",
+"Orion.SEUM.TransactionStepLargeData",
+"Orion.SEUM.TransactionStepRequests",
+"Orion.SEUM.TransactionStepWebUri",
+"Orion.SEUM.TransactionSteps",
+"Orion.SEUM.TransactionWebUri",
+"Orion.SEUM.Transactions",
+"Orion.SEUM.WebSettings",
+"Orion.SEUM.WebUserPermissions",
+"Orion.SEUM.Websites",
+"Orion.SMTPServers",
+"Orion.SNMPv3Credentials",
+"Orion.SRM.ApplicationThresholds",
+"Orion.SRM.DeviceGroupProperties",
+"Orion.SRM.DeviceGroups",
+"Orion.SRM.DeviceMigrations",
+"Orion.SRM.Engines",
+"Orion.SRM.EventType",
+"Orion.SRM.FileServerIdentification",
+"Orion.SRM.FileServers",
+"Orion.SRM.FileShareCustomProperties",
+"Orion.SRM.FileShares",
+"Orion.SRM.FileSharesToVIMNas",
+"Orion.SRM.LUNBytesPSReadThreshold",
+"Orion.SRM.LUNBytesPSTotalThreshold",
+"Orion.SRM.LUNBytesPSWriteThreshold",
+"Orion.SRM.LUNCapacityStatistics",
+"Orion.SRM.LUNCustomProperties",
+"Orion.SRM.LUNIOLatencyOtherThreshold",
+"Orion.SRM.LUNIOLatencyReadThreshold",
+"Orion.SRM.LUNIOLatencyTotalThreshold",
+"Orion.SRM.LUNIOLatencyWriteThreshold",
+"Orion.SRM.LUNIOPSOtherThreshold",
+"Orion.SRM.LUNIOPSReadThreshold",
+"Orion.SRM.LUNIOPSTotalThreshold",
+"Orion.SRM.LUNIOPSWriteThreshold",
+"Orion.SRM.LUNIOSizeReadThreshold",
+"Orion.SRM.LUNIOSizeTotalThreshold",
+"Orion.SRM.LUNIOSizeWriteThreshold",
+"Orion.SRM.LUNStatistics",
+"Orion.SRM.LUNThresholds",
+"Orion.SRM.LUNs",
+"Orion.SRM.LunMasking",
+"Orion.SRM.LunsToVIMLuns",
+"Orion.SRM.PhysicalDisks",
+"Orion.SRM.PoolBytesPSReadThreshold",
+"Orion.SRM.PoolBytesPSTotalThreshold",
+"Orion.SRM.PoolBytesPSWriteThreshold",
+"Orion.SRM.PoolCapacityStatistics",
+"Orion.SRM.PoolCustomProperties",
+"Orion.SRM.PoolIOPSOtherThreshold",
+"Orion.SRM.PoolIOPSReadThreshold",
+"Orion.SRM.PoolIOPSTotalThreshold",
+"Orion.SRM.PoolIOPSWriteThreshold",
+"Orion.SRM.PoolIOSizeReadThreshold",
+"Orion.SRM.PoolIOSizeTotalThreshold",
+"Orion.SRM.PoolIOSizeWriteThreshold",
+"Orion.SRM.PoolStatistics",
+"Orion.SRM.PoolThresholds",
+"Orion.SRM.PoolToPoolsMapping",
+"Orion.SRM.Pools",
+"Orion.SRM.ProviderCustomProperties",
+"Orion.SRM.Providers",
+"Orion.SRM.RESTConfigurations",
+"Orion.SRM.StorageArrayBytesPSReadThreshold",
+"Orion.SRM.StorageArrayBytesPSTotalThreshold",
+"Orion.SRM.StorageArrayBytesPSWriteThreshold",
+"Orion.SRM.StorageArrayCapacityStatistics",
+"Orion.SRM.StorageArrayCustomProperties",
+"Orion.SRM.StorageArrayIOPSOtherThreshold",
+"Orion.SRM.StorageArrayIOPSReadThreshold",
+"Orion.SRM.StorageArrayIOPSTotalThreshold",
+"Orion.SRM.StorageArrayIOPSWriteThreshold",
+"Orion.SRM.StorageArrayIOSizeReadThreshold",
+"Orion.SRM.StorageArrayIOSizeTotalThreshold",
+"Orion.SRM.StorageArrayIOSizeWriteThreshold",
+"Orion.SRM.StorageArrayIPs",
+"Orion.SRM.StorageArrayProperties",
+"Orion.SRM.StorageArrayStatistics",
+"Orion.SRM.StorageArrayThresholds",
+"Orion.SRM.StorageArrayWebUri",
+"Orion.SRM.StorageArrays",
+"Orion.SRM.StorageControllerBytesPSDistributionThreshold",
+"Orion.SRM.StorageControllerBytesPSReadThreshold",
+"Orion.SRM.StorageControllerBytesPSTotalThreshold",
+"Orion.SRM.StorageControllerBytesPSWriteThreshold",
+"Orion.SRM.StorageControllerCustomProperties",
+"Orion.SRM.StorageControllerIOLatencyReadThreshold",
+"Orion.SRM.StorageControllerIOLatencyTotalThreshold",
+"Orion.SRM.StorageControllerIOLatencyWriteThreshold",
+"Orion.SRM.StorageControllerIOPSDistributionThreshold",
+"Orion.SRM.StorageControllerIOPSReadThreshold",
+"Orion.SRM.StorageControllerIOPSTotalThreshold",
+"Orion.SRM.StorageControllerIOPSWriteThreshold",
+"Orion.SRM.StorageControllerIOSizeReadThreshold",
+"Orion.SRM.StorageControllerIOSizeTotalThreshold",
+"Orion.SRM.StorageControllerIOSizeWriteThreshold",
+"Orion.SRM.StorageControllerIPs",
+"Orion.SRM.StorageControllerPortBytesPSDistributionThreshold",
+"Orion.SRM.StorageControllerPortBytesPSTotalThreshold",
+"Orion.SRM.StorageControllerPortCustomProperties",
+"Orion.SRM.StorageControllerPortIOPSDistributionThreshold",
+"Orion.SRM.StorageControllerPortIOPSTotalThreshold",
+"Orion.SRM.StorageControllerPortStatistics",
+"Orion.SRM.StorageControllerPortThresholds",
+"Orion.SRM.StorageControllerPorts",
+"Orion.SRM.StorageControllerStatistics",
+"Orion.SRM.StorageControllerThresholds",
+"Orion.SRM.StorageControllerUtilizationThreshold",
+"Orion.SRM.StorageControllers",
+"Orion.SRM.Templates",
+"Orion.SRM.Thresholds",
+"Orion.SRM.Topology",
+"Orion.SRM.VServerBytesPSReadThreshold",
+"Orion.SRM.VServerBytesPSTotalThreshold",
+"Orion.SRM.VServerBytesPSWriteThreshold",
+"Orion.SRM.VServerCapacityStatistics",
+"Orion.SRM.VServerIOPSOtherThreshold",
+"Orion.SRM.VServerIOPSReadThreshold",
+"Orion.SRM.VServerIOPSTotalThreshold",
+"Orion.SRM.VServerIOPSWriteThreshold",
+"Orion.SRM.VServerIOSizeReadThreshold",
+"Orion.SRM.VServerIOSizeTotalThreshold",
+"Orion.SRM.VServerIOSizeWriteThreshold",
+"Orion.SRM.VServerStatistics",
+"Orion.SRM.VServerThresholds",
+"Orion.SRM.VServers",
+"Orion.SRM.VServersCustomProperties",
+"Orion.SRM.VolumeBytesPSReadThreshold",
+"Orion.SRM.VolumeBytesPSTotalThreshold",
+"Orion.SRM.VolumeBytesPSWriteThreshold",
+"Orion.SRM.VolumeCapacityStatistics",
+"Orion.SRM.VolumeCustomProperties",
+"Orion.SRM.VolumeIOLatencyOtherThreshold",
+"Orion.SRM.VolumeIOLatencyReadThreshold",
+"Orion.SRM.VolumeIOLatencyTotalThreshold",
+"Orion.SRM.VolumeIOLatencyWriteThreshold",
+"Orion.SRM.VolumeIOPSOtherThreshold",
+"Orion.SRM.VolumeIOPSReadThreshold",
+"Orion.SRM.VolumeIOPSTotalThreshold",
+"Orion.SRM.VolumeIOPSWriteThreshold",
+"Orion.SRM.VolumeIOSizeReadThreshold",
+"Orion.SRM.VolumeIOSizeTotalThreshold",
+"Orion.SRM.VolumeIOSizeWriteThreshold",
+"Orion.SRM.VolumeStatistics",
+"Orion.SRM.VolumeThresholds",
+"Orion.SRM.Volumes",
+"Orion.SSH.Audit",
+"Orion.SSH.Key",
+"Orion.SSH.Session",
+"Orion.SSO",
+"Orion.STPRecords",
+"Orion.ScheduleEntityAssignment",
+"Orion.ScheduleExecuted",
+"Orion.ScheduleTaskDefinition",
+"Orion.SdWan.Nodes",
+"Orion.SdWan.Nodes.Failover",
+"Orion.SdWan.NodesInterfaces",
+"Orion.SdWan.NodesPerformance",
+"Orion.SdWan.TopologyConnections",
+"Orion.SdWan.TopologyEdges",
+"Orion.SdWan.Tunnels",
+"Orion.SdWan.TunnelsStatistics",
+"Orion.SecObs.DatabaseUpdateUserAccount",
+"Orion.SecObs.ModuleSettings",
+"Orion.SecObs.PatchManagerSettings",
+"Orion.SecObs.Users",
+"Orion.SecObs.Vulnerabilities.Cves",
+"Orion.SecObs.Vulnerabilities.LastMatching.NodeScores",
+"Orion.SecObs.Vulnerabilities.LastMatching.Result",
+"Orion.SecObs.Vulnerabilities.Matchings",
+"Orion.SecObs.Vulnerabilities.NodeCve",
+"Orion.SecObs.Vulnerabilities.Nodes",
+"Orion.SecObs.Vulnerabilities.Settings",
+"Orion.SecObs.VulnerabilityScore.Execution",
+"Orion.SecObs.VulnerabilityScore.ManageNode",
+"Orion.SecObs.VulnerabilityScore.NodeVulnerabilityState",
+"Orion.SecObs.VulnerabilityScore.Settings",
+"Orion.ServiceDesk.AlertIncident",
+"Orion.ServiceDesk.ClusterIncident",
+"Orion.ServiceNow.AlertIncident",
+"Orion.ServiceNow.ClusterIncident",
+"Orion.ServiceRestarted",
+"Orion.ServiceStarted",
+"Orion.ServiceStopped",
+"Orion.Services",
+"Orion.SessionEnd",
+"Orion.Setting",
+"Orion.SettingOverride",
+"Orion.Settings",
+"Orion.ShadowNodes",
+"Orion.Sites",
+"Orion.Stacks.FilterProperty",
+"Orion.Stacks.Participation",
+"Orion.Stacks.Relation",
+"Orion.StatusCalculators",
+"Orion.StatusInfo",
+"Orion.Stencil.ModelSpecAssignments",
+"Orion.Stencil.ModelSpecs",
+"Orion.Stencil.NodeSpecAssignments",
+"Orion.SwisFeature",
+"Orion.SysLogFacilities",
+"Orion.SysLogSeverities",
+"Orion.Technology",
+"Orion.TechnologyPolling",
+"Orion.TechnologyPollingAssignments",
+"Orion.Thresholds",
+"Orion.ThresholdsLevelSettings",
+"Orion.ThresholdsNames",
+"Orion.Toolset.AutocompleteHistory",
+"Orion.Toolset.BusinessLayer",
+"Orion.Toolset.ConnectionProfiles",
+"Orion.Toolset.GlobalSettings",
+"Orion.Toolset.LicenseSettings",
+"Orion.Toolset.NodesProperties",
+"Orion.Toolset.ResultTypes",
+"Orion.Toolset.SSH",
+"Orion.Toolset.SSHActiveData",
+"Orion.Toolset.ToolLaunchDetail",
+"Orion.Toolset.ToolSettings",
+"Orion.Toolset.Tools",
+"Orion.Toolset.UserCredentialMapping",
+"Orion.Top100NodeEventsForYear",
+"Orion.Top5000EventsForYear",
+"Orion.Topology.TopologyConnections",
+"Orion.TopologyConnections",
+"Orion.TopologyData",
+"Orion.TopologyEntities",
+"Orion.TwoLevelThreshold",
+"Orion.UCS.Blades",
+"Orion.UCS.Chassis",
+"Orion.UCS.Events",
+"Orion.UCS.Fabrics",
+"Orion.UCS.FansOnChassis",
+"Orion.UCS.FansOnFabrics",
+"Orion.UCS.PSUsOnChassis",
+"Orion.UCS.PSUsOnFabrics",
+"Orion.UDT.AccessPortEndpointCount",
+"Orion.UDT.AllDnsEndpointConnections",
+"Orion.UDT.AllEndpoints",
+"Orion.UDT.AllIPEndpointConnections",
+"Orion.UDT.AllMACEndpointConnections",
+"Orion.UDT.AllWirelessEndpoints",
+"Orion.UDT.CdpEntry",
+"Orion.UDT.ConnectedMACsAndIPs",
+"Orion.UDT.DNSName",
+"Orion.UDT.DNSNameCurrent",
+"Orion.UDT.DNSNameHistory",
+"Orion.UDT.DeviceInventory",
+"Orion.UDT.EmptyDNSRogue",
+"Orion.UDT.Endpoint",
+"Orion.UDT.EndpointDNS",
+"Orion.UDT.EndpointIP",
+"Orion.UDT.IPAddress",
+"Orion.UDT.IPAddressCurrent",
+"Orion.UDT.IPAddressHistory",
+"Orion.UDT.IPv6List",
+"Orion.UDT.IpEndpointCurrentConnections",
+"Orion.UDT.IpEndpointHistoryConnections",
+"Orion.UDT.Job",
+"Orion.UDT.LatestDNSAddressHistoryForWatchID",
+"Orion.UDT.LatestIPAddressHistoryForWatchID",
+"Orion.UDT.LatestPortToEndpointHistoryForWatchID",
+"Orion.UDT.LldpEntry",
+"Orion.UDT.MACAddressInfo",
+"Orion.UDT.MACCurrentInfo",
+"Orion.UDT.MACCurrentInformation",
+"Orion.UDT.MacEndpointCurrentConnections",
+"Orion.UDT.MacEndpointHistoryConnections",
+"Orion.UDT.MonitoredPortRule",
+"Orion.UDT.MonitoredPortsCount",
+"Orion.UDT.MovedMACAlert",
+"Orion.UDT.NewMACAlert",
+"Orion.UDT.NewMACVendorAlert",
+"Orion.UDT.NodeCapability",
+"Orion.UDT.NodeCapabilityDashboard",
+"Orion.UDT.NodeChildStatusPorts",
+"Orion.UDT.OUIReport",
+"Orion.UDT.OUISummary",
+"Orion.UDT.Port",
+"Orion.UDT.PortCapacity",
+"Orion.UDT.PortDisplayData",
+"Orion.UDT.PortDisplayDataCount",
+"Orion.UDT.PortHistoryCurrent",
+"Orion.UDT.PortHistoryHistory",
+"Orion.UDT.PortToEndpoint",
+"Orion.UDT.PortToEndpointCounts",
+"Orion.UDT.PortToEndpointCurrent",
+"Orion.UDT.PortToEndpointHistory",
+"Orion.UDT.PortToPort",
+"Orion.UDT.PortToPortCurrent",
+"Orion.UDT.PortToPortHistory",
+"Orion.UDT.PortTypes",
+"Orion.UDT.PortUsage",
+"Orion.UDT.PortUsage.Daily",
+"Orion.UDT.PortUsage.Detail",
+"Orion.UDT.PortUsage.Hourly",
+"Orion.UDT.PortWebUri",
+"Orion.UDT.RogueDNSAlert",
+"Orion.UDT.RogueEmptyDNSAlert",
+"Orion.UDT.RogueEndpoints",
+"Orion.UDT.RogueIPAlert",
+"Orion.UDT.RogueMACAlert",
+"Orion.UDT.RoutingEndpoints",
+"Orion.UDT.Setting",
+"Orion.UDT.UnusedPorts",
+"Orion.UDT.User",
+"Orion.UDT.UserDisplayData",
+"Orion.UDT.UserDisplayDataCount",
+"Orion.UDT.UserHistory",
+"Orion.UDT.UserInventory.Results",
+"Orion.UDT.UserLastActivity",
+"Orion.UDT.UserToIPAddress",
+"Orion.UDT.UserToIPAddressCurrent",
+"Orion.UDT.UserToIPAddressHistory",
+"Orion.UDT.VLAN",
+"Orion.UDT.VLANDevice",
+"Orion.UDT.Vrf",
+"Orion.UDT.WatchList",
+"Orion.UDT.WatchListAggregated",
+"Orion.UDT.WatchListPresent",
+"Orion.UDT.Wireless_Clients_Session_History_View_Data",
+"Orion.UsageByDays",
+"Orion.UserLockedOut",
+"Orion.UserLogin",
+"Orion.UserLoginUnsuccessful",
+"Orion.UserLogout",
+"Orion.UserPasswordChangeByAdminFailed",
+"Orion.UserPasswordChangeByAdminSucceeded",
+"Orion.UserPasswordChangeFailed",
+"Orion.UserPasswordChangeSucceeded",
+"Orion.UserSettings",
+"Orion.UserUnlocked",
+"Orion.VIM.Alarm",
+"Orion.VIM.AlertsRecommendations",
+"Orion.VIM.CapacityPlanning.HostProfiles",
+"Orion.VIM.CapacityPlanning.ReportDefinitions",
+"Orion.VIM.CapacityPlanning.ReportResults",
+"Orion.VIM.CapacityPlanning.VMProfiles",
+"Orion.VIM.ChargebackReportChanged",
+"Orion.VIM.ChargebackReports",
+"Orion.VIM.ClusterCpuLoadThreshold",
+"Orion.VIM.ClusterMemUsageThreshold",
+"Orion.VIM.ClusterStatistics",
+"Orion.VIM.ClusterStorageStatistics",
+"Orion.VIM.ClusterThresholds",
+"Orion.VIM.Clusters",
+"Orion.VIM.ClustersCustomProperties",
+"Orion.VIM.DataCenters",
+"Orion.VIM.DataCentersCustomProperties",
+"Orion.VIM.DatastoreIOPSReadThreshold",
+"Orion.VIM.DatastoreIOPSTotalThreshold",
+"Orion.VIM.DatastoreIOPSWriteThreshold",
+"Orion.VIM.DatastoreLatencyReadThreshold",
+"Orion.VIM.DatastoreLatencyTotalThreshold",
+"Orion.VIM.DatastoreLatencyWriteThreshold",
+"Orion.VIM.DatastoreStatistics",
+"Orion.VIM.DatastoreThresholds",
+"Orion.VIM.Datastores",
+"Orion.VIM.DatastoresCustomProperties",
+"Orion.VIM.Discovery",
+"Orion.VIM.DiskFiles",
+"Orion.VIM.GroupingMapping",
+"Orion.VIM.HostCpuLoadThreshold",
+"Orion.VIM.HostIPAddresses",
+"Orion.VIM.HostMACAddresses",
+"Orion.VIM.HostMemUsageThreshold",
+"Orion.VIM.HostNetworkUtilizationThreshold",
+"Orion.VIM.HostStatistics",
+"Orion.VIM.HostStorageStatistics",
+"Orion.VIM.HostThresholds",
+"Orion.VIM.Hosts",
+"Orion.VIM.HostsCustomProperties",
+"Orion.VIM.HyperVDiscovered",
+"Orion.VIM.LicenseInfo",
+"Orion.VIM.LunStoragePaths",
+"Orion.VIM.Luns",
+"Orion.VIM.Nas",
+"Orion.VIM.NodeChildStatusEntities",
+"Orion.VIM.NutanixClusterDeleted",
+"Orion.VIM.NutanixDiscovered",
+"Orion.VIM.Platform",
+"Orion.VIM.PollingSettingsChanged",
+"Orion.VIM.PollingTasks",
+"Orion.VIM.ProxmoxVEDiscovered",
+"Orion.VIM.Recommendations",
+"Orion.VIM.Recommendations.DataGroupInfo",
+"Orion.VIM.ResourcePools",
+"Orion.VIM.ServiceStarted",
+"Orion.VIM.Snapshots",
+"Orion.VIM.TagCategories",
+"Orion.VIM.TagCustomPropertiesMapping",
+"Orion.VIM.Tags",
+"Orion.VIM.ThresholdTypes",
+"Orion.VIM.Thresholds",
+"Orion.VIM.TriggeredAlarmState",
+"Orion.VIM.VCenters",
+"Orion.VIM.VMConfigDataChanges",
+"Orion.VIM.VMStatistics",
+"Orion.VIM.VMwareManagedStatusChanged",
+"Orion.VIM.VMwareNodes",
+"Orion.VIM.VMwareThresholdChanged",
+"Orion.VIM.VirtualDiskVolumeMapping",
+"Orion.VIM.VirtualDisks",
+"Orion.VIM.VirtualDisksStatistics",
+"Orion.VIM.VirtualMachineCpuLoadThreshold",
+"Orion.VIM.VirtualMachineCpuReadyThreshold",
+"Orion.VIM.VirtualMachineIOPSReadThreshold",
+"Orion.VIM.VirtualMachineIOPSTotalThreshold",
+"Orion.VIM.VirtualMachineIOPSWriteThreshold",
+"Orion.VIM.VirtualMachineIPAddresses",
+"Orion.VIM.VirtualMachineLatencyReadThreshold",
+"Orion.VIM.VirtualMachineLatencyTotalThreshold",
+"Orion.VIM.VirtualMachineLatencyWriteThreshold",
+"Orion.VIM.VirtualMachineMACAddresses",
+"Orion.VIM.VirtualMachineMediaDevices",
+"Orion.VIM.VirtualMachineMemUsageThreshold",
+"Orion.VIM.VirtualMachineNetworkUsageRateThreshold",
+"Orion.VIM.VirtualMachineThresholds",
+"Orion.VIM.VirtualMachineVolumes",
+"Orion.VIM.VirtualMachines",
+"Orion.VIM.VirtualMachinesCustomProperties",
+"Orion.VIM.VmManagement",
+"Orion.VPN.L2LTunnel",
+"Orion.VPN.L2LTunnelStatistics",
+"Orion.Vendors",
+"Orion.Views",
+"Orion.ViewsByDeviceType",
+"Orion.Virtualization.Instance",
+"Orion.Virtualization.InstanceThresholds",
+"Orion.Virtualization.Statistics",
+"Orion.VolumeAverageUsageByDays",
+"Orion.VolumePerformanceHistory",
+"Orion.VolumeUsageHistory",
+"Orion.VolumeWebUri",
+"Orion.Volumes",
+"Orion.VolumesCustomProperties",
+"Orion.VolumesForecastCapacity",
+"Orion.VolumesStats",
+"Orion.VolumesThresholds",
+"Orion.Web.Cloud.MenuItemChanges",
+"Orion.Web.DPA.MenuBarChanges",
+"Orion.Web.EOC.MenuBarChanges",
+"Orion.Web.FavoriteResource",
+"Orion.Web.LegacyModules.MenuBarChanges",
+"Orion.Web.LegacyModules.MenuItemChanges",
+"Orion.Web.LegacyModules.RollupStatusInfo",
+"Orion.Web.Menu",
+"Orion.Web.MenuBarChanges",
+"Orion.Web.MenuBars",
+"Orion.Web.MenuItemChanges",
+"Orion.Web.MenuItems",
+"Orion.Web.OLM.MenuBarChanges",
+"Orion.Web.Resource",
+"Orion.Web.ResourceSetting",
+"Orion.Web.ResourceUserSetting",
+"Orion.Web.UserWebView",
+"Orion.Web.VIM.MenuBarChanges",
+"Orion.Web.VIM.MenuItemChanges",
+"Orion.Web.View",
+"Orion.Web.ViewGroup",
+"Orion.WebCommunityStrings",
+"Orion.WebSettings",
+"Orion.WebUserSettings",
+"Orion.Websites",
+"Orion.Wireless.AccessPoints",
+"Orion.Wireless.AccessPoints.Autonomous",
+"Orion.Wireless.AccessPoints.Thin",
+"Orion.Wireless.Clients",
+"Orion.Wireless.ClientsSessionHistory",
+"Orion.Wireless.Controllers",
+"Orion.Wireless.Entity",
+"Orion.Wireless.HistoricalAccessPoints",
+"Orion.Wireless.HistoricalAccessPoints.Autonomous",
+"Orion.Wireless.HistoricalAccessPoints.Thin",
+"Orion.Wireless.HistoricalClients",
+"Orion.Wireless.HistoricalInterfaces",
+"Orion.Wireless.Interfaces",
+"Orion.Wireless.Rogue",
+"Orion.WirelessHeatMap.AccessPoints",
+"Orion.WirelessHeatMap.AccessPoints.WebUri",
+"Orion.WirelessHeatMap.ClientLocation",
+"Orion.WirelessHeatMap.ErrorCode",
+"Orion.WirelessHeatMap.Map",
+"Orion.WirelessHeatMap.MapPoint",
+"Orion.WirelessHeatMap.Measurement",
+"Orion.WirelessHeatMap.PollingStatus",
+"Orion.WirelessHeatMap.ResourceClientLimitation",
+"Orion.WirelessHeatMap.ResourceLimitation",
+"Orion.WirelessHeatMap.SignalIdentification",
+"Orion.WorldMap.Point",
+"Orion.WorldMap.PointLabel",
+"PlatformBridge.Info",
+"PlatformConnect.Info",
+"PlatformConnect.Status",
+"PlatformConnect.Wizard",
+"SOC.EntityMapping",
+"SOC.Settings",
+"SWISf.EntitySubscriptions",
+"SWISf.ProviderSubscriptions",
+"SWISf.RemoteSWIS",
+"System.ActiveQuery",
+"System.ComputerSystem",
+"System.CustomPropertiesEntity",
+"System.DashboardEntity",
+"System.Diagnostic",
+"System.Entity",
+"System.EntityTypeStatistics",
+"System.ExtensionEntity",
+"System.Feature",
+"System.Indication",
+"System.InstanceCreated",
+"System.InstanceDeleted",
+"System.InstanceIndication",
+"System.InstanceModified",
+"System.LoadedAssembly",
+"System.ManagedEntity",
+"System.NativeFeature",
+"System.NullEntity",
+"System.QueryExecuted",
+"System.QueryPlanCache",
+"System.SchemaChanged",
+"System.StatisticsEntity",
+"System.Subscription",
+"System.SubscriptionIncludedProperty",
+"System.SubscriptionProperty",
+"System.SystemIdentifier",
+"System.ThreeLevelTheshold",
+"System.Threshold",
+"System.TwoLevelTheshold",
+"UamsClient.ClientRuntimeInfo",
+"UamsClient.InstallationInfo",
+"UamsClient.PlatformConnectInfo",
+"UamsClient.PlatformConnectWizard",
+"UamsClient.PluginsRuntimeInfo",
+"Vdc.Contexts",
+"Vdc.System"
+],
+"note": "Entity names (all) and properties of the entities the catalog uses. Inherited properties are listed under their base entity.",
+"pages": {
+"Cirrus.ApproveQueue": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ApprovedBy": "System.String",
+"Comments": "System.String",
+"ConfigType": "System.String",
+"DateTime": "System.DateTime",
+"ExecutionType": "System.Int32",
+"ID": "System.Guid",
+"NCMJobID": "System.Int32",
+"Reboot": "System.Boolean",
+"RequestStatus": "System.Int32",
+"RequestType": "System.String",
+"RunAt": "System.DateTime",
+"Script": "System.String",
+"StatusChangeTime": "System.DateTime",
+"UserName": "System.String"
+}
+},
+"Cirrus.ApproveQueueNodes": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ApproveQueueID": "System.Guid",
+"NodeID": "System.Guid",
+"Script": "System.String"
+}
+},
+"Cirrus.ArpTables": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"FirstDiscovery": "System.DateTime",
+"IPAddress": "System.String",
+"IPSort": "System.Double",
+"InterfaceID": "System.Guid",
+"InterfaceIndex": "System.Int32",
+"LastDiscovery": "System.DateTime",
+"MAC": "System.String",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"RDNSLookup": "System.String",
+"Source": "System.String"
+}
+},
+"Cirrus.Audit": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Action": "System.String",
+"ApprovedBy": "System.String",
+"DateTime": "System.DateTime",
+"Details": "System.String",
+"ID": "System.Guid",
+"ModuleName": "System.String",
+"RequestID": "System.String",
+"RequestLink": "System.String",
+"Type": "System.String",
+"UserName": "System.String"
+}
+},
+"Cirrus.Backup_vs_AllNodes": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AllNodes": "System.Int32",
+"BackupNodes": "System.Int32",
+"Granularity": "System.String",
+"TimeStamp": "System.DateTime"
+}
+},
+"Cirrus.BridgePorts": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"FirstDiscovery": "System.DateTime",
+"InterfaceIndex": "System.Int32",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"Port": "System.Int32",
+"PortStatus": "System.String",
+"SpanningTreeEnabled": "System.String",
+"SpanningTreeState": "System.String",
+"VLANID": "System.Int32",
+"VlanType": "System.String"
+}
+},
+"Cirrus.CacheDiffResults": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CacheID": "System.Int32",
+"ComparisonType": "System.Int32",
+"ConfigID": "System.Guid",
+"ConfigTitle": "System.String",
+"ConfigTitleBefore": "System.String",
+"ConfigType": "System.String",
+"ConfigTypeBefore": "System.String",
+"DiffFlag": "System.Boolean",
+"DiffList": "System.String",
+"DiffWidth": "System.Int32",
+"NodeID": "System.Guid",
+"RtnMessageAfter": "System.String",
+"RtnMessageBefore": "System.String"
+}
+},
+"Cirrus.CatalystCards": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CardIndex": "System.Int32",
+"CardName": "System.String",
+"CardSerial": "System.String",
+"CardType": "System.Int32",
+"FWVersion": "System.String",
+"FirstDiscovery": "System.DateTime",
+"HWVersion": "System.String",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"ModuleModel": "System.String",
+"NodeID": "System.Guid",
+"OperStatus": "System.String",
+"Parent": "System.Int32",
+"SWVersion": "System.String",
+"Slot": "System.Int32",
+"SlotsOnCard": "System.Int32"
+}
+},
+"Cirrus.CiscoCards": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CardDescr": "System.String",
+"CardIndex": "System.Int32",
+"CardName": "System.String",
+"CardSerial": "System.String",
+"CardType": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"HWVersion": "System.String",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"OperStatus": "System.String",
+"Parent": "System.Int32",
+"SWVersion": "System.String",
+"Slot": "System.Int32",
+"SlotsOnCard": "System.Int32"
+}
+},
+"Cirrus.CiscoCdp": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CDPIndex": "System.String",
+"FirstDiscovery": "System.DateTime",
+"IfIndex": "System.Int32",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"RemoteCapability": "System.String",
+"RemoteDevice": "System.String",
+"RemoteDuplex": "System.String",
+"RemoteIPAddress": "System.String",
+"RemoteNativeVLAN": "System.Int32",
+"RemotePlatform": "System.String",
+"RemotePort": "System.String",
+"RemoteVersion": "System.String"
+}
+},
+"Cirrus.CiscoChassis": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ChassisID": "System.String",
+"ChassisName": "System.String",
+"ChassisSerialNumber": "System.String",
+"ChassisSlots": "System.Int32",
+"ChassisType": "System.Int32",
+"ChassisVersion": "System.String",
+"FirstDiscovery": "System.DateTime",
+"FreeMem": "System.Int32",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"NvRAMSize": "System.Int32",
+"NvRAMUsed": "System.Int32",
+"ProcessorRAM": "System.Int32",
+"RomID": "System.String",
+"RomSysVersion": "System.String",
+"RomVersion": "System.String",
+"WhyReload": "System.String"
+}
+},
+"Cirrus.CiscoFlash": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Controller": "System.String",
+"Description": "System.String",
+"FirstDiscovery": "System.DateTime",
+"FlashSize": "System.Int64",
+"Initialized": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"MaxPartitions": "System.Int32",
+"MinPartitionSize": "System.Int64",
+"Missing": "System.Boolean",
+"Name": "System.String",
+"NodeID": "System.Guid",
+"PartitionCount": "System.Int32",
+"Removable": "System.String",
+"WriteProtectJumper": "System.String"
+}
+},
+"Cirrus.CiscoFlashFiles": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"FirstDiscovery": "System.DateTime",
+"FlashCheckSum": "System.String",
+"FlashFileName": "System.String",
+"FlashFileSize": "System.Int32",
+"FlashFileStatus": "System.String",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid"
+}
+},
+"Cirrus.CiscoImageMIB": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"FirstDiscovery": "System.DateTime",
+"ImageIndex": "System.Int32",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"Name": "System.String",
+"NodeID": "System.Guid",
+"Value": "System.String"
+}
+},
+"Cirrus.CiscoMemoryPools": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"FirstDiscovery": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"PoolFree": "System.Int32",
+"PoolLargestFree": "System.Int32",
+"PoolName": "System.String",
+"PoolUsed": "System.Int32"
+}
+},
+"Cirrus.CompareRegExs": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"BlockEndRegEx": "System.String",
+"Comment": "System.String",
+"DotNetRegEx": "System.String",
+"Enabled": "System.Boolean",
+"IsBlock": "System.Boolean",
+"RegEx": "System.String",
+"RegExID": "System.Guid",
+"Title": "System.String"
+}
+},
+"Cirrus.ComparisonCache": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CacheID": "System.Int32",
+"TimeStamp": "System.DateTime"
+}
+},
+"Cirrus.ConfigArchive": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AttemptedDownloadTime": "System.DateTime",
+"BaseConfigID": "System.Guid",
+"Baseline": "System.Boolean",
+"Comments": "System.String",
+"Config": "System.String",
+"ConfigID": "System.Guid",
+"ConfigTitle": "System.String",
+"ConfigType": "System.String",
+"DownloadTime": "System.DateTime",
+"Hash": "System.String",
+"IsBinary": "System.Boolean",
+"IsIndexed": "System.Boolean",
+"ModifiedTime": "System.DateTime",
+"NodeID": "System.Guid"
+}
+},
+"Cirrus.ConfigSnippets": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AdvancedScript": "System.String",
+"Created": "System.DateTime",
+"Description": "System.String",
+"ID": "System.Int32",
+"LastModified": "System.DateTime",
+"Name": "System.String",
+"PreserveWhiteSpace": "System.Boolean"
+}
+},
+"Cirrus.EntityLogical": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Community": "System.String",
+"FirstDiscovery": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"Name": "System.String",
+"NodeID": "System.Guid",
+"TAddress": "System.String",
+"TDomain": "System.String",
+"Type": "System.String"
+}
+},
+"Cirrus.EntityPhysical": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Alias": "System.String",
+"AssetID": "System.String",
+"ContainedIn": "System.String",
+"Description": "System.String",
+"EntityClass": "System.String",
+"FieldReplaceable": "System.String",
+"FirmwareRevision": "System.String",
+"FirstDiscovery": "System.DateTime",
+"HardwareRevision": "System.String",
+"LastDiscovery": "System.DateTime",
+"Manufacturer": "System.String",
+"Missing": "System.Boolean",
+"Model": "System.String",
+"Name": "System.String",
+"NodeID": "System.Guid",
+"Position": "System.Int32",
+"Serial": "System.String",
+"SoftwareRevision": "System.String",
+"Type": "System.String"
+}
+},
+"Cirrus.GlobalSettings": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"SettingName": "System.String",
+"SettingValue": "System.String"
+}
+},
+"Cirrus.IgnoredNodes": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CoreNodeID": "System.Int32"
+}
+},
+"Cirrus.Interfaces": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AdminStatus": "System.String",
+"FirstDiscovery": "System.DateTime",
+"InterfaceAlias": "System.String",
+"InterfaceDescription": "System.String",
+"InterfaceID": "System.Guid",
+"InterfaceIndex": "System.Int32",
+"InterfaceMTU": "System.Int32",
+"InterfaceName": "System.String",
+"InterfaceSpeed": "System.Single",
+"InterfaceType": "System.Int32",
+"InterfaceTypeDescription": "System.String",
+"InterfaceTypeName": "System.String",
+"LastChange": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"MACAddress": "System.String",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"OperStatus": "System.String",
+"PhysicalInterface": "System.Char",
+"Promiscuous": "System.Char"
+}
+},
+"Cirrus.IpAddresses": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"FirstDiscovery": "System.DateTime",
+"ICMPReachable": "System.String",
+"IPAddrIPSort": "System.Double",
+"IPAddress": "System.String",
+"InterfaceID": "System.Guid",
+"InterfaceIndex": "System.Int32",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"ResponseTime": "System.Int32",
+"ReverseDNS": "System.String",
+"SNMPReachable": "System.String",
+"SubnetMask": "System.String"
+}
+},
+"Cirrus.LatestComparisonResults": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ComparisonType": "System.Int32",
+"ConfigType": "System.String",
+"DiffFlag": "System.Boolean",
+"NodeID": "System.Guid"
+}
+},
+"Cirrus.LatestPolicyReportViolations": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Error": "System.Int32",
+"Info": "System.Int32",
+"ReportID": "System.Guid",
+"Warning": "System.Int32"
+}
+},
+"Cirrus.MacForwarding": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"FirstDiscovery": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"MAC": "System.String",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"Port": "System.Int32",
+"Source": "System.String"
+}
+},
+"Cirrus.MatrixTargets": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"DisableCommand": "System.String",
+"EnableCommand": "System.String",
+"MatrixTargetID": "System.Guid",
+"TargetDescription": "System.String",
+"TargetName": "System.String",
+"TargetParamater": "System.Int32",
+"TargetPattern": "System.String"
+}
+},
+"Cirrus.NCMNodeLicenseStatus": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"LicensedByNCM": "System.String",
+"NodeID": "System.Int32"
+}
+},
+"Cirrus.NCM_ApproveQueueView": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ApprovedBy": "System.String",
+"Comments": "System.String",
+"ConfigType": "System.String",
+"DateTime": "System.DateTime",
+"ExecutionType": "System.Int32",
+"ID": "System.Guid",
+"NCMJobID": "System.Int32",
+"Reboot": "System.Boolean",
+"RequestStatus": "System.Int32",
+"RequestType": "System.String",
+"RunAt": "System.DateTime",
+"Script": "System.String",
+"StatusChangeTime": "System.DateTime",
+"UserName": "System.String"
+}
+},
+"Cirrus.NCM_EosMatchQueue": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Certainty": "System.String",
+"CertaintyStyle": "System.String",
+"EndOfSales": "System.DateTime",
+"EndOfSoftware": "System.DateTime",
+"EndOfSupport": "System.DateTime",
+"EosEntryID": "System.Guid",
+"EosLink": "System.String",
+"EosModel": "System.String",
+"EosVersion": "System.Int32",
+"ID": "System.Int32",
+"NodeID": "System.Guid",
+"PartNumber": "System.String",
+"Rank": "System.Int32",
+"ReplacementPartNumber": "System.String"
+}
+},
+"Cirrus.NCM_JobEngineNCMJobs": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"DateTime": "System.DateTime",
+"JobEngineJobID": "System.Int32",
+"JobStatus": "System.Int32",
+"NCMJobID": "System.Int32"
+}
+},
+"Cirrus.NCM_NCMJobs": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Enabled": "System.Boolean",
+"IsHidden": "System.Boolean",
+"NCMJobCreator": "System.String",
+"NCMJobDateCreated": "System.DateTime",
+"NCMJobDateModified": "System.DateTime",
+"NCMJobDefinitionXML": "System.String",
+"NCMJobID": "System.Int32",
+"NCMJobName": "System.String",
+"NCMJobSchedule": "System.String",
+"NCMJobType": "System.Int32"
+}
+},
+"Cirrus.NCM_NCMJobsView": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AllSubJobs": "System.Int32",
+"CompletedSubJobs": "System.Int32",
+"Enabled": "System.Boolean",
+"IsHidden": "System.Boolean",
+"JobEndsWithGeneralError": "System.Boolean",
+"JobLogIndicator": "System.Int32",
+"LastDateRun": "System.DateTime",
+"NCMJobCreator": "System.String",
+"NCMJobDateCreated": "System.DateTime",
+"NCMJobDateModified": "System.DateTime",
+"NCMJobID": "System.Int32",
+"NCMJobName": "System.String",
+"NCMJobType": "System.Int32",
+"NextDateRunUtc": "System.DateTime",
+"Status": "System.Int32"
+}
+},
+"Cirrus.NodeProperties": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AllowIntermediary": "System.Boolean",
+"CommandProtocol": "System.String",
+"ConfigTypes": "System.String",
+"ConnectionProfile": "System.Int32",
+"CoreNodeID": "System.Int32",
+"EnableLevel": "System.String",
+"EnablePassword": "System.String",
+"EncryptionAlgorithm": "System.Int32",
+"EndOfSales": "System.DateTime",
+"EndOfSoftware": "System.DateTime",
+"EndOfSupport": "System.DateTime",
+"EosComments": "System.String",
+"EosEntryID": "System.Guid",
+"EosLink": "System.String",
+"EosMatchDate": "System.DateTime",
+"EosType": "System.Int32",
+"EosVersion": "System.Int32",
+"ExecProtocol": "System.String",
+"IsActiveTransfer": "System.Boolean",
+"IsTransferCanceling": "System.Boolean",
+"IsTransferError": "System.Boolean",
+"LastInventory": "System.DateTime",
+"LastTransferActionType": "System.Int32",
+"LastTransferDate": "System.DateTime",
+"LastTransferMessage": "System.String",
+"LoginStatus": "System.String",
+"NodeComments": "System.String",
+"NodeGroup": "System.String",
+"NodeID": "System.Guid",
+"OldVulnerabilitiesCount": "System.Int32",
+"Password": "System.String",
+"ReplacementPartNumber": "System.String",
+"SSHPort": "System.String",
+"TelnetPort": "System.String",
+"TransferProtocol": "System.String",
+"UseHTTPS": "System.Boolean",
+"UseKeybInteractiveAuth": "System.Boolean",
+"UseUserDeviceCredentials": "System.Boolean",
+"Username": "System.String",
+"VulnerabilitiesCount": "System.Int32"
+}
+},
+"Cirrus.Nodes": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AgentIP": "System.String",
+"AgentIPSort": "System.Double",
+"AgentIPv6": "System.String",
+"AllowIntermediary": "System.Boolean",
+"CommandProtocol": "System.String",
+"Community": "System.String",
+"CommunityReadWrite": "System.String",
+"ConfigTypes": "System.String",
+"ConnectionProfile": "System.Int32",
+"CoreNodeID": "System.Int32",
+"EnableLevel": "System.String",
+"EnableOrionImport": "System.Boolean",
+"EnablePassword": "System.String",
+"EncryptionAlgorithm": "System.Int32",
+"EndOfSales": "System.DateTime",
+"EndOfSoftware": "System.DateTime",
+"EndOfSupport": "System.DateTime",
+"EngineID": "System.Int32",
+"EosComments": "System.String",
+"EosEntryID": "System.Guid",
+"EosLink": "System.String",
+"EosMatchDate": "System.DateTime",
+"EosType": "System.Int32",
+"EosVersion": "System.Int32",
+"ExecProtocol": "System.String",
+"LastBoot": "System.DateTime",
+"LastInventory": "System.DateTime",
+"LastRediscoveryTime": "System.DateTime",
+"LastUpdateTime": "System.DateTime",
+"LoginStatus": "System.String",
+"MachineType": "System.String",
+"ManagedProtocol": "System.Byte",
+"NodeCaption": "System.String",
+"NodeComments": "System.String",
+"NodeGroup": "System.String",
+"NodeID": "System.Guid",
+"OSImage": "System.String",
+"OSVersion": "System.String",
+"Password": "System.String",
+"ReplacementPartNumber": "System.String",
+"ResponseError": "System.String",
+"ReverseDNS": "System.String",
+"SNMPAuthPass": "System.String",
+"SNMPAuthType": "System.String",
+"SNMPContext": "System.String",
+"SNMPEncryptPass": "System.String",
+"SNMPEncryptType": "System.String",
+"SNMPLevel": "System.Byte",
+"SNMPPort": "System.String",
+"SNMPUsername": "System.String",
+"SSHPort": "System.String",
+"Status": "System.Byte",
+"StatusText": "System.String",
+"SysContact": "System.String",
+"SysDescr": "System.String",
+"SysLocation": "System.String",
+"SysName": "System.String",
+"SystemOID": "System.String",
+"TelnetPort": "System.String",
+"TransferProtocol": "System.String",
+"UseHTTPS": "System.Boolean",
+"UseKeybInteractiveAuth": "System.Boolean",
+"UseUserDeviceCredentials": "System.Boolean",
+"Username": "System.String",
+"Vendor": "System.String",
+"VendorIcon": "System.String"
+}
+},
+"Cirrus.Options": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"OptionName": "System.String",
+"OptionValue": "System.String"
+}
+},
+"Cirrus.Policies": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Comment": "System.String",
+"ConfigType": "System.String",
+"Grouping": "System.String",
+"LastModified": "System.DateTime",
+"Name": "System.String",
+"NodeSelection": "System.String",
+"PolicyID": "System.Guid"
+}
+},
+"Cirrus.PolicyAssignment": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"PolicyID": "System.Guid",
+"PolicyReportID": "System.Guid"
+}
+},
+"Cirrus.PolicyCache": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CacheID": "System.Int32",
+"TimeStamp": "System.DateTime"
+}
+},
+"Cirrus.PolicyCacheResults": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Baseline": "System.Boolean",
+"CacheID": "System.Int32",
+"ConfigID": "System.Guid",
+"ConfigTitle": "System.String",
+"ConfigType": "System.String",
+"ErrorLevel": "System.Int32",
+"FoundLine": "System.String",
+"FoundLineNumber": "System.Int32",
+"IsViolation": "System.Boolean",
+"NodeID": "System.Guid",
+"PolicyID": "System.Guid",
+"PolicyName": "System.String",
+"ReportID": "System.Guid",
+"ReportName": "System.String",
+"RuleDescription": "System.String",
+"RuleID": "System.Guid",
+"RuleName": "System.String",
+"XmlResults": "System.String"
+}
+},
+"Cirrus.PolicyReportViolations": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Error": "System.Int32",
+"Granularity": "System.String",
+"Info": "System.Int32",
+"ReportID": "System.Guid",
+"TimeStamp": "System.DateTime",
+"Warning": "System.Int32"
+}
+},
+"Cirrus.PolicyReports": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CacheStatus": "System.Int32",
+"Comment": "System.String",
+"Grouping": "System.String",
+"LastError": "System.String",
+"LastModified": "System.DateTime",
+"LastUpdated": "System.DateTime",
+"Name": "System.String",
+"PolicyReportID": "System.Guid",
+"ReportStatus": "System.Boolean",
+"ShowDetails": "System.Boolean",
+"ShowSummary": "System.Boolean"
+}
+},
+"Cirrus.PolicyRuleAssignment": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"PolicyID": "System.Guid",
+"PolicyRuleID": "System.Guid"
+}
+},
+"Cirrus.PolicyRules": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Comment": "System.String",
+"ErrorLevel": "System.Byte",
+"ExecuteRemediationScriptPerBlock": "System.Boolean",
+"ExecuteScriptAutomatically": "System.Boolean",
+"ExecuteScriptInConfigMode": "System.Boolean",
+"Grouping": "System.String",
+"LastModified": "System.DateTime",
+"Name": "System.String",
+"Owner": "System.String",
+"Pattern": "System.String",
+"PatternMustExist": "System.Boolean",
+"PatternType": "System.String",
+"PolicyRuleID": "System.Guid",
+"RemediateScript": "System.String",
+"RemediateScriptType": "System.String"
+}
+},
+"Cirrus.PortsTcp": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"FirstDiscovery": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"TCPLocalAddress": "System.String",
+"TCPLocalPort": "System.Int32",
+"TCPLocalPortName": "System.String",
+"TCPRemoteAddress": "System.String",
+"TCPRemotePort": "System.Int32",
+"TCPRemotePortName": "System.String",
+"TCPState": "System.String"
+}
+},
+"Cirrus.PortsUdp": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"FirstDiscovery": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"UDPAddress": "System.String",
+"UDPPort": "System.Int32",
+"UDPPortName": "System.String"
+}
+},
+"Cirrus.RTN": {
+"bases": [
+"System.Entity"
+],
+"fields": {}
+},
+"Cirrus.RouteTable": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Destination": "System.String",
+"FirstDiscovery": "System.DateTime",
+"InterfaceID": "System.Guid",
+"InterfaceIndex": "System.Int32",
+"LastDiscovery": "System.DateTime",
+"Mask": "System.String",
+"Metric1": "System.Int32",
+"Metric2": "System.Int32",
+"Metric3": "System.Int32",
+"Metric4": "System.Int32",
+"Metric5": "System.Int32",
+"Missing": "System.Boolean",
+"NextHop": "System.String",
+"NextHopAS": "System.Int32",
+"NodeID": "System.Guid",
+"RouteAge": "System.Int32",
+"RouteProtocol": "System.String",
+"RouteType": "System.String"
+}
+},
+"Cirrus.Settings": {
+"bases": [
+"System.Entity"
+],
+"fields": {}
+},
+"Cirrus.SnippetArchive": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Comments": "System.String",
+"Config": "System.String",
+"ConfigID": "System.Guid",
+"ConfigTitle": "System.String",
+"DownloadTime": "System.DateTime",
+"ModifiedTime": "System.DateTime"
+}
+},
+"Cirrus.Snippets": {
+"bases": [],
+"fields": {}
+},
+"Cirrus.Tags": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"SnippetID": "System.Int32",
+"TagName": "System.String"
+}
+},
+"Cirrus.TransferQueue": {
+"bases": [],
+"fields": {}
+},
+"Cirrus.VLANs": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"FirstDiscovery": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"VLANID": "System.Int32",
+"VLANMTU": "System.Int32",
+"VLANName": "System.String",
+"VLANState": "System.Int32",
+"VLANType": "System.Int32"
+}
+},
+"Cirrus.WindowsAccounts": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Account": "System.String",
+"FirstDiscovery": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid"
+}
+},
+"Cirrus.WindowsServices": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CanBePaused": "System.String",
+"CanBeUninstalled": "System.String",
+"FirstDiscovery": "System.DateTime",
+"Installed": "System.String",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"Service": "System.String",
+"State": "System.String"
+}
+},
+"Cirrus.WindowsSoftware": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"FirstDiscovery": "System.DateTime",
+"InstallDate": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"Package": "System.String"
+}
+},
+"IPAM.Conflict": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AccountID": "System.String",
+"AssignMACVendIcon": "System.String",
+"AssignedMac": "System.String",
+"AssignedRawMac": "System.String",
+"AssignedSourceText": "System.String",
+"AssignedSourceType": "System.Int32",
+"ConflictId": "System.Int32",
+"ConflictMACVendIcon": "System.String",
+"ConflictStatus": "System.Byte",
+"ConflictTimeUTC": "System.DateTime",
+"ConflictType": "System.Int32",
+"ConflictTypeIcon": "System.String",
+"ConflictTypeText": "System.String",
+"ConflictingMac": "System.String",
+"ConflictingRawMac": "System.String",
+"ConflictingSourceText": "System.String",
+"ConflictingSourceType": "System.Int32",
+"GroupType": "System.Int32",
+"IPAddress": "System.String",
+"IPAddressN": "System.Guid",
+"IPNodeID": "System.Int64",
+"IPStatus": "System.Int32",
+"Role": "System.String",
+"SubnetAddress": "System.String",
+"SubnetAddressN": "System.Guid",
+"SubnetId": "System.Int32",
+"SubnetStatus": "System.String"
+}
+},
+"IPAM.IPConflict": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AccountID": "System.String",
+"ActiveConflicts": "System.Int32",
+"DetailsUrl": "System.String",
+"FirstSeenUTC": "System.DateTime",
+"GroupType": "System.Int32",
+"IPAddress": "System.String",
+"IPConflictId": "System.Int32",
+"IPConflictMsg": "System.String",
+"IPNodeId": "System.Int64",
+"LastSeenUTC": "System.DateTime",
+"Role": "System.String",
+"Status": "System.Int32"
+}
+},
+"IPAM.IPNode": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Alias": "System.String",
+"AllocPolicy": "System.Byte",
+"Comments": "System.String",
+"Contact": "System.String",
+"DUID": "System.String",
+"Description": "System.String",
+"DhcpClientName": "System.String",
+"DnsBackward": "System.String",
+"DnsBy": "System.Int16",
+"IAID": "System.String",
+"IPAddress": "System.String",
+"IPAddressN": "System.Guid",
+"IPMapped": "System.String",
+"IPMappedN": "System.Guid",
+"IPOrdinal": "System.Int32",
+"IpNodeId": "System.Int64",
+"LastBoot": "System.DateTime",
+"LastCredential": "System.Guid",
+"LastSync": "System.DateTime",
+"LeaseExpires": "System.DateTime",
+"Location": "System.String",
+"MAC": "System.String",
+"MacBy": "System.Int16",
+"MachineType": "System.String",
+"ResponseTime": "System.Int32",
+"SkipScan": "System.Boolean",
+"Status": "System.Byte",
+"StatusBy": "System.Int16",
+"SubnetId": "System.Int32",
+"SysName": "System.String",
+"SysObjectID": "System.String",
+"SystemDataBy": "System.Int16",
+"Vendor": "System.String",
+"VendorIcon": "System.String"
+}
+},
+"IPAM.Subnet": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AccountID": "System.String",
+"Address": "System.String",
+"AddressMask": "System.String",
+"AddressN": "System.Guid",
+"AllocSize": "System.Int64",
+"AllocSizeN": "System.Decimal",
+"AvailableCount": "System.Int64",
+"CIDR": "System.Int32",
+"Comments": "System.String",
+"Distance": "System.Int32",
+"FriendlyName": "System.String",
+"GroupIconPrefix": "System.String",
+"GroupType": "System.Int32",
+"GroupTypeText": "System.String",
+"HasLicenceOverflow": "System.Boolean",
+"LastDiscovery": "System.DateTime",
+"Location": "System.String",
+"ParentId": "System.Int32",
+"PercentUsed": "System.Decimal",
+"ReservedCount": "System.Int64",
+"Role": "System.String",
+"ScanInterval": "System.Int32",
+"Status": "System.Byte",
+"StatusIconPostfix": "System.String",
+"StatusName": "System.String",
+"StatusRanking": "System.Int32",
+"StatusShortDescription": "System.String",
+"SubnetId": "System.Int32",
+"SubnetStructureChanged": "System.DateTime",
+"TotalCount": "System.Int64",
+"TransientCount": "System.Int64",
+"UsedCount": "System.Int64",
+"VLAN": "System.String"
+}
+},
+"NCM.AccessList": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Complexity": "System.Int32",
+"ConfigId": "System.Guid",
+"Hash": "System.Int32",
+"Interfaces": "System.String",
+"Name": "System.String"
+}
+},
+"NCM.AceShadowRuleDetectionResult": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Id": "System.Int32",
+"ResultId": "System.Guid",
+"RuleId": "System.Int32",
+"SrdrId": "System.Guid"
+}
+},
+"NCM.ArpTables": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"EntityID": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"IPAddress": "System.String",
+"IPSort": "System.Double",
+"InterfaceID": "System.Guid",
+"InterfaceIndex": "System.Int32",
+"LastDiscovery": "System.DateTime",
+"MAC": "System.String",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"RDNSLookup": "System.String",
+"Source": "System.String"
+}
+},
+"NCM.BaselineNodeMap": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"BaselineId": "System.Int32",
+"CacheState": "System.Int32",
+"ConfigType": "System.String",
+"NodeId": "System.Guid"
+}
+},
+"NCM.BaselineViolations": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"BaselineId": "System.Int32",
+"ConfigID": "System.Guid",
+"ConfigType": "System.String",
+"IsViolation": "System.Boolean",
+"NodeId": "System.Guid"
+}
+},
+"NCM.Baselines": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Content": "System.String",
+"Description": "System.String",
+"Disabled": "System.Boolean",
+"ExactMatching": "System.Boolean",
+"Id": "System.Int32",
+"IgnoredLines": "System.String",
+"Name": "System.String",
+"UseComparisonCriterias": "System.Boolean"
+}
+},
+"NCM.BridgePorts": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"EntityID": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"InterfaceIndex": "System.Int32",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"Port": "System.Int32",
+"PortStatus": "System.String",
+"SpanningTreeEnabled": "System.String",
+"SpanningTreeState": "System.String",
+"VLANID": "System.Int32",
+"VlanType": "System.String"
+}
+},
+"NCM.BrocadeAgentConfigModule": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"NodeID": "System.Guid",
+"SnAgentConfigModuleDescription": "System.String",
+"SnAgentConfigModuleIndex": "System.Int32",
+"SnAgentConfigModuleNumberOfCpus": "System.Int32",
+"SnAgentConfigModuleNumberOfPorts": "System.Int32",
+"SnAgentConfigModuleOperStatus": "System.String",
+"SnAgentConfigModuleSerialNumber": "System.String"
+}
+},
+"NCM.BrocadeChassis": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"NodeID": "System.Guid",
+"SnChasSerNum": "System.String",
+"SnChasType": "System.String"
+}
+},
+"NCM.BrocadeChassisUnit": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"NodeID": "System.Guid",
+"SnChasUnitIndex": "System.Int32",
+"SnChasUnitSerNum": "System.String"
+}
+},
+"NCM.CATOSPorts": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"EntityID": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"InterfaceIndex": "System.Int32",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"PortName": "System.String"
+}
+},
+"NCM.CatalystCards": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CardIndex": "System.Int32",
+"CardName": "System.String",
+"CardSerial": "System.String",
+"CardType": "System.Int32",
+"EntityID": "System.Int32",
+"FWVersion": "System.String",
+"FirstDiscovery": "System.DateTime",
+"HWVersion": "System.String",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"ModuleModel": "System.String",
+"NodeID": "System.Guid",
+"OperStatus": "System.String",
+"Parent": "System.Int32",
+"SWVersion": "System.String",
+"Slot": "System.Int32",
+"SlotsOnCard": "System.Int32"
+}
+},
+"NCM.CiscoBootloadImages": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"EntityID": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"ImageIndex": "System.Int32",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"SysBootImageList": "System.String",
+"SysKickstartImageList": "System.String"
+}
+},
+"NCM.CiscoCards": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CardDescr": "System.String",
+"CardIndex": "System.Int32",
+"CardName": "System.String",
+"CardSerial": "System.String",
+"CardType": "System.Int32",
+"EntityID": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"HWVersion": "System.String",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"OperStatus": "System.String",
+"Parent": "System.Int32",
+"SWVersion": "System.String",
+"Slot": "System.Int32",
+"SlotsOnCard": "System.Int32"
+}
+},
+"NCM.CiscoCdp": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CDPIndex": "System.String",
+"EntityID": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"IfIndex": "System.Int32",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"RemoteCapability": "System.String",
+"RemoteDevice": "System.String",
+"RemoteDuplex": "System.String",
+"RemoteIPAddress": "System.String",
+"RemoteNativeVLAN": "System.Int32",
+"RemotePlatform": "System.String",
+"RemotePort": "System.String",
+"RemoteVersion": "System.String"
+}
+},
+"NCM.CiscoChassis": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ChassisID": "System.String",
+"ChassisName": "System.String",
+"ChassisSerialNumberString": "System.String",
+"ChassisSlots": "System.Int32",
+"ChassisType": "System.Int32",
+"ChassisVersion": "System.String",
+"EntityID": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"FreeMem": "System.Int32",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"NvRAMSize": "System.Int32",
+"NvRAMUsed": "System.Int32",
+"ProcessorRAM": "System.Int32",
+"RomID": "System.String",
+"RomSysVersion": "System.String",
+"RomVersion": "System.String",
+"WhyReload": "System.String"
+}
+},
+"NCM.CiscoFlash": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Controller": "System.String",
+"EntityID": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"FlashDescription": "System.String",
+"FlashSize": "System.Int64",
+"Initialized": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"MaxPartitions": "System.Int32",
+"MinPartitionSize": "System.Int64",
+"Missing": "System.Boolean",
+"Name": "System.String",
+"NodeID": "System.Guid",
+"PartitionCount": "System.Int32",
+"Removable": "System.String",
+"WriteProtectJumper": "System.String"
+}
+},
+"NCM.CiscoFlashFiles": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"EntityID": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"FlashCheckSum": "System.String",
+"FlashFileName": "System.String",
+"FlashFileSize": "System.Int32",
+"FlashFileStatus": "System.String",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid"
+}
+},
+"NCM.CiscoFruFanTrayStatus": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"EntityID": "System.Int32",
+"FRUIndex": "System.Int32",
+"FanTrayOperStatus": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid"
+}
+},
+"NCM.CiscoFruPowerStatus": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"EntityID": "System.Int32",
+"FRUIndex": "System.Int32",
+"FRUPowerAdminStatus": "System.Int32",
+"FRUPowerOperStatus": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid"
+}
+},
+"NCM.CiscoFruPowerSupplyGroups": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AdminPowerRedundancyMode": "System.Int32",
+"EntityID": "System.Int32",
+"FRUIndex": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"OperPowerRedundancyMode": "System.Int32",
+"PowerUnits": "System.String",
+"TotalAvailableCurrent": "System.Int32",
+"TotalDrawnCurrent": "System.Int32"
+}
+},
+"NCM.CiscoImageMIB": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"EntityID": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"ImageIndex": "System.Int32",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"Name": "System.String",
+"NodeID": "System.Guid",
+"Value": "System.String"
+}
+},
+"NCM.CiscoMemoryPools": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"EntityID": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"PoolFree": "System.Int32",
+"PoolLargestFree": "System.Int32",
+"PoolName": "System.String",
+"PoolUsed": "System.Int32"
+}
+},
+"NCM.ConfigArchive": {
+"bases": [
+"System.Entity",
+"Orion.LogEntity"
+],
+"fields": {
+"AdditionalCommands": "System.String",
+"AttemptedDownloadTime": "System.DateTime",
+"Baseline": "System.Boolean",
+"Comments": "System.String",
+"Config": "System.String",
+"ConfigID": "System.Guid",
+"ConfigTitle": "System.String",
+"ConfigType": "System.String",
+"DownloadTime": "System.DateTime",
+"Hash": "System.String",
+"IsBinary": "System.Boolean",
+"IsIndexed": "System.Boolean",
+"ModifiedTime": "System.DateTime",
+"NodeID": "System.Guid"
+}
+},
+"NCM.ConfigBackupStatistic": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ConfigType": "System.String",
+"LastDownloadTime": "System.DateTime",
+"NodeID": "System.Guid",
+"TimeRangeHours": "System.Int32"
+}
+},
+"NCM.ConfigBackupStatus": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"BackupStatus": "System.Int32",
+"ConfigType": "System.String",
+"CoreNodeID": "System.Int32",
+"LastSuccessfulBackupDate": "System.DateTime",
+"NodeID": "System.Guid",
+"NodeName": "System.String",
+"Status": "System.Int32",
+"Vendor": "System.String"
+}
+},
+"NCM.ConfigInterface": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ConfigID": "System.Guid",
+"ID": "System.Int32",
+"Identifier": "System.String",
+"InterfaceName": "System.String"
+}
+},
+"NCM.ConfigInterfaceIpAddress": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ID": "System.Int32",
+"InterfaceID": "System.Int32",
+"IpAddress": "System.String"
+}
+},
+"NCM.ConfigTypeVendors": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ConfigTypeId": "System.Int32",
+"Operation": "System.Byte",
+"Vendor": "System.String"
+}
+},
+"NCM.ConfigTypes": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Id": "System.Int32",
+"IsCustom": "System.Boolean",
+"Name": "System.String"
+}
+},
+"NCM.EntityLogical": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Community": "System.String",
+"EntityID": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"Name": "System.String",
+"NodeID": "System.Guid",
+"TAddress": "System.String",
+"TDomain": "System.String",
+"Type": "System.String"
+}
+},
+"NCM.EntityPhysical": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Alias": "System.String",
+"AssetID": "System.String",
+"ContainedIn": "System.String",
+"EntPhysicalIndex": "System.Int32",
+"EntityClass": "System.String",
+"EntityDescription": "System.String",
+"EntityID": "System.Int32",
+"EntityName": "System.String",
+"EntityType": "System.String",
+"FieldReplaceable": "System.String",
+"FirmwareRevision": "System.String",
+"FirstDiscovery": "System.DateTime",
+"HardwareRevision": "System.String",
+"LastDiscovery": "System.DateTime",
+"Manufacturer": "System.String",
+"Missing": "System.Boolean",
+"Model": "System.String",
+"NodeID": "System.Guid",
+"Position": "System.Int32",
+"Serial": "System.String",
+"SoftwareRevision": "System.String"
+}
+},
+"NCM.EntityPhysicalJuniper": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"JnxContainersIndex": "System.Int32",
+"JnxContentsChassisDescr": "System.String",
+"JnxContentsChassisId": "System.String",
+"JnxContentsDescr": "System.String",
+"JnxContentsL1Index": "System.Int32",
+"JnxContentsL2Index": "System.Int32",
+"JnxContentsL3Index": "System.Int32",
+"JnxContentsPartNo": "System.String",
+"JnxContentsRevision": "System.String",
+"JnxContentsSerialNo": "System.String",
+"JnxContentsType": "System.String",
+"NodeID": "System.Guid"
+}
+},
+"NCM.Eos": {
+"bases": [
+"System.Entity"
+],
+"fields": {}
+},
+"NCM.F5GTMVirtualServers": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"BitsPerSecIn": "System.Double",
+"BitsPerSecOut": "System.Double",
+"NodeID": "System.Guid",
+"VsName": "System.String"
+}
+},
+"NCM.F5LTMNodeAddresses": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ConnLimit": "System.Int32",
+"DynamicRatio": "System.Int32",
+"MonitorStatus": "System.Int32",
+"NodeID": "System.Guid",
+"NodeIPAddress": "System.String",
+"NodeName": "System.String",
+"SessionStatus": "System.Int32"
+}
+},
+"NCM.F5LTMVirtualServers": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CurrentConnsPerSec": "System.Double",
+"NodeID": "System.Guid",
+"VsName": "System.String"
+}
+},
+"NCM.F5System": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ActiveCpuCount": "System.Int32",
+"AvgCpuUsageRatio": "System.Double",
+"ClientBytesIn": "System.Double",
+"ClientBytesOut": "System.Double",
+"ConfigSyncState": "System.Int32",
+"CpuCount": "System.Int32",
+"FailoverActiveMode": "System.String",
+"FailoverForceActive": "System.String",
+"FailoverStatus": "System.String",
+"FailoverStatusColor": "System.Int32",
+"FailoverStatusId": "System.Int32",
+"FailoverStatusSummary": "System.String",
+"GeneralChassisSerialNum": "System.String",
+"LastDiscovery": "System.DateTime",
+"MemoryTotal": "System.Double",
+"MemoryUsed": "System.Double",
+"NodeID": "System.Guid",
+"PlatformInfoMarketingName": "System.String",
+"PlatformInfoName": "System.String",
+"ProductBuild": "System.String",
+"ProductDate": "System.String",
+"ProductEdition": "System.String",
+"ProductName": "System.String",
+"ProductVersion": "System.String",
+"ServerBytesIn": "System.Double",
+"ServerBytesOut": "System.Double",
+"SystemUptime": "System.String",
+"SystemUptimeInSec": "System.Int32"
+}
+},
+"NCM.FirmwareDefinitions": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Author": "System.String",
+"Canned": "System.Boolean",
+"DefinitionXml": "System.String",
+"Description": "System.String",
+"ID": "System.Int32",
+"LastModified": "System.DateTime",
+"Name": "System.String"
+}
+},
+"NCM.FirmwareOperationNodes": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CoreNodeID": "System.Int32",
+"IsComplete": "System.Boolean",
+"Log": "System.String",
+"NodeOptionsXml": "System.String",
+"OperationID": "System.Int32"
+}
+},
+"NCM.FirmwareOperations": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CreationDate": "System.DateTime",
+"DefinitionID": "System.Int32",
+"EmailSettings": "System.String",
+"ErrorMessage": "System.String",
+"ID": "System.Int32",
+"Log": "System.String",
+"Name": "System.String",
+"RunAt": "System.DateTime",
+"Status": "System.Int32",
+"UserName": "System.String"
+}
+},
+"NCM.FirmwareOperationsView": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AllOperations": "System.Int32",
+"CompletedOperations": "System.Int32",
+"CreationDate": "System.DateTime",
+"ErrorMessage": "System.String",
+"ID": "System.Int32",
+"Log": "System.String",
+"Name": "System.String",
+"RunAt": "System.DateTime",
+"Status": "System.Int32",
+"UserName": "System.String"
+}
+},
+"NCM.FirmwareStorage": {
+"bases": [
+"System.Entity"
+],
+"fields": {}
+},
+"NCM.FirmwareUpgradeImages": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CoreNodeID": "System.Int32",
+"DateTimeUtc": "System.DateTime",
+"Description": "System.String",
+"FileName": "System.String",
+"ID": "System.Int32",
+"MD5Hash": "System.String",
+"RelativePath": "System.String",
+"Size": "System.Double"
+}
+},
+"NCM.FirmwareUpgradeMachineTypes": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ImageID": "System.Int32",
+"MachineType": "System.String"
+}
+},
+"NCM.Interfaces": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AdminStatus": "System.String",
+"FirstDiscovery": "System.DateTime",
+"InterfaceAlias": "System.String",
+"InterfaceDescription": "System.String",
+"InterfaceHighSpeed": "System.Double",
+"InterfaceID": "System.Guid",
+"InterfaceIndex": "System.Int32",
+"InterfaceMTU": "System.Int32",
+"InterfaceName": "System.String",
+"InterfaceSpeed": "System.Double",
+"InterfaceType": "System.Int32",
+"InterfaceTypeDescription": "System.String",
+"InterfaceTypeName": "System.String",
+"LastChange": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"MACAddress": "System.String",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"OperStatus": "System.String",
+"PhysicalInterface": "System.Char",
+"PortStatus": "System.String",
+"Promiscuous": "System.Char",
+"VLANID": "System.Int32",
+"VlanType": "System.String"
+}
+},
+"NCM.InventoryStatistic": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"NodeID": "System.Guid",
+"TimeRangeDays": "System.Int32"
+}
+},
+"NCM.IpAddresses": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"EntityID": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"ICMPReachable": "System.String",
+"IPAddrIPSort": "System.Double",
+"IPAddress": "System.String",
+"InterfaceID": "System.Guid",
+"InterfaceIndex": "System.Int32",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"ResponseTime": "System.Int32",
+"ReverseDNS": "System.String",
+"SNMPReachable": "System.String",
+"SubnetMask": "System.String"
+}
+},
+"NCM.LatestTransferJobStatus": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ErrorMessage": "System.String",
+"JobId": "System.Int32",
+"NodeID": "System.Guid",
+"RequestedConfigType": "System.String",
+"TransferState": "System.Int32"
+}
+},
+"NCM.MacForwarding": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"EntityID": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"MAC": "System.String",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"Port": "System.Int32",
+"Source": "System.String"
+}
+},
+"NCM.NodeProperties": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AllowIntermediary": "System.Boolean",
+"CommandProtocol": "System.String",
+"ConfigTypes": "System.String",
+"ConnectionProfile": "System.Int32",
+"CoreNodeID": "System.Int32",
+"EnableLevel": "System.String",
+"EnablePassword": "System.String",
+"EncryptionAlgorithm": "System.Int32",
+"EndOfSales": "System.DateTime",
+"EndOfSoftware": "System.DateTime",
+"EndOfSupport": "System.DateTime",
+"EosComments": "System.String",
+"EosLink": "System.String",
+"EosType": "System.Int32",
+"ExecProtocol": "System.String",
+"LastInventory": "System.DateTime",
+"LoginStatus": "System.String",
+"NodeComments": "System.String",
+"NodeGroup": "System.String",
+"NodeID": "System.Guid",
+"OldVulnerabilitiesCount": "System.Int32",
+"Password": "System.String",
+"ReplacementPartNumber": "System.String",
+"SSHPort": "System.String",
+"TelnetPort": "System.String",
+"TransferProtocol": "System.String",
+"UseHTTPS": "System.Boolean",
+"UseKeybInteractiveAuth": "System.Boolean",
+"UseUserDeviceCredentials": "System.Boolean",
+"Username": "System.String",
+"VulnerabilitiesCount": "System.Int32"
+}
+},
+"NCM.Nodes": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AgentIP": "System.String",
+"AgentIPSort": "System.Double",
+"AgentIPv6": "System.String",
+"AllowIntermediary": "System.Boolean",
+"CommandProtocol": "System.String",
+"Community": "System.String",
+"CommunityReadWrite": "System.String",
+"ConfigTypes": "System.String",
+"CoreNodeID": "System.Int32",
+"EnableLevel": "System.String",
+"EnablePassword": "System.String",
+"EncryptionAlgorithm": "System.Int32",
+"EngineID": "System.Int32",
+"ExecProtocol": "System.String",
+"LastBoot": "System.DateTime",
+"LastInventory": "System.DateTime",
+"LoginStatus": "System.String",
+"MachineType": "System.String",
+"ManagedProtocol": "System.Byte",
+"NodeCaption": "System.String",
+"NodeComments": "System.String",
+"NodeGroup": "System.String",
+"NodeID": "System.Guid",
+"OSImage": "System.String",
+"OSVersion": "System.String",
+"Password": "System.String",
+"ResponseError": "System.String",
+"ReverseDNS": "System.String",
+"SNMPAuthPass": "System.String",
+"SNMPAuthType": "System.String",
+"SNMPContext": "System.String",
+"SNMPEncryptPass": "System.String",
+"SNMPEncryptType": "System.String",
+"SNMPLevel": "System.Byte",
+"SNMPUsername": "System.String",
+"Status": "System.Byte",
+"SysContact": "System.String",
+"SysDescr": "System.String",
+"SysLocation": "System.String",
+"SysName": "System.String",
+"SystemOID": "System.String",
+"TransferProtocol": "System.String",
+"UseHTTPS": "System.Boolean",
+"UseKeybInteractiveAuth": "System.Boolean",
+"UseUserDeviceCredentials": "System.Boolean",
+"Username": "System.String",
+"Vendor": "System.String",
+"VendorIcon": "System.String"
+}
+},
+"NCM.ObjectDefinitionData": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ConfigId": "System.Guid",
+"Description": "System.String",
+"Hash": "System.Int32",
+"Name": "System.String",
+"Type": "System.Byte"
+}
+},
+"NCM.ObjectDefinitionDataValue": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ConfigId": "System.Guid",
+"ObjectName": "System.String",
+"Value": "System.String"
+}
+},
+"NCM.ObjectGroupData": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ConfigId": "System.Guid",
+"Description": "System.String",
+"Hash": "System.Int32",
+"Name": "System.String",
+"ServiceProtocol": "System.Byte",
+"Type": "System.Byte"
+}
+},
+"NCM.OneTimeOperations": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ApprovalStatus": "System.Int32",
+"ApprovalStatusString": "System.String",
+"CoreNodeID": "System.Int32",
+"CreatedAt": "System.DateTime",
+"ExecutedAt": "System.DateTime",
+"ID": "System.Int64",
+"ModifiedAt": "System.DateTime",
+"NCMNodeID": "System.Guid",
+"Name": "System.String",
+"Reboot": "System.Boolean",
+"ScriptContent": "System.String",
+"Type": "System.Int32"
+}
+},
+"NCM.ParsedConfigData": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CompressedConfig": "System.Byte[]",
+"ConfigContent": "System.String",
+"ConfigContentRaw": "System.String",
+"ConfigId": "System.Guid",
+"Id": "System.Int32"
+}
+},
+"NCM.PortsTcp": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"EntityID": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"TCPLocalAddress": "System.String",
+"TCPLocalPort": "System.Int32",
+"TCPLocalPortName": "System.String",
+"TCPRemoteAddress": "System.String",
+"TCPRemotePort": "System.Int32",
+"TCPRemotePortName": "System.String",
+"TCPState": "System.String"
+}
+},
+"NCM.PortsUdp": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"EntityID": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"UDPAddress": "System.String",
+"UDPPort": "System.Int32",
+"UDPPortName": "System.String"
+}
+},
+"NCM.RTNAudit": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"DateTime": "System.String",
+"ID": "System.Guid",
+"IP": "System.String",
+"Message": "System.String",
+"NodeID": "System.Guid",
+"RTNUserName": "System.String"
+}
+},
+"NCM.RouteTable": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Destination": "System.String",
+"EntityID": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"InterfaceID": "System.Guid",
+"InterfaceIndex": "System.Int32",
+"LastDiscovery": "System.DateTime",
+"Mask": "System.String",
+"Metric1": "System.Int32",
+"Metric2": "System.Int32",
+"Metric3": "System.Int32",
+"Metric4": "System.Int32",
+"Metric5": "System.Int32",
+"Missing": "System.Boolean",
+"NextHop": "System.String",
+"NextHopAS": "System.Int32",
+"NodeID": "System.Guid",
+"RouteAge": "System.Int32",
+"RouteProtocol": "System.String",
+"RouteType": "System.String"
+}
+},
+"NCM.RuleDetection": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Id": "System.Int32",
+"OverlappingRules": "System.String",
+"OverlappingType": "System.Byte",
+"ResultId": "System.Guid"
+}
+},
+"NCM.SecurityPolicy": {
+"bases": [
+"System.Entity"
+],
+"fields": {}
+},
+"NCM.ShadowRuleDetectionAclStatistics": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AccessListName": "System.String",
+"CalculationDurationInMiliseconds": "System.Int32",
+"Complexity": "System.Int32",
+"ConfigId": "System.Guid",
+"FullyRedundantCount": "System.Int32",
+"FullyShadowedCount": "System.Int32",
+"PartiallyRedundantCount": "System.Int32",
+"PartiallyShadowedCount": "System.Int32"
+}
+},
+"NCM.ShadowRuleDetectionResult": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AccessListName": "System.String",
+"ConfigId": "System.Guid",
+"Id": "System.Int32",
+"SrdrId": "System.Guid"
+}
+},
+"NCM.TransferQueue": {
+"bases": [],
+"fields": {}
+},
+"NCM.TransferResults": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Action": "System.Int32",
+"ConfigID": "System.Guid",
+"DateTime": "System.DateTime",
+"DeviceOutput": "System.String",
+"ErrorMessage": "System.String",
+"FirmwareUpgradeOperationId": "System.Int32",
+"JobId": "System.Int32",
+"NodeID": "System.Guid",
+"RequestedConfigType": "System.String",
+"RequestedReboot": "System.Boolean",
+"RequestedScript": "System.String",
+"Status": "System.Int32",
+"SubJobId": "System.Int32",
+"TransferID": "System.Guid",
+"TransferProtocol": "System.String",
+"UserName": "System.String"
+}
+},
+"NCM.VLANs": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"EntityID": "System.Int32",
+"FirstDiscovery": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"VLANID": "System.Int32",
+"VLANMTU": "System.Int32",
+"VLANName": "System.String",
+"VLANState": "System.Int32",
+"VLANType": "System.Int32"
+}
+},
+"NCM.VulnerabilitiesAnnouncements": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AnnouncementUrl": "System.String",
+"EntryId": "System.String",
+"LastModified": "System.DateTime",
+"PublishedDate": "System.DateTime",
+"Score": "System.Single",
+"ScoreV3": "System.Single",
+"Severity": "System.String",
+"SeverityV3": "System.String",
+"Summary": "System.String"
+}
+},
+"NCM.VulnerabilitiesAnnouncementsNodes": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Comment": "System.String",
+"CoreNodeID": "System.Int32",
+"EntryId": "System.String",
+"State": "System.Int32",
+"StateChange": "System.DateTime"
+}
+},
+"NCM.WindowsAccounts": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Account": "System.String",
+"FirstDiscovery": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid"
+}
+},
+"NCM.WindowsServices": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CanBePaused": "System.String",
+"CanBeUninstalled": "System.String",
+"FirstDiscovery": "System.DateTime",
+"Installed": "System.String",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"Service": "System.String",
+"State": "System.String"
+}
+},
+"NCM.WindowsSoftware": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"FirstDiscovery": "System.DateTime",
+"InstallDate": "System.DateTime",
+"LastDiscovery": "System.DateTime",
+"Missing": "System.Boolean",
+"NodeID": "System.Guid",
+"Package": "System.String"
+}
+},
+"Orion.Accounts": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AccountID": "System.String",
+"AccountSID": "System.String",
+"AccountType": "System.Int32",
+"AlertCategory": "System.String",
+"AlertSound": "System.String",
+"AllowAdmin": "System.String",
+"AllowAlertManagement": "System.String",
+"AllowCustomize": "System.String",
+"AllowDisableAction": "System.String",
+"AllowDisableAlert": "System.String",
+"AllowDisableAllActions": "System.String",
+"AllowManageDashboards": "System.String",
+"AllowMapManagement": "System.String",
+"AllowNodeManagement": "System.String",
+"AllowOrionMapsManagement": "System.String",
+"AllowReportManagement": "System.String",
+"AllowUnmanage": "System.String",
+"AllowUploadImagesToOrionMaps": "System.String",
+"AllowViewCopCheck": "System.String",
+"BadPwdCount": "System.Int16",
+"CanClearEvents": "System.Char",
+"DefaultNetObjectID": "System.String",
+"DisableSessionTimeout": "System.String",
+"Enabled": "System.Char",
+"Expires": "System.DateTime",
+"GroupInfo": "System.String",
+"GroupPriority": "System.Int16",
+"HomePageDashboardID": "System.Int32",
+"HomePageViewID": "System.Int32",
+"LastLogin": "System.DateTime",
+"LimitationID1": "System.Int32",
+"LimitationID2": "System.Int32",
+"LimitationID3": "System.Int32",
+"LockoutTime": "System.DateTime",
+"MenuName": "System.String",
+"PasswordExpirationDate": "System.DateTime",
+"ReportFolder": "System.String",
+"SummaryDashboardID": "System.Int32",
+"SummaryViewID": "System.Int32"
+}
+},
+"Orion.AlertActive": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Acknowledged": "System.Boolean",
+"AcknowledgedBy": "System.String",
+"AcknowledgedDateTime": "System.DateTime",
+"AcknowledgedNote": "System.String",
+"AlertActiveID": "System.Int64",
+"AlertObjectID": "System.Int32",
+"LastExecutedEscalationLevel": "System.Int32",
+"NumberOfNotes": "System.Int32",
+"Status": "System.Byte",
+"TriggeredDateTime": "System.DateTime",
+"TriggeredMessage": "System.String"
+}
+},
+"Orion.AlertConfigurations": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AlertID": "System.Int32",
+"AlertMessage": "System.String",
+"AlertRefID": "System.Guid",
+"Canned": "System.Boolean",
+"Category": "System.String",
+"CreatedBy": "System.String",
+"Description": "System.String",
+"Enabled": "System.Boolean",
+"Frequency": "System.Int64",
+"LastEdit": "System.DateTime",
+"LicenseFeatureName": "System.String",
+"Name": "System.String",
+"NotificationSettings": "System.String",
+"NotifyEnabled": "System.Boolean",
+"ObjectType": "System.String",
+"Reset": "System.String",
+"Severity": "System.Int32",
+"Suppress": "System.String",
+"SuppressMessage": "System.String",
+"Trigger": "System.String"
+}
+},
+"Orion.AlertHistory": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AccountID": "System.String",
+"ActionID": "System.Int32",
+"AlertActiveID": "System.Int64",
+"AlertHistoryID": "System.Int32",
+"AlertObjectID": "System.Int32",
+"EventType": "System.Int32",
+"Message": "System.String",
+"TimeStamp": "System.DateTime"
+}
+},
+"Orion.AlertIndication": {
+"bases": [
+"System.Entity",
+"System.Indication"
+],
+"fields": {
+"AlertDefinitionId": "System.Guid",
+"AlertObjectId": "System.Int32",
+"AlertType": "System.String",
+"DetailsUrl": "System.String",
+"Message": "System.String",
+"ObjectId": "System.String",
+"ObjectType": "System.String",
+"Severity": "System.String",
+"TriggerTimeStamp": "System.DateTime",
+"UserProperties": "SolarWinds.InformationService.PropertyBag"
+}
+},
+"Orion.AlertObjects": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AlertID": "System.Int32",
+"AlertNote": "System.String",
+"AlertObjectID": "System.Int32",
+"Context": "System.String",
+"EntityCaption": "System.String",
+"EntityDetailsUrl": "System.String",
+"EntityNetObjectId": "System.String",
+"EntityType": "System.String",
+"EntityUri": "System.String",
+"IsActiveAlert": "System.Boolean",
+"LastTriggeredDateTime": "System.DateTime",
+"RealEntityType": "System.String",
+"RealEntityUri": "System.String",
+"RelatedNodeCaption": "System.String",
+"RelatedNodeDetailsUrl": "System.String",
+"RelatedNodeId": "System.Int32",
+"RelatedNodeUri": "System.String",
+"TriggeredCount": "System.Int32"
+}
+},
+"Orion.AlertReset": {
+"bases": [
+"System.Entity",
+"System.Indication",
+"Orion.AlertIndication"
+],
+"fields": {
+"ObjectUris": "System.String[]",
+"ResetTime": "System.DateTime"
+}
+},
+"Orion.AlertSuppression": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"EntityUri": "System.String",
+"ID": "System.Int32",
+"SuppressFrom": "System.DateTime",
+"SuppressUntil": "System.DateTime"
+}
+},
+"Orion.AlertTriggered": {
+"bases": [
+"System.Entity",
+"System.Indication",
+"Orion.AlertIndication"
+],
+"fields": {}
+},
+"Orion.CPULoad": {
+"bases": [
+"System.Entity",
+"System.ExtensionEntity",
+"System.StatisticsEntity"
+],
+"fields": {
+"Archive": "System.Byte",
+"AvgLoad": "System.Int16",
+"AvgMemoryUsed": "System.Double",
+"AvgPercentMemoryUsed": "System.Double",
+"DateTime": "System.DateTime",
+"MaxLoad": "System.Int16",
+"MaxMemoryUsed": "System.Double",
+"MinLoad": "System.Int16",
+"MinMemoryUsed": "System.Double",
+"NodeID": "System.Int32",
+"PeakPercentMemoryUsed": "System.Double",
+"TotalMemory": "System.Double"
+}
+},
+"Orion.Discovery": {
+"bases": [
+"System.Entity"
+],
+"fields": {}
+},
+"Orion.Engines": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AvgCPUUtil": "System.Single",
+"BusinessLayerPort": "System.Int32",
+"CompanyName": "System.String",
+"CustomerID": "System.String",
+"DetailsUrl": "System.String",
+"DisplayName": "System.String",
+"Elements": "System.Int32",
+"EngineID": "System.Int32",
+"EngineVersion": "System.String",
+"EvalDaysLeft": "System.Int16",
+"Evaluation": "System.String",
+"FIPSModeEnabled": "System.Boolean",
+"FailOverActive": "System.DateTime",
+"IP": "System.String",
+"InterfacePollInterval": "System.Int16",
+"InterfaceStatPollInterval": "System.Int16",
+"Interfaces": "System.Int32",
+"IsFree": "System.Boolean",
+"KeepAlive": "System.DateTime",
+"LicenseKey": "System.String",
+"LicensedElements": "System.Int32",
+"MasterEngineID": "System.Int32",
+"MaxPollsPerSecond": "System.Int16",
+"MaxStatPollsPerSecond": "System.Int16",
+"MemoryUtil": "System.Single",
+"MinutesSinceFailOverActive": "System.Int32",
+"MinutesSinceKeepAlive": "System.Int32",
+"MinutesSinceRestart": "System.Int32",
+"MinutesSinceStartTime": "System.Int32",
+"MinutesSinceSysLogKeepAlive": "System.Int32",
+"MinutesSinceTrapsKeepAlive": "System.Int32",
+"NodePollInterval": "System.Int16",
+"NodeStatPollInterval": "System.Int16",
+"Nodes": "System.Int32",
+"PackageName": "System.String",
+"Pollers": "System.Int32",
+"PollingCompletion": "System.Single",
+"PrimaryServers": "System.String",
+"Restart": "System.DateTime",
+"SerialNumber": "System.String",
+"ServerName": "System.String",
+"ServerType": "System.String",
+"ServicePack": "System.String",
+"StartTime": "System.DateTime",
+"StatPollInterval": "System.Int32",
+"SysLogKeepAlive": "System.DateTime",
+"TrapsKeepAlive": "System.DateTime",
+"VolumePollInterval": "System.Int16",
+"VolumeStatPollInterval": "System.Int16",
+"Volumes": "System.Int32",
+"WindowsVersion": "System.String"
+}
+},
+"Orion.EntityUnmanaged": {
+"bases": [
+"System.Entity",
+"System.Indication"
+],
+"fields": {
+"EndDate": "System.DateTime",
+"NetObject": "System.String",
+"Reason": "System.String",
+"StartDate": "System.DateTime",
+"Uri": "System.String"
+}
+},
+"Orion.Events": {
+"bases": [
+"System.Entity",
+"Orion.MixedObjectType"
+],
+"fields": {
+"Acknowledged": "System.Boolean",
+"EngineID": "System.Int32",
+"EventID": "System.Int32",
+"EventTime": "System.DateTime",
+"EventType": "System.Int32",
+"Message": "System.String",
+"NetObjectValue": "System.String",
+"TimeStamp": "System.Byte[]"
+}
+},
+"Orion.HardwareHealth.HardwareInfo": {
+"bases": [
+"System.Entity",
+"System.DashboardEntity",
+"System.ManagedEntity",
+"Orion.HardwareHealth.HardwareInfoBase"
+],
+"fields": {
+"ModernIcon": "System.String",
+"NodeID": "System.Int32"
+}
+},
+"Orion.HardwareHealth.HardwareInfoBase": {
+"bases": [
+"System.Entity",
+"System.DashboardEntity",
+"System.ManagedEntity"
+],
+"fields": {
+"AgentName": "System.String",
+"AgentUrl": "System.String",
+"AgentVersion": "System.String",
+"CategoriesWithProblems": "System.String",
+"CategoriesWithStatus": "System.String",
+"Description": "System.String",
+"DetailsUrl": "System.String",
+"FullyQualifiedName": "System.String",
+"ID": "System.Int32",
+"Image": "System.String",
+"IsDisabled": "System.Boolean",
+"LastPollMessage": "System.String",
+"LastPollStatus": "System.Int32",
+"LastPollStatusName": "System.Int32",
+"LastPollTime": "System.DateTime",
+"Manufacturer": "System.String",
+"Model": "System.String",
+"ModernIcon": "System.String",
+"ParentObjectEntity": "System.String",
+"ParentObjectID": "System.Int32",
+"ParentObjectName": "System.String",
+"ParentObjectStatus": "System.Int32",
+"ParentObjectType": "System.String",
+"ParentObjectVendor": "System.String",
+"ParentObjectVendorIcon": "System.String",
+"PollingMethod": "System.Int32",
+"ServiceTag": "System.String",
+"StatusDescription": "System.String",
+"StatusLED": "System.String",
+"UnManageFrom": "System.DateTime",
+"UnManageUntil": "System.DateTime",
+"UnManaged": "System.Boolean"
+}
+},
+"Orion.HardwareHealth.HardwareItem": {
+"bases": [
+"System.Entity",
+"System.DashboardEntity",
+"System.ManagedEntity",
+"Orion.HardwareHealth.HardwareItemBase"
+],
+"fields": {
+"ModernIcon": "System.String",
+"NodeID": "System.Int32"
+}
+},
+"Orion.HardwareHealth.HardwareItemBase": {
+"bases": [
+"System.Entity",
+"System.DashboardEntity",
+"System.ManagedEntity"
+],
+"fields": {
+"Description": "System.String",
+"DetailsUrl": "System.String",
+"FullyQualifiedName": "System.String",
+"HardwareCategoryID": "System.Int32",
+"HardwareCategoryStatusID": "System.Int32",
+"HardwareInfoID": "System.Int32",
+"HardwareUnitDescription": "System.String",
+"HasHistoricalData": "System.Boolean",
+"ID": "System.Int32",
+"Image": "System.String",
+"IsDeleted": "System.Boolean",
+"IsDisabled": "System.Boolean",
+"Message": "System.String",
+"ModernIcon": "System.String",
+"Name": "System.String",
+"OriginalStatus": "System.String",
+"ParentID": "System.Int32",
+"StatusDescription": "System.String",
+"StatusLED": "System.String",
+"UnManageFrom": "System.DateTime",
+"UnManageUntil": "System.DateTime",
+"UnManaged": "System.Boolean",
+"UniqueName": "System.String",
+"Unit": "System.Int32",
+"Value": "System.Double"
+}
+},
+"Orion.InstalledModule": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"DaysRemaining": "System.Int32",
+"Expiration": "System.DateTime",
+"Family": "System.String",
+"IsEval": "System.Boolean",
+"IsExpired": "System.Boolean",
+"IsRC": "System.Boolean",
+"IsScalable": "System.Boolean",
+"IsSubscription": "System.Boolean",
+"LicenseName": "System.String",
+"MaintenanceExpiration": "System.DateTime",
+"Name": "System.String",
+"Version": "System.String"
+}
+},
+"Orion.LogEntity": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ObservationRowVersion": "System.Byte[]",
+"ObservationSeverity": "System.Byte",
+"ObservationSeverityName": "System.String",
+"ObservationTimestamp": "System.DateTime"
+}
+},
+"Orion.MixedObjectType": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"NetObjectID": "System.Int32",
+"NetObjectType": "System.String",
+"NetworkNode": "System.Int32"
+}
+},
+"Orion.Module": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"IsActive": "System.Boolean",
+"Name": "System.String",
+"Version": "System.String"
+}
+},
+"Orion.NPM.CustomPollerAssignment": {
+"bases": [
+"System.Entity",
+"System.DashboardEntity",
+"System.ManagedEntity"
+],
+"fields": {
+"AssignmentName": "System.String",
+"CurrentValue": "System.String",
+"CustomPollerAssignmentID": "System.Guid",
+"CustomPollerDescription": "System.String",
+"CustomPollerID": "System.Guid",
+"CustomPollerMIB": "System.String",
+"CustomPollerName": "System.String",
+"CustomPollerOid": "System.String",
+"Description": "System.String",
+"ID": "System.Int32",
+"InterfaceID": "System.Int32",
+"ModernIcon": "System.String",
+"NodeID": "System.Int32",
+"StatusDescription": "System.String",
+"UnManageFrom": "System.DateTime",
+"UnManageUntil": "System.DateTime",
+"UnManaged": "System.Boolean"
+}
+},
+"Orion.NPM.CustomPollerStatistics": {
+"bases": [
+"System.Entity",
+"System.ExtensionEntity",
+"System.StatisticsEntity"
+],
+"fields": {
+"AvgRate": "System.Single",
+"CustomPollerAssignmentID": "System.Guid",
+"DateTime": "System.DateTime",
+"Description": "System.String",
+"MaxRate": "System.Single",
+"MinRate": "System.Single",
+"RawStatus": "System.Single",
+"RowID": "System.String",
+"Status": "System.String",
+"Total": "System.Single"
+}
+},
+"Orion.NPM.CustomPollerStatus": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CustomPollerAssignmentID": "System.Guid",
+"DateTime": "System.DateTime",
+"Description": "System.String",
+"Rate": "System.Single",
+"RawStatus": "System.Single",
+"RowID": "System.String",
+"Status": "System.String",
+"Total": "System.Single"
+}
+},
+"Orion.NPM.CustomPollerStatusOnNode": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AssignmentName": "System.String",
+"CustomPollerAssignmentID": "System.Guid",
+"CustomPollerID": "System.Guid",
+"DateTime": "System.DateTime",
+"Description": "System.String",
+"DetailsUrl": "System.String",
+"DisplayName": "System.String",
+"NodeID": "System.Int32",
+"Rate": "System.Single",
+"RawStatus": "System.Single",
+"RowID": "System.String",
+"RowStatus": "System.Int32",
+"Status": "System.String",
+"Total": "System.Single"
+}
+},
+"Orion.NPM.CustomPollerStatusOnNodeTabular": {
+"bases": [
+"System.Entity",
+"Orion.NPM.CustomPollerStatusOnNode"
+],
+"fields": {
+"CompressedRowID": "System.String",
+"CustomPollerAssignmentID": "System.Guid",
+"RowLabel": "System.String"
+}
+},
+"Orion.NPM.CustomPollers": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ColumnNumber": "System.Int32",
+"CustomPollerID": "System.Guid",
+"CustomPollerParserID": "System.Int32",
+"DefaultDisplayTimeUnitID": "System.Int32",
+"Description": "System.String",
+"Enabled": "System.Boolean",
+"Format": "System.String",
+"GroupName": "System.String",
+"IncludeHistoricStatistics": "System.Boolean",
+"LastChange": "System.DateTime",
+"MIB": "System.String",
+"NetObjectPrefix": "System.Char",
+"OID": "System.String",
+"PollInterval": "System.Int32",
+"PollerType": "System.Char",
+"SNMPGetType": "System.String",
+"TimeUnitID": "System.Int32",
+"TimeUnitQuantity": "System.Int32",
+"UniqueName": "System.String",
+"Unit": "System.String"
+}
+},
+"Orion.NPM.InterfaceErrors": {
+"bases": [
+"System.Entity",
+"System.ExtensionEntity",
+"System.StatisticsEntity"
+],
+"fields": {
+"Archive": "System.Byte",
+"CRCAlignErrors": "System.Double",
+"DateTime": "System.DateTime",
+"Description": "System.String",
+"Discards": "System.Double",
+"Errors": "System.Double",
+"InDiscards": "System.Double",
+"InErrors": "System.Double",
+"InterfaceID": "System.Int32",
+"LateCollisions": "System.Double",
+"NodeID": "System.Int32",
+"OutDiscards": "System.Double",
+"OutErrors": "System.Double",
+"PercentDiscards": "System.Double",
+"PercentErrors": "System.Double",
+"ReceivePercentErrors": "System.Double",
+"TransmitPercentErrors": "System.Double"
+}
+},
+"Orion.NPM.InterfaceTraffic": {
+"bases": [
+"System.Entity",
+"System.ExtensionEntity",
+"System.StatisticsEntity"
+],
+"fields": {
+"Archive": "System.Byte",
+"Averagebps": "System.Double",
+"DateTime": "System.DateTime",
+"Description": "System.String",
+"InAveragebps": "System.Single",
+"InAvgMultiCastPkts": "System.Single",
+"InAvgUniCastPkts": "System.Single",
+"InMaxMultiCastPkts": "System.Single",
+"InMaxUniCastPkts": "System.Single",
+"InMaxbps": "System.Single",
+"InMinMultiCastPkts": "System.Single",
+"InMinUniCastPkts": "System.Single",
+"InMinbps": "System.Single",
+"InPercentUtil": "System.Single",
+"InTotalBytes": "System.Single",
+"InTotalPkts": "System.Single",
+"InterfaceID": "System.Int32",
+"NodeID": "System.Int32",
+"OutAveragebps": "System.Single",
+"OutAvgMultiCastPkts": "System.Single",
+"OutAvgUniCastPkts": "System.Single",
+"OutMaxMultiCastPkts": "System.Single",
+"OutMaxUniCastPkts": "System.Single",
+"OutMaxbps": "System.Single",
+"OutMinMultiCastPkts": "System.Single",
+"OutMinUniCastPkts": "System.Single",
+"OutMinbps": "System.Single",
+"OutPercentUtil": "System.Single",
+"OutTotalBytes": "System.Single",
+"OutTotalPkts": "System.Single",
+"PercentUtil": "System.Double",
+"TotalBytes": "System.Double",
+"TotalPackets": "System.Double"
+}
+},
+"Orion.NPM.Interfaces": {
+"bases": [
+"System.Entity",
+"System.DashboardEntity",
+"System.ManagedEntity"
+],
+"fields": {
+"AdminStatus": "System.Int16",
+"AdminStatusLED": "System.String",
+"Alias": "System.String",
+"Bps": "System.Double",
+"CRCAlignErrorsThisHour": "System.Single",
+"CRCAlignErrorsToday": "System.Single",
+"Caption": "System.String",
+"Counter64": "System.Char",
+"CustomBandwidth": "System.Boolean",
+"CustomPollerLastStatisticsPoll": "System.DateTime",
+"Description": "System.String",
+"DetailsUrl": "System.String",
+"DuplexMode": "System.Int32",
+"FullName": "System.String",
+"HasObsoleteData": "System.Boolean",
+"Icon": "System.String",
+"IfName": "System.String",
+"InBandwidth": "System.Double",
+"InDiscardsThisHour": "System.Single",
+"InDiscardsToday": "System.Single",
+"InErrorsThisHour": "System.Single",
+"InErrorsToday": "System.Single",
+"InMcastPps": "System.Single",
+"InPercentUtil": "System.Single",
+"InPktSize": "System.Int16",
+"InPps": "System.Single",
+"InUcastPps": "System.Single",
+"Inbps": "System.Single",
+"Index": "System.Int32",
+"InterfaceAlias": "System.String",
+"InterfaceCaption": "System.String",
+"InterfaceID": "System.Int32",
+"InterfaceIcon": "System.String",
+"InterfaceIndex": "System.Int32",
+"InterfaceLastChange": "System.DateTime",
+"InterfaceMTU": "System.Int32",
+"InterfaceName": "System.String",
+"InterfaceResponding": "System.Boolean",
+"InterfaceSpeed": "System.Double",
+"InterfaceSubType": "System.Int32",
+"InterfaceType": "System.Int32",
+"InterfaceTypeDescription": "System.String",
+"InterfaceTypeName": "System.String",
+"LastChange": "System.DateTime",
+"LastSync": "System.DateTime",
+"LateCollisionsThisHour": "System.Single",
+"LateCollisionsToday": "System.Single",
+"MAC": "System.String",
+"MTU": "System.Int32",
+"MaxInBpsTime": "System.DateTime",
+"MaxInBpsToday": "System.Single",
+"MaxOutBpsTime": "System.DateTime",
+"MaxOutBpsToday": "System.Single",
+"MinutesSinceLastSync": "System.Int32",
+"ModernIcon": "System.String",
+"Name": "System.String",
+"NextPoll": "System.DateTime",
+"NextRediscovery": "System.DateTime",
+"NodeID": "System.Int32",
+"ObjectSubType": "System.String",
+"ObsoleteDataCurrentSettingValue": "System.Int32",
+"ObsoleteDataFeatureStatus": "System.Int32",
+"OperStatus": "System.Int16",
+"OperStatusLED": "System.String",
+"OrionIdColumn": "System.String",
+"OrionIdPrefix": "System.String",
+"OutBandwidth": "System.Double",
+"OutDiscardsThisHour": "System.Single",
+"OutDiscardsToday": "System.Single",
+"OutErrorsThisHour": "System.Single",
+"OutErrorsToday": "System.Single",
+"OutMcastPps": "System.Single",
+"OutPercentUtil": "System.Single",
+"OutPktSize": "System.Int16",
+"OutPps": "System.Single",
+"OutUcastPps": "System.Single",
+"Outbps": "System.Single",
+"PercentUtil": "System.Double",
+"PhysicalAddress": "System.String",
+"PollInterval": "System.Int32",
+"RediscoveryInterval": "System.Int32",
+"Severity": "System.Int32",
+"SkippedPollingCycles": "System.Int32",
+"Speed": "System.Double",
+"StatCollection": "System.Int32",
+"Status": "System.Int32",
+"StatusDescription": "System.String",
+"StatusIcon": "System.String",
+"Type": "System.Int32",
+"TypeDescription": "System.String",
+"TypeName": "System.String",
+"UnPluggable": "System.Boolean"
+}
+},
+"Orion.NPM.InterfacesRelationship": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ChildInterfaceIndex": "System.Int32",
+"LACPAdminState": "System.Int16",
+"LACPOperState": "System.Int16",
+"NodeID": "System.Int32",
+"ParentInterfaceIndex": "System.Int32",
+"RelationshipTypeID": "System.Int32"
+}
+},
+"Orion.NPM.InterfacesRelationshipType": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Name": "System.String",
+"RelationshipTypeID": "System.Int32"
+}
+},
+"Orion.NPM.MulticastRouting.PIMNeighbors": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Description": "System.String",
+"ExpiryTime": "System.Int32",
+"IPAddress": "System.String",
+"IPAddressGUID": "System.Guid",
+"IPVersion": "System.Byte",
+"InterfaceIndex": "System.Int32",
+"Mode": "System.Byte",
+"NeighborID": "System.Int32",
+"NodeID": "System.Int32",
+"UpTime": "System.Int32"
+}
+},
+"Orion.NPM.SwitchStack": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"DataRingRedundant": "System.Boolean",
+"DataRingStatus": "System.Byte",
+"DataRingStatusDescription": "System.String",
+"DisplayName": "System.String",
+"LastSync": "System.DateTime",
+"MasterNumber": "System.Byte",
+"MemberCount": "System.Int32",
+"NodeID": "System.Int32",
+"PowerAvailable": "System.Int32",
+"PowerRingStatus": "System.Byte",
+"PowerRingStatusDescription": "System.String",
+"PowerUsed": "System.Int32",
+"RingFailure": "System.Boolean",
+"Status": "System.Byte",
+"StatusDescription": "System.String"
+}
+},
+"Orion.NPM.SwitchStackMember": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"DisplayName": "System.String",
+"HwPriority": "System.Byte",
+"ID": "System.Int32",
+"MacAddress": "System.String",
+"MemberID": "System.Int32",
+"Model": "System.String",
+"NodeID": "System.Int32",
+"PostResult": "System.Boolean",
+"PowerAvailable": "System.Int32",
+"PowerUsed": "System.Int32",
+"Role": "System.Byte",
+"RoleDescription": "System.String",
+"SerialNumber": "System.String",
+"SoftwareImage": "System.String",
+"State": "System.Byte",
+"StateDescription": "System.String",
+"SwPriority": "System.Byte",
+"SwitchNumber": "System.Byte"
+}
+},
+"Orion.Netflow.CBQoSSource": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CBQoSSourceID": "System.Int32",
+"DetailsUrl": "System.String",
+"Enabled": "System.Boolean",
+"EngineID": "System.Int32",
+"InterfaceID": "System.Int32",
+"LastTime": "System.DateTime",
+"NodeDetailsUrl": "System.String",
+"NodeID": "System.Int32"
+}
+},
+"Orion.Netflow.Flows": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AdvancedApplicationID": "System.Int32",
+"ApplicationEnabled": "System.Boolean",
+"ApplicationID": "System.Int32",
+"Bytes": "System.Double",
+"Description": "System.String",
+"DestinationASID": "System.Int32",
+"DestinationCountryCode": "System.String",
+"DestinationDomain": "System.String",
+"DestinationDomainID": "System.Int64",
+"DestinationHostname": "System.String",
+"DestinationHostnameID": "System.Int64",
+"DestinationIP": "System.String",
+"DestinationIPGroupSegmentID": "System.Int32",
+"EgressBytes": "System.Double",
+"EgressPackets": "System.Double",
+"EnabledApplicationID": "System.Int32",
+"IngressBytes": "System.Double",
+"IngressPackets": "System.Double",
+"InputInterfaceIndex": "System.Int32",
+"InterfaceIDRx": "System.Int32",
+"InterfaceIDTx": "System.Int32",
+"IsIPv6": "System.Boolean",
+"NodeID": "System.Int32",
+"ObservationTimestamp": "System.DateTime",
+"OutputInterfaceIndex": "System.Int32",
+"Packets": "System.Double",
+"PaloAltoAppID": "System.String",
+"Port": "System.Int32",
+"PortDirection": "System.Boolean",
+"ProtocolID": "System.Byte",
+"SourceASID": "System.Int32",
+"SourceCountryCode": "System.String",
+"SourceDomain": "System.String",
+"SourceDomainID": "System.Int64",
+"SourceHostname": "System.String",
+"SourceHostnameID": "System.Int64",
+"SourceIP": "System.String",
+"SourceIPGroupSegmentID": "System.Int32",
+"TimeStamp": "System.DateTime",
+"ToSID": "System.Int32",
+"TotalBytes": "System.Double",
+"TotalPackets": "System.Double",
+"TrafficClassID": "System.Int32"
+}
+},
+"Orion.Netflow.InterfaceSources": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AutoDetectedSamplingRate": "System.Int64",
+"DetailsUrl": "System.String",
+"Enabled": "System.Boolean",
+"EntityID": "System.Int32",
+"EntityType": "System.String",
+"ExporterFlowDirectionID": "System.Int32",
+"IfName": "System.String",
+"InterfaceIndex": "System.Int32",
+"LastTime": "System.DateTime",
+"Managed": "System.Boolean",
+"NetflowInterfaceSourceID": "System.Int32",
+"NodeID": "System.Int32"
+}
+},
+"Orion.Netflow.NodeSources": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"DetailsUrl": "System.String",
+"Enabled": "System.Boolean",
+"EngineID": "System.Int32",
+"LastTimeFlow": "System.DateTime",
+"NetflowNodeSourceID": "System.Int32",
+"NodeID": "System.Int32"
+}
+},
+"Orion.Netflow.Source": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AutoDetectedSamplingRate": "System.Int64",
+"CBQoSEnabled": "System.Boolean",
+"CBQoSLastTime": "System.DateTime",
+"DetailsUrl": "System.String",
+"Enabled": "System.Boolean",
+"EngineID": "System.Int32",
+"InterfaceID": "System.Int32",
+"IsWLC": "System.Boolean",
+"LastTime": "System.DateTime",
+"LastTimeAAR": "System.DateTime",
+"LastTimeFlow": "System.DateTime",
+"LastTimeWLC": "System.DateTime",
+"ManualSamplingRate": "System.Int64",
+"NetflowSourceID": "System.Int32",
+"NodeDetailsUrl": "System.String",
+"NodeID": "System.Int32"
+}
+},
+"Orion.Nexus.VirtualPortChannel": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"InterfaceIndex": "System.Int32",
+"LastSync": "System.DateTime",
+"Name": "System.String",
+"NodeId": "System.Int32",
+"Port": "System.String",
+"RemoteNodeId": "System.Int32",
+"RemoteVpcId": "System.Int32",
+"Status": "System.Int32",
+"VpcId": "System.Int32",
+"VpcStatus": "System.Int32",
+"VpcStatusDescription": "System.String"
+}
+},
+"Orion.Nexus.VirtualPortChannelInterfaces": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"InterfaceIndex": "System.Int32",
+"NodeId": "System.Int32",
+"ShortName": "System.String",
+"VpcId": "System.Int32"
+}
+},
+"Orion.NodeCdpEntry": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CacheAddressType": "System.Int32",
+"DeviceId": "System.String",
+"DevicePort": "System.String",
+"IfIndex": "System.Int32",
+"IpAddress": "System.String",
+"NodeID": "System.Int32"
+}
+},
+"Orion.NodeIPAddresses": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"IPAddress": "System.String",
+"IPAddressN": "System.Guid",
+"IPAddressType": "System.String",
+"InterfaceIndex": "System.Int32",
+"NodeID": "System.Int32",
+"SubnetMask": "System.String"
+}
+},
+"Orion.NodeL2Connections": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"MACAddress": "System.String",
+"NodeID": "System.Int32",
+"PortID": "System.Int32",
+"Status": "System.Int32",
+"VlanId": "System.Int32"
+}
+},
+"Orion.NodeL3Entries": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"IPAddress": "System.String",
+"IfIndex": "System.Int32",
+"MACAddress": "System.String",
+"NodeID": "System.Int32",
+"Type": "System.Int32"
+}
+},
+"Orion.NodeL3RoutingData": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"NextHopAddress": "System.String",
+"NodeID": "System.Int32",
+"RouteDestination": "System.String",
+"RouteIfIndex": "System.Int32",
+"RouteMask": "System.String",
+"RouteType": "System.Int32"
+}
+},
+"Orion.NodeLldpEntry": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"LocalPortNumber": "System.Int32",
+"NodeID": "System.Int32",
+"RemoteIfIndex": "System.Int32",
+"RemoteIpAddress": "System.String",
+"RemotePortDescription": "System.String",
+"RemotePortId": "System.String",
+"RemoteSystemName": "System.String"
+}
+},
+"Orion.NodeMACAddresses": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"DateTime": "System.DateTime",
+"MAC": "System.String",
+"NodeID": "System.Int32"
+}
+},
+"Orion.NodeSettings": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"NodeID": "System.Int32",
+"NodeSettingID": "System.Int32",
+"SettingName": "System.String",
+"SettingValue": "System.String"
+}
+},
+"Orion.NodeVlans": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Description": "System.String",
+"DetailsUrl": "System.String",
+"DisplayName": "System.String",
+"LastSyncUtc": "System.DateTime",
+"NodeID": "System.Int32",
+"VlanId": "System.Int32",
+"VlanIfIndex": "System.Int32",
+"VlanName": "System.String",
+"VlanStatus": "System.Int32",
+"VlanTag": "System.String"
+}
+},
+"Orion.Nodes": {
+"bases": [
+"System.Entity",
+"System.DashboardEntity",
+"System.ManagedEntity"
+],
+"fields": {
+"AgentPort": "System.String",
+"Allow64BitCounters": "System.Boolean",
+"AvgResponseTime": "System.Int32",
+"BiosUUID": "System.String",
+"BlockUntil": "System.DateTime",
+"BufferBgMissThisHour": "System.Double",
+"BufferBgMissToday": "System.Double",
+"BufferHgMissThisHour": "System.Double",
+"BufferHgMissToday": "System.Double",
+"BufferLgMissThisHour": "System.Double",
+"BufferLgMissToday": "System.Double",
+"BufferMdMissThisHour": "System.Double",
+"BufferMdMissToday": "System.Double",
+"BufferNoMemThisHour": "System.Double",
+"BufferNoMemToday": "System.Double",
+"BufferSmMissThisHour": "System.Double",
+"BufferSmMissToday": "System.Double",
+"CMTS": "System.Char",
+"CPUCount": "System.Int16",
+"CPULoad": "System.Int32",
+"Caption": "System.String",
+"Category": "System.Int32",
+"ChildStatus": "System.Int32",
+"CloudAccountID": "System.String",
+"CloudInstanceID": "System.String",
+"CloudZoneID": "System.String",
+"Community": "System.String",
+"Contact": "System.String",
+"CustomPollerLastStatisticsPoll": "System.DateTime",
+"CustomPollerLastStatisticsPollSuccess": "System.DateTime",
+"CustomStatus": "System.Boolean",
+"DNS": "System.String",
+"Description": "System.String",
+"DetailsUrl": "System.String",
+"DisplayName": "System.String",
+"DynamicIP": "System.Boolean",
+"EngineID": "System.Int32",
+"EntityType": "System.String",
+"External": "System.Boolean",
+"GroupStatus": "System.String",
+"IOSImage": "System.String",
+"IOSVersion": "System.String",
+"IP": "System.String",
+"IPAddress": "System.String",
+"IPAddressGUID": "System.Guid",
+"IPAddressType": "System.String",
+"IP_Address": "System.String",
+"Icon": "System.String",
+"IsOrionServer": "System.Boolean",
+"IsPollingError": "System.Boolean",
+"IsServer": "System.Boolean",
+"LastBoot": "System.DateTime",
+"LastSync": "System.DateTime",
+"LastSystemUpTimePollUtc": "System.DateTime",
+"LoadAverage1": "System.Double",
+"LoadAverage15": "System.Double",
+"LoadAverage5": "System.Double",
+"Location": "System.String",
+"MachineType": "System.String",
+"MachineUUID": "System.String",
+"MaxResponseTime": "System.Int32",
+"MemoryAvailable": "System.Double",
+"MemoryUsed": "System.Double",
+"MinResponseTime": "System.Int32",
+"MinutesSinceLastSync": "System.Int32",
+"ModernIcon": "System.String",
+"NextPoll": "System.DateTime",
+"NextRediscovery": "System.DateTime",
+"NodeDependencies": "System.String",
+"NodeDependenciesWithLinks": "System.String",
+"NodeDescription": "System.String",
+"NodeID": "System.Int32",
+"NodeName": "System.String",
+"NodeStatusRootCause": "System.String",
+"NodeStatusRootCauseWithLinks": "System.String",
+"ObjectSubType": "System.String",
+"OrionIdColumn": "System.String",
+"OrionIdPrefix": "System.String",
+"PercentLoss": "System.Double",
+"PercentMemoryAvailable": "System.Int32",
+"PercentMemoryUsed": "System.Int32",
+"PollInterval": "System.Int32",
+"PolledStatus": "System.Int32",
+"RWCommunity": "System.String",
+"RediscoveryInterval": "System.Int32",
+"ResponseTime": "System.Int32",
+"SNMPVersion": "System.Int16",
+"Severity": "System.Int32",
+"SkippedPollingCycles": "System.Int32",
+"StatCollection": "System.Int32",
+"Status": "System.Int32",
+"StatusDescription": "System.String",
+"StatusIcon": "System.String",
+"StatusLED": "System.String",
+"SysName": "System.String",
+"SysObjectID": "System.String",
+"SystemUpTime": "System.Double",
+"TotalMemory": "System.Single",
+"UiSeverity": "System.Int32",
+"Vendor": "System.String",
+"VendorIcon": "System.String",
+"WindowsConnectionUsed": "System.Int32"
+}
+},
+"Orion.NodesCustomProperties": {
+"bases": [
+"System.Entity",
+"System.ExtensionEntity",
+"System.CustomPropertiesEntity"
+],
+"fields": {
+"NodeID": "System.Int32"
+}
+},
+"Orion.OLM.LogEntry": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"DateTime": "System.DateTime",
+"Level": "System.String",
+"LevelKey": "System.String",
+"LogEntryID": "System.Int64",
+"LogEntryLevelID": "System.Int32",
+"LogEntryTypeID": "System.Int32",
+"Message": "System.String",
+"MessageDateTime": "System.DateTime",
+"MessageSourceID": "System.Int32",
+"NodeID": "System.Int32"
+}
+},
+"Orion.OLM.LogEntryFieldValue": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"DateTimeValue": "System.DateTime",
+"LogEntryFieldID": "System.Int16",
+"LogEntryFieldValueID": "System.Int64",
+"LogEntryID": "System.Int64",
+"Name": "System.String",
+"NumericValue": "System.Double",
+"TextValue": "System.String"
+}
+},
+"Orion.OLM.LogEntryLevel": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Level": "System.String",
+"LevelKey": "System.String",
+"LogEntryLevelID": "System.Int32"
+}
+},
+"Orion.OLM.LogEntryType": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"DetailPageEnabled": "System.Boolean",
+"LogEntryTypeID": "System.Int32",
+"Name": "System.String",
+"RetentionPeriodInDays": "System.Int32",
+"Type": "System.String"
+}
+},
+"Orion.OLM.MessageSources": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Caption": "System.String",
+"Created": "System.DateTime",
+"EngineID": "System.Int32",
+"IPAddress": "System.String",
+"MachineType": "System.String",
+"MessageSourceID": "System.Int32",
+"NodeID": "System.Int32",
+"Status": "System.Int32",
+"Vendor": "System.String"
+}
+},
+"Orion.Pollers": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Enabled": "System.Boolean",
+"NetObject": "System.String",
+"NetObjectID": "System.Int32",
+"NetObjectType": "System.String",
+"PollerID": "System.Int32",
+"PollerType": "System.String"
+}
+},
+"Orion.ResponseTime": {
+"bases": [
+"System.Entity",
+"System.ExtensionEntity",
+"System.StatisticsEntity"
+],
+"fields": {
+"Archive": "System.Byte",
+"Availability": "System.Double",
+"AvgResponseTime": "System.Int32",
+"DateTime": "System.DateTime",
+"MaxResponseTime": "System.Int32",
+"MinResponseTime": "System.Int32",
+"NodeID": "System.Int32",
+"PercentDown": "System.Double",
+"PercentLoss": "System.Int16"
+}
+},
+"Orion.Routing.DefaultRouteChange": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"ChangeID": "System.Int32",
+"ChangeType": "System.Boolean",
+"DateTimeUTC": "System.DateTime",
+"Description": "System.String",
+"IP_Version": "System.Byte",
+"IpAddress": "System.String",
+"IpAddressGUID": "System.Guid",
+"NodeID": "System.Int32",
+"VrfIndex": "System.Int32"
+}
+},
+"Orion.Routing.Neighbors": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AutonomousSystem": "System.Int32",
+"BgpNeighborAdminStatus": "System.Int32",
+"BgpNeighborAdminStatusDescription": "System.String",
+"BgpNeighborLastError": "System.String",
+"BgpRole": "System.String",
+"Description": "System.String",
+"DetailsUrl": "System.String",
+"HelloSuppressed": "System.Boolean",
+"IP_Version": "System.Byte",
+"Ip_Address_Type": "System.String",
+"IsDeleted": "System.Boolean",
+"LastChange": "System.DateTime",
+"LocalAutonomousSystemNumber": "System.Int32",
+"LocalProtocolInterfaceIndex": "System.Int32",
+"LocalProtocolInterfaceIp": "System.String",
+"NeighborID": "System.Int32",
+"NeighborIP": "System.String",
+"NeighborIPGUID": "System.Guid",
+"NodeID": "System.Int32",
+"ProtocolID": "System.Int32",
+"ProtocolName": "System.String",
+"ProtocolOrionStatus": "System.Int32",
+"ProtocolStatus": "System.Int32",
+"ProtocolStatusDescription": "System.String",
+"ProtocolStatusLED": "System.Int32",
+"Status": "System.Int32",
+"VrfList": "System.String"
+}
+},
+"Orion.Routing.NeighborsFlapCount": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"DateTime": "System.DateTime",
+"DaysBucket": "System.Int32",
+"FlapCount": "System.Decimal",
+"NeighborIP": "System.String",
+"NodeID": "System.Int32",
+"ProtocolID": "System.Int32"
+}
+},
+"Orion.Routing.Router": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Caption": "System.String",
+"Description": "System.String",
+"NodeID": "System.Int32"
+}
+},
+"Orion.Routing.RoutingProtocol": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"DisplayName": "System.String",
+"IP_Version": "System.Byte",
+"ProtocolID": "System.Int32"
+}
+},
+"Orion.Routing.RoutingProtocolStateMapping": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"DisplayName": "System.String",
+"OrionStatus": "System.Int32",
+"ProtocolID": "System.Int32",
+"ProtocolStatus": "System.Int32"
+}
+},
+"Orion.Routing.RoutingTable": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Description": "System.String",
+"IP_Version": "System.Byte",
+"InterfaceCaption": "System.String",
+"InterfaceIndex": "System.Int32",
+"InterfaceName": "System.String",
+"InterfaceStatus": "System.Int32",
+"InterfaceUrl": "System.String",
+"Ip_Address_Type": "System.String",
+"LastChange": "System.DateTime",
+"Metric": "System.Int64",
+"NeighborID": "System.Int32",
+"NextHopStatus": "System.Int32",
+"NextHopUrl": "System.String",
+"NodeCaption": "System.String",
+"NodeID": "System.Int32",
+"NodeStatus": "System.Int32",
+"NodeUrl": "System.String",
+"ProtocolID": "System.Int32",
+"ProtocolName": "System.String",
+"ProtocolStatusDescription": "System.String",
+"RouteDestination": "System.String",
+"RouteDestinationGUID": "System.Guid",
+"RouteID": "System.Int64",
+"RouteMaskLen": "System.Int32",
+"RouteNextHop": "System.String",
+"RouteNextHopGUID": "System.Guid",
+"VrfIndex": "System.Int32",
+"VrfName": "System.String"
+}
+},
+"Orion.Routing.RoutingTableFlap": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CIDR": "System.Int16",
+"DateTime": "System.DateTime",
+"DaysBucket": "System.Int32",
+"Description": "System.String",
+"FlapId": "System.Int32",
+"Ip_Address_Type": "System.String",
+"Ip_Version": "System.Int16",
+"NodeId": "System.Int32",
+"RouteDestination": "System.String",
+"RouteDestinationGUID": "System.Guid",
+"RouteNextHop": "System.String",
+"VrfIndex": "System.Int32"
+}
+},
+"Orion.Routing.VRF": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CompleteValues": "System.Boolean",
+"Description": "System.String",
+"DetailsUrl": "System.String",
+"Name": "System.String",
+"NodeID": "System.Int32",
+"RouteDistinguisher": "System.String",
+"Status": "System.Int32",
+"VrfIndex": "System.Int32"
+}
+},
+"Orion.Routing.VRFInterface": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Description": "System.String",
+"DistributionProtocol": "System.Int32",
+"IfIndex": "System.Int32",
+"NodeID": "System.Int32",
+"VrfIndex": "System.Int32",
+"VrfInterfaceType": "System.Int32"
+}
+},
+"Orion.STPRecords": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"BridgeID": "System.String",
+"ID": "System.Int32",
+"Mode": "System.Int32",
+"NodeID": "System.Int32",
+"RootPathCost": "System.Int32",
+"RootPort": "System.Int32",
+"TopologyChangeCount": "System.Int32",
+"TopologyLastChange": "System.Int32"
+}
+},
+"Orion.SecObs.Vulnerabilities.Cves": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CveId": "System.String",
+"CveLink": "System.String",
+"Description": "System.String",
+"EPSS": "System.String",
+"EPSS_Percentile": "System.Double",
+"EPSS_Probability": "System.Double",
+"LastModified": "System.DateTime",
+"NvdCveLink": "System.String",
+"Published": "System.DateTime",
+"Score": "System.Double",
+"Severity": "System.Int32"
+}
+},
+"Orion.SecObs.Vulnerabilities.NodeCve": {
+"bases": [
+"System.Entity"
+],
+"fields": {}
+},
+"Orion.Settings": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"CurrentValue": "System.Single",
+"DefaultValue": "System.Single",
+"Description": "System.String",
+"Hint": "System.String",
+"Maximum": "System.Single",
+"Minimum": "System.Single",
+"Name": "System.String",
+"SettingID": "System.String",
+"Units": "System.String"
+}
+},
+"Orion.SysLogSeverities": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"SeverityCode": "System.Byte",
+"SeverityName": "System.String"
+}
+},
+"Orion.Topology.TopologyConnections": {
+"bases": [
+"System.Entity",
+"Orion.TopologyConnections"
+],
+"fields": {}
+},
+"Orion.TopologyConnections": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"DataSourceNodeID": "System.Int32",
+"DestInterfaceID": "System.Int32",
+"DestNodeID": "System.Int32",
+"DestOrionNodeID": "System.Int32",
+"DestType": "System.String",
+"DiscoveryProfileID": "System.Int32",
+"LastUpdateUtc": "System.DateTime",
+"LayerType": "System.String",
+"SrcInterfaceID": "System.Int32",
+"SrcNodeID": "System.Int32",
+"SrcOrionNodeID": "System.Int32",
+"SrcType": "System.String"
+}
+},
+"Orion.UDT.Port": {
+"bases": [
+"System.Entity",
+"System.DashboardEntity",
+"System.ManagedEntity"
+],
+"fields": {
+"AdministrativeStatus": "System.Int16",
+"DetailsUrl": "System.String",
+"Duplex": "System.Byte",
+"Flag": "System.Int32",
+"IgnorePortRules": "System.Boolean",
+"IsExcluded": "System.Boolean",
+"IsMissing": "System.Boolean",
+"IsMonitored": "System.Boolean",
+"MACAddress": "System.String",
+"ModernIcon": "System.String",
+"Name": "System.String",
+"NodeID": "System.Int32",
+"OperationalStatus": "System.Int16",
+"OrionIdColumn": "System.String",
+"OrionIdPrefix": "System.String",
+"PortDescription": "System.String",
+"PortID": "System.Int32",
+"PortIndex": "System.Int32",
+"PortType": "System.Int16",
+"Speed": "System.Double",
+"StatusLED": "System.String",
+"TrunkMode": "System.Byte"
+}
+},
+"Orion.UDT.VLAN": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"PortID": "System.Int32",
+"VlanID": "System.Int32",
+"VlanName": "System.String"
+}
+},
+"System.CustomPropertiesEntity": {
+"bases": [
+"System.Entity",
+"System.ExtensionEntity"
+],
+"fields": {}
+},
+"System.DashboardEntity": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"DetailsUrl": "System.String",
+"EntityLink": "System.String",
+"ModernIcon": "System.String",
+"Status": "System.Int32"
+}
+},
+"System.Entity": {
+"bases": [],
+"fields": {
+"Description": "System.String",
+"DisplayName": "System.String",
+"InstanceSiteId": "System.Int32",
+"InstanceType": "System.Type",
+"Uri": "System.String"
+}
+},
+"System.ExtensionEntity": {
+"bases": [
+"System.Entity"
+],
+"fields": {}
+},
+"System.Indication": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"AccountID": "System.String",
+"IndicationID": "System.String",
+"IndicationSequence": "System.Int64",
+"IndicationTime": "System.DateTime"
+}
+},
+"System.InstanceIndication": {
+"bases": [
+"System.Entity",
+"System.Indication"
+],
+"fields": {
+"SourceInstanceType": "System.Type",
+"SourceInstanceUri": "System.Uri"
+}
+},
+"System.ManagedEntity": {
+"bases": [
+"System.Entity",
+"System.DashboardEntity"
+],
+"fields": {
+"AncestorDetailsUrls": "System.String[]",
+"AncestorDisplayNames": "System.String[]",
+"Image": "System.String",
+"StatusDescription": "System.String",
+"StatusIconHint": "System.String",
+"StatusLED": "System.String",
+"UnManageFrom": "System.DateTime",
+"UnManageUntil": "System.DateTime",
+"UnManaged": "System.Boolean"
+}
+},
+"System.StatisticsEntity": {
+"bases": [
+"System.Entity",
+"System.ExtensionEntity"
+],
+"fields": {
+"ObservationFrequency": "System.DateTime",
+"ObservationTimestamp": "System.DateTime",
+"Weight": "System.Double"
+}
+},
+"System.Subscription": {
+"bases": [
+"System.Entity"
+],
+"fields": {
+"Binding": "System.String",
+"CredentialType": "System.String",
+"DataFormat": "System.String",
+"EndpointAddress": "System.String",
+"FailedDeliveryAttempts": "System.Int32",
+"Id": "System.Guid",
+"LastSuccessfulDelivery": "System.DateTime",
+"Password": "System.String",
+"Query": "System.String",
+"ReliableDelivery": "System.Boolean",
+"TTL": "System.Int32",
+"Username": "System.String",
+"Version": "System.Byte"
+}
+}
+},
+"source": "https://solarwinds.github.io/OrionSDK/2026.2/schema/"
+}

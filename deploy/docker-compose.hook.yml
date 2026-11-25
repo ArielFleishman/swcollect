@@ -1,0 +1,9 @@
+# Lets a real Orion reach the push receiver: publishes the collector's :18090 on the host. The alert action's URL is
+# then http://<host>:18090/hook/<network> (docs/orion-alert-action.md). Set SWCOLLECT_HOOK_TOKEN before starting.
+services:
+  collector:
+    networks: [swnet, orion]
+    ports: ["18090:18090"]
+
+networks:
+  orion: {}

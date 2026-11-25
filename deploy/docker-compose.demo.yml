@@ -1,0 +1,11 @@
+# The demo (scripts/demo.ps1 / demo.sh): the whole stack with the rich mock, under its own compose project
+# (-p swcollect-demo), so it gets its own volumes and leaves another swcollect stack untouched. Only Grafana is
+# published, on 127.0.0.1:13000. The collector's `serve` fills PostgreSQL and Loki on its own: on a new network
+# every job is due at once (discover, inventory + curate, metrics, events, verify).
+services:
+  grafana:
+    networks: [swnet, demo]
+    ports: ["127.0.0.1:13000:3000"]
+
+networks:
+  demo: {}

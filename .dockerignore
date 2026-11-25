@@ -1,0 +1,9 @@
+.venv
+.git
+**/__pycache__
+deploy/images
+wheels
+tests
+docs
+.env
+config.yaml

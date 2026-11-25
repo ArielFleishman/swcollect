@@ -1,0 +1,182 @@
+# swcollect rules and manual overrides. Hand-edited and versioned. It survives every discovery.
+#
+# `swcollect discover` reads the live server's Metadata (every entity, property and relationship) and writes
+# catalog/discovered/<network_id>.yaml. That file is generated: do not edit it. To change a decision, edit this one.
+# Everything here that is not read from SWIS is a proposal ("מוצע – טרם אושר") until approved.
+
+version: 1
+
+# ---------------------------------------------------------------------------------------------------------------
+# Classification. Order: exclude → events → metrics → inventory (everything else).
+# ---------------------------------------------------------------------------------------------------------------
+exclude:
+  # Not data: abstract bases, indications (subscription events), schema metadata.
+  abstract: true
+  indication: true
+  prefixes:
+    Metadata.: schema metadata – read by discover itself, not collected as data
+    System.: SWIS system base entities
+  # Named entities, each with its reason. Keep the reason specific: it is shown in the coverage report.
+  entities:
+    Orion.Netflow.Flows: >-
+      raw flow records: very large and must be queried by a short time window and aggregated (SPEC-B §7
+      "Flow: summary every 15 minutes"). Needs its own design with the NTA owner – needs proof (טעון הוכחה).
+
+# Events go to Loki, pulled incrementally by an increasing ID (WHERE id > @LastID) or, if there is none, by time.
+# For each entity: the watermark field candidates, in order. The first one the server has is used.
+events:
+  # time_zone: how the time field is read to place the entry on Loki's time axis (Loki needs epoch time).
+  #   server_local → minus the measured server offset (GETDATE − GETUTCDATE); utc → as is. A value with "Z" or an
+  #   offset is always read as such. The line keeps the time exactly as received. These are declared rules that
+  #   need proof on the installed version: `swcollect events` flags a source whose newest event lands in the future.
+  Orion.Events:
+    watermark: [EventID]              # Orion.Events.TimeStamp is System.Byte[] (rowversion), not a time
+    time: EventTime
+    kind: event
+    time_zone: server_local
+    time_basis: "swcheck live-events latency check treats EventTime as server-local; needs proof per version"
+  Orion.AlertHistory:
+    watermark: [AlertHistoryID]
+    time: TimeStamp
+    kind: alert
+    time_zone: server_local
+    time_basis: "needs proof (swcheck's reconciliation leaves it as a choice: utc or local)"
+  Orion.OLM.LogEntry:
+    watermark: [LogEntryID]
+    time: DateTime
+    kind: syslog                      # split into syslog / trap by Orion.OLM.LogEntryType (read from SWIS)
+    kind_from: {field: LogEntryTypeID, entity: Orion.OLM.LogEntryType, key: LogEntryTypeID, name: Type}
+    time_zone: server_local
+    time_basis: "needs proof"
+  Orion.AuditingEvents:
+    watermark: [AuditEventID]
+    time: TimeLoggedUtc
+    kind: audit
+    time_zone: utc
+    time_basis: "the field name says UTC; needs proof"
+  NCM.ConfigArchive:
+    # ConfigID is a Guid (not increasing): pull by DownloadTime with an overlap, dedupe on ConfigID.
+    # The full config text goes to sw_raw (state, needs the device link); Loki gets a change line.
+    watermark: []
+    time: DownloadTime
+    kind: config_change
+    also_raw: true
+    loki_omit: [Config]               # the config text is stored in sw_raw.ncm_configarchive, not in the Loki line
+    time_zone: server_local
+    time_basis: "needs proof"
+
+# Metrics go to TimescaleDB: a time field plus an Archive field, or a name that says it is a statistic.
+metrics:
+  time_fields: [DateTime, ObservationTimestamp, TimeStamp, Timestamp, RecordTime]
+  name_pattern: '(Statistics?|Load|Traffic|Errors|ResponseTime|History|MultiLoad)$'
+  marker_fields: [Archive]
+
+# ---------------------------------------------------------------------------------------------------------------
+# Keys. Metadata.Property.IsKey wins. Without it, discover tries candidate columns (names ending in ID / Id /
+# Index / Guid, plus the time field) and keeps the smallest set that is unique on a sample of rows. That is
+# "unique on a sample", not proven: phase 2 reports any duplicate key it meets. With no unique set, the row's
+# hash is its identity.
+# ---------------------------------------------------------------------------------------------------------------
+keys:
+  sample_rows: 2000
+  candidate_suffixes: [ID, Id, Index, Guid]
+  overrides: {}
+
+# ---------------------------------------------------------------------------------------------------------------
+# Field types: SWIS → PostgreSQL. Byte[] is not collected (listed per entity with this reason).
+# ---------------------------------------------------------------------------------------------------------------
+excluded_types:
+  System.Byte[]: binary value (System.Byte[]) – read on demand by Uri, not collected
+
+# ---------------------------------------------------------------------------------------------------------------
+# Relationships that SWIS does not expose as a navigation property, or whose columns have different names.
+# Each one is proven against SWIS by values before use (discover → sw_meta.relationship).
+# basis: where the meaning comes from. A link without a basis is not added.
+# ---------------------------------------------------------------------------------------------------------------
+relationships:
+  - {source: Orion.TopologyConnections, target: Orion.Nodes, name: SrcNode, columns: [[SrcNodeID, NodeID]],
+     basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.TopologyConnections.html (SrcNodeID)"}
+  - {source: Orion.TopologyConnections, target: Orion.Nodes, name: DestNode, columns: [[DestNodeID, NodeID]],
+     basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.TopologyConnections.html (DestNodeID)"}
+  - {source: Orion.TopologyConnections, target: Orion.NPM.Interfaces, name: SrcInterface,
+     columns: [[SrcInterfaceID, InterfaceID]],
+     basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.TopologyConnections.html (SrcInterfaceID)"}
+  - {source: Orion.TopologyConnections, target: Orion.NPM.Interfaces, name: DestInterface,
+     columns: [[DestInterfaceID, InterfaceID]],
+     basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.TopologyConnections.html (DestInterfaceID)"}
+  - {source: NCM.Nodes, target: Orion.Nodes, name: CoreNode, columns: [[CoreNodeID, NodeID]],
+     basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/NCM.Nodes.html (CoreNodeID = Orion NodeID)"}
+  - {source: Orion.AlertObjects, target: Orion.Nodes, name: RelatedNode, columns: [[RelatedNodeId, NodeID]],
+     basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.AlertObjects.html (RelatedNodeId)"}
+  - {source: Orion.UDT.IPAddressCurrent, target: Orion.Nodes, name: RouterNode, columns: [[RouterNodeID, NodeID]],
+     basis: "https://solarwinds.github.io/OrionSDK/2026.2/schema/Orion.UDT.IPAddressCurrent.html (RouterNodeID)"}
+
+# Name matching: a column whose name equals the key of an "owner" entity (its short name in the singular + "ID",
+# e.g. NodeID → Orion.Nodes, InterfaceID → Orion.NPM.Interfaces) and has the same type becomes a candidate link.
+# Candidates are proven by values like the overrides. Generic names are never matched.
+name_match:
+  enabled: true
+  ignore_columns: [ID, Id, Index, Name, EngineID]
+
+# How much to sample when proving a relationship (queries per relationship ≈ 1 + 2 × check_sources).
+proof:
+  sample_pairs: 500
+  check_sources: 3
+  check_values: 5
+
+# ---------------------------------------------------------------------------------------------------------------
+# Schedules: SPEC-B §7 proposals ("מוצע – טרם אושר"). Phase 5 runs them.
+# ---------------------------------------------------------------------------------------------------------------
+schedule:
+  # Read by `swcollect serve`. daily_at is the collector host's local time. A job runs when it is due and its
+  # previous run (sw_meta.sync_run) is older than its interval; each job takes a PostgreSQL advisory lock, so two
+  # collectors never run the same job for the same network at once. `then` runs right after, in the same slot.
+  status: מוצע – טרם אושר
+  discover:       {daily_at: "01:30"}
+  inventory:      {daily_at: "02:00", then: [curate]}
+  inventory_core: {every_minutes: 60, then: [curate],
+                   entities: [Orion.Nodes, Orion.NPM.Interfaces, Orion.NodeIPAddresses, IPAM.Subnet, IPAM.IPNode,
+                              Orion.TopologyConnections, Orion.NodeLldpEntry, Orion.NodeCdpEntry]}
+  routing:        {every_minutes: 15, entities: [Orion.Routing.Neighbors, Orion.Routing.NeighborsFlapCount]}
+  metrics:        {every_minutes: cadence}   # sw_meta.instance.metrics_cadence (from StatCollection), else 5
+  events:         {every_minutes: 10}        # plus the push receiver in real time
+  verify:         {every_minutes: 60}
+  retry_after_failure_minutes: 5
+
+# ---------------------------------------------------------------------------------------------------------------
+# Metrics (TimescaleDB, sw_ts). Proposals ("מוצע – טרם אושר") until approved (SPEC-B §7, §13.3).
+# ---------------------------------------------------------------------------------------------------------------
+metrics_policy:
+  status: מוצע – טרם אושר
+  # Polling follows Orion's own sampling: every max(min_minutes, smallest StatCollection), clamped to [min, max].
+  min_minutes: 5
+  clamp_minutes: [1, 15]
+  # The incremental pull re-reads this window behind the watermark, so samples Orion writes late or recomputes
+  # (re-aggregation) are picked up: overlap = overlap_factor × the largest StatCollection, at least overlap_min.
+  overlap_factor: 2
+  overlap_min_minutes: 10
+  # First run: everything Orion still holds (detail, hourly, daily), in slices of this many hours.
+  backfill_slice_hours: 24
+  compress_after: 7 days        # TimescaleDB compression policy
+  retention: null               # null = keep everything until a retention period is approved
+  events: {every: 10 minutes + push, status: מוצע – טרם אושר}
+
+# ---------------------------------------------------------------------------------------------------------------
+# Events (Loki). Proposals ("מוצע – טרם אושר") until approved.
+# ---------------------------------------------------------------------------------------------------------------
+events_policy:
+  status: מוצע – טרם אושר
+  backfill_days: 30          # first run: events from the newest one back this many days (Orion keeps ~30 by default)
+  lookback_hours: 24         # every ID-based pull also filters time >= last seen time − this (never an unfiltered read)
+  overlap_minutes: 60        # time-based sources (NCM.ConfigArchive) re-read this window; Loki drops exact duplicates
+  batch_entries: 1000        # entries per Loki push request
+
+# Push: the Orion alert action "Send a GET or POST Request to a Web Server" → POST /hook/<network>
+# (docs/orion-alert-action.md). Every message is stored exactly as received (sw_meta.push_message) and sent to
+# Loki (kind alert_push). Reconciliation pairs each message with an Orion.AlertHistory row by a key the action puts
+# in the body, like swcheck's listener (§3.1 #10): no EventType meaning is assumed.
+push:
+  key_regex: 'AlertObjectID\D{0,3}(\d+)'
+  history_field: AlertObjectID
+  tolerance_seconds: 120     # a push may be stamped up to this much before the history row (clock skew)
+  match_within_hours: 24
